@@ -1,4 +1,19 @@
-<h2><%= @trip.name %></h2>
-<p><%= @trip.start_date %></p>
-<p><%= @trip.end_date %></p>
-<p><%= @trip.destination %></p>
+<div class="container card">
+  <h2><%= @trip.name %></h2>
+  <p>Début : <%= @trip.start_date %></p>
+  <p>Fin : <%= @trip.end_date %></p>
+  <p>Destination : <%= @trip.destination %></p>
+  <p>créé par <%= @trip.user.email %></p>
+
+  <h4>Participants</h4>
+  <ul>
+    <% @participants.each do |participant| %>
+      <li>
+      <p> <%= participant.user.email %> </p>
+      </li>
+    <% end %>
+  </ul>
+  <% if @trip.user == current_user %>
+    <%= link_to "Ajouter un participant", participant_path %>
+  <% end %>
+</div>

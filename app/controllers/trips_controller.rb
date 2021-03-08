@@ -6,17 +6,19 @@ class TripsController < ApplicationController
 
   def create
     @trip = Trip.new(trip_params)
+    @trip.user_id = current_user.id
     @trip.save
-
+    Participant.create!(trip_id: @trip.id, user_id: current_user.id)
     redirect_to trips_path
   end
 
   def index
-    @trips = Trip.all
+    @trips = current_user.trips
   end
 
   def show
     @trip = Trip.find(params[:id])
+    @participants = Participant.where(trip_id: params[:id])
   end
 
   private

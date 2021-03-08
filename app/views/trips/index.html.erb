@@ -2,6 +2,9 @@
   <% @trips.each do |trip| %>
     <li>
       <%= link_to trip.name, trip_path(trip) %>
+      <% if trip.user == current_user %>
+        (proprio)
+      <% end %>
     </li>
   <% end %>
 </ul>

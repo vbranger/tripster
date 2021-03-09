@@ -21,6 +21,13 @@ class TripsController < ApplicationController
     @participants = Participant.where(trip_id: params[:id])
   end
 
+  def destroy
+    @trip = Trip.find(params[:id])
+    @trip.destroy
+
+    redirect_to trips_path
+  end
+
   private
 
   def trip_params

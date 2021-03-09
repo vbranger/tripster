@@ -4,6 +4,7 @@
       <%= link_to trip.name, trip_path(trip) %>
       <% if trip.user == current_user %>
         (proprio)
+        <%= link_to "Delete", trip_path(trip), method: :delete, data: { confirm: "Êtes-vous sûr ?"} %>
       <% end %>
     </li>
   <% end %>

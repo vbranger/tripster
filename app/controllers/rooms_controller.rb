@@ -12,6 +12,9 @@ class RoomsController < ApplicationController
     if @room.url.include? "airbnb"
       @room.website = "airbnb"
       @room.get_id
+      p "starting scrap"
+      @room.scrap
+      p "ended scrap"
     end
     @room.save
     redirect_to trip_path(params[:trip_id])

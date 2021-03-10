@@ -6,7 +6,6 @@
     <p>Destination : <%= @trip.destination %></p>
     <p>créé par <%= @trip.user.email %></p>  
   </div>
-
   <div class="card my-3 p-3">
     <h4>Participants</h4>
     <ul>
@@ -26,4 +25,16 @@
     <% end %>
   </div>
 
+  <div class="card my-3 p-3">
+    <h4>Lieux</h4>
+
+    <ul>
+      <% @trip.rooms.each do |room| %>
+        <li>
+          <p><%= room.web_id %></p>
+        </li>
+      <% end %>
+    </ul>
+    <%= link_to "Ajouter un lieu", new_trip_room_path(@trip) %>
+  </div>
 </div>

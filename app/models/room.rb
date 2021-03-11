@@ -31,15 +31,18 @@ class Room < ApplicationRecord
     # browser.quit
     # # p html_doc
 
-    br = Ferrum::Browser.new(timeout: 240)
-    br.goto(url)
-    loop do
-      break if br.evaluate("document.readyState") == "complete"
-    end
-    html_doc = Nokogiri::HTML(br.body)
-    p br.body
-    br.quit
-    p html_doc.search('h1')
+    br = Ferrum::Browser.new(timeout: 60)
+    br.go_to('https://www.airbnb.fr/rooms/34108527?source_impression_id=p3_1615470800_6I91lDfpEIXf2e%2Fq&guests=1&adults=1')
+    # loop do
+    #   break if br.evaluate("document.readyState") == "complete"
+    # end
+    sleep(10)
+    p br.at_css("h1")
+
+    # html_doc = Nokogiri::HTML(br.body)
+    # p br.body
+    # br.quit
+    # p html_doc.search('h1')
   end
 
 end

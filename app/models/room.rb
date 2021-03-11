@@ -31,21 +31,15 @@ class Room < ApplicationRecord
     # browser.quit
     # # p html_doc
 
-    # br = Ferrum::Browser.new(timeout: 240)
-    # br.goto(url)
-    # br.mouse.scroll_to(0, 400)
-    # loop do
-    #   break if br.evaluate("document.readyState") == "complete"
-    # end
-    # html_doc = Nokogiri::HTML(br.body)
-    # p br.body
-    # br.quit
-    # p html_doc.search('h1')
-
-    br = Watir::Browser.new
+    br = Ferrum::Browser.new(timeout: 240)
     br.goto(url)
-    html = br.html
-    p html
+    loop do
+      break if br.evaluate("document.readyState") == "complete"
+    end
+    html_doc = Nokogiri::HTML(br.body)
+    p br.body
+    br.quit
+    p html_doc.search('h1')
   end
 
 end

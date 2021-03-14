@@ -20,6 +20,11 @@ class RoomsController < ApplicationController
     redirect_to trip_path(params[:trip_id])
   end
 
+  def show
+    @trip = Trip.find(params[:id])
+    @room = Room.find(params[:trip_id])
+  end
+
   def room_params
     params.require(:room).permit(:url)
   end

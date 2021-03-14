@@ -30,11 +30,11 @@
 
     <ul class="p-0">
       <% @trip.rooms.each do |room| %>
-        <li class="d-block my-3">
+        <li class="row my-3">
         <% if room.photo %>
-          <%= image_tag(room.photo, height: "150px") %>
+          <%= image_tag(room.photo, class: "img-fluid col-12 col-md-4") %>
         <% end %>
-        <%= link_to "https://www.airbnb.fr/rooms/#{room.web_id}", target: :_blank do %>
+        <%= link_to trip_room_path(room), target: :_blank, class: "col-md-8" do %>
           <p><%= room.name.empty? ? "Non identifié" : room.name %></p>
         <% end %>
         </li>

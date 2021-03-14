@@ -1,0 +1,11 @@
+<div class="container">
+  <div class="d-flex p-3 align-items-end" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('<%= @room.photo %>'); height: 60vh; background-size: cover; background-position: center;">
+    <h1 class="text-light"><%= @room.name %></h1>
+  </div>
+  <div class="my-3">
+    <button type="button" class="btn btn-success">Valider</button>
+    <button type="button" class="btn btn-danger">Refuser</button>
+    <button type="button" class="btn btn-outline-primary">Editer</button>
+    <button type="button" class="btn btn-outline-danger">Supprimer</button>
+  </div>
+</div>

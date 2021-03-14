@@ -30,7 +30,10 @@
 
     <ul>
       <% @trip.rooms.each do |room| %>
-        <li>
+        <li class="d-flex">
+        <% if room.photo %>
+          <%= image_tag(room.photo, height: "150px") %>
+        <% end %>
         <%= link_to "https://www.airbnb.fr/rooms/#{room.web_id}", target: :_blank do %>
           <p><%= room.web_id %> - <%= room.name %></p>
         <% end %>

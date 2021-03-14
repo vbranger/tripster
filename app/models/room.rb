@@ -48,7 +48,7 @@ class Room < ApplicationRecord
     p house_name = html_doc.search("#listing-#{self.web_id} > div._hgs47m > div > div > a > div._wlyu2v > span > span").children.text
     self.name = house_name
     p photo = html_doc.search("#listing-#{self.web_id} > div._1dp4576 > div._e296pg > div._gjw2an > div > div > div")
-    unless photo.empty?
+    unless photo.empty? # pour gérer les maisons non identifiées sur airbnb
       p get_img_url(photo.last.attributes["style"].value)
     end
     br.quit

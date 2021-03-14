@@ -28,14 +28,14 @@
   <div class="card my-3 p-3">
     <h4>Lieux</h4>
 
-    <ul>
+    <ul class="p-0">
       <% @trip.rooms.each do |room| %>
-        <li class="d-flex">
+        <li class="d-block my-3">
         <% if room.photo %>
           <%= image_tag(room.photo, height: "150px") %>
         <% end %>
         <%= link_to "https://www.airbnb.fr/rooms/#{room.web_id}", target: :_blank do %>
-          <p><%= room.web_id %> - <%= room.name %></p>
+          <p><%= room.name.empty? ? "Non identifié" : room.name %></p>
         <% end %>
         </li>
       <% end %>

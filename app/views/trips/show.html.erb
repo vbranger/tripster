@@ -31,7 +31,9 @@
     <ul>
       <% @trip.rooms.each do |room| %>
         <li>
-          <p><%= room.web_id %></p>
+        <%= link_to "https://www.airbnb.fr/rooms/#{room.web_id}", target: :_blank do %>
+          <p><%= room.web_id %> - <%= room.name %></p>
+        <% end %>
         </li>
       <% end %>
     </ul>

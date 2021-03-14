@@ -34,8 +34,9 @@
         <% if room.photo %>
           <%= image_tag(room.photo, class: "img-fluid col-12 col-md-4") %>
         <% end %>
-        <%= link_to trip_room_path(room), target: :_blank, class: "col-md-8" do %>
+        <%= link_to trip_room_path(room), class: "col-md-8" do %>
           <p><%= room.name.empty? ? "Non identifié" : room.name %></p>
+          <p>Likes: <%= room.get_likes.size %></p>
         <% end %>
         </li>
       <% end %>

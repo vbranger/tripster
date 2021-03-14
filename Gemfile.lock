@@ -60,9 +60,9 @@ GEM
       minitest (>= 5.1)
       tzinfo (~> 2.0)
       zeitwerk (~> 2.3)
+    acts_as_votable (0.13.1)
     addressable (2.7.0)
       public_suffix (>= 2.0.2, < 5.0)
-    ast (2.4.2)
     autoprefixer-rails (10.2.4.0)
       execjs
     bcrypt (3.1.16)
@@ -83,7 +83,6 @@ GEM
     cliver (0.3.2)
     coderay (1.1.3)
     concurrent-ruby (1.1.8)
-    connection_pool (2.2.3)
     crass (1.0.6)
     devise (4.7.3)
       bcrypt (~> 3.0)
@@ -141,8 +140,6 @@ GEM
       racc (~> 1.4)
     open-uri (0.1.0)
     orm_adapter (0.5.0)
-    parser (3.0.0.0)
-      ast (~> 2.4.1)
     pg (1.2.3)
     pry (0.13.1)
       coderay (~> 1.1)
@@ -209,18 +206,10 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
-    scout_apm (4.0.4)
-      parser
     selenium-webdriver (3.142.7)
       childprocess (>= 0.5, < 4.0)
       rubyzip (>= 1.2.2)
     semantic_range (3.0.0)
-    sidekiq (6.1.3)
-      connection_pool (>= 2.2.2)
-      rack (~> 2.0)
-      redis (>= 4.2.0)
-    sidekiq-failures (1.0.0)
-      sidekiq (>= 4.0.0)
     simple_form (5.1.0)
       actionpack (>= 5.2)
       activemodel (>= 5.2)
@@ -266,6 +255,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  acts_as_votable
   autoprefixer-rails
   bootsnap (>= 1.4.4)
   byebug
@@ -287,10 +277,7 @@ DEPENDENCIES
   rails (~> 6.1.2, >= 6.1.2.1)
   redis (~> 4.0)
   sass-rails (>= 6)
-  scout_apm
   selenium-webdriver
-  sidekiq
-  sidekiq-failures (~> 1.0)
   simple_form
   spring
   turbolinks (~> 5)

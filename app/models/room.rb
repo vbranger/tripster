@@ -4,6 +4,7 @@ require 'ferrum'
 
 class Room < ApplicationRecord
   belongs_to :trip
+  acts_as_votable
 
   def get_id
     match_data = self.url.match(/^(?<website_url>https:\/\/www.airbnb.[a-z]+\/rooms\/)(?<id>\d+)/)

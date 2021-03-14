@@ -3,9 +3,21 @@
     <h1 class="text-light"><%= @room.name %></h1>
   </div>
   <div class="my-3">
-    <button type="button" class="btn btn-success">Valider</button>
-    <button type="button" class="btn btn-danger">Refuser</button>
+    
+    <% if current_user.liked? @room %>
+        <%= link_to like_trip_room_path(@room, format: 'unlike'), class: "btn btn-danger", method: :put do %> 
+        Unlike
+        <% end %>
+    <% else %>
+        <%= link_to like_trip_room_path(@room, format: 'like'), class: "btn btn-success", method: :put do %> 
+        Like
+        <% end %>
+    <% end %>
     <button type="button" class="btn btn-outline-primary">Editer</button>
     <button type="button" class="btn btn-outline-danger">Supprimer</button>
+    <p>Nombre de likes : <%= @room.get_likes.size %></p>
+    <%= link_to "Voir sur le site", @room.url  %>
+    <br>
+    <%= link_to "Retour au voyage", trip_path(@trip)  %>
   </div>
 </div>

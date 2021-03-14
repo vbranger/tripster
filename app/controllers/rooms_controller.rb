@@ -1,5 +1,7 @@
 class RoomsController < ApplicationController
 
+  respond_to :js, :html, :json
+
   def new
     @trip = Trip.find(params[:trip_id])
     @room = Room.new
@@ -24,6 +26,19 @@ class RoomsController < ApplicationController
     @trip = Trip.find(params[:id])
     @room = Room.find(params[:trip_id])
   end
+
+  def like
+    @trip = Trip.find(params[:id])
+    @room = Room.find(params[:trip_id])
+    if params[:format] == 'like'
+      @room.liked_by current_user
+    elsif params[:format] == 'unlike'
+      @room.unliked_by current_user
+    end
+    redirect_to trip_room_path(@room)
+  end
+
+  private
 
   def room_params
     params.require(:room).permit(:url)

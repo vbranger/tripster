@@ -19,6 +19,7 @@ class TripsController < ApplicationController
   def show
     @trip = Trip.find(params[:id])
     @participants = Participant.where(trip_id: params[:id])
+    @participants_list = @trip.participants_list
   end
 
   def destroy

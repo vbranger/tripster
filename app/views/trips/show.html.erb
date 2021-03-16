@@ -26,6 +26,10 @@
   </div>
 
   <div class="card my-3 p-3">
+    <h4>Dates</h4>
+    
+  </div>
+  <div class="card my-3 p-3">
     <h4>Lieux</h4>
 
     <ul class="p-0">
@@ -34,10 +38,15 @@
         <% if room.photo %>
           <%= image_tag(room.photo, class: "img-fluid col-12 col-md-4") %>
         <% end %>
-        <%= link_to trip_room_path(room), class: "col-md-8" do %>
-          <p><%= room.name.empty? ? "Non identifié" : room.name %></p>
+        <div class="col-md-8">
+          <%= link_to trip_room_path(room) do %>
+            <p><%= room.name.empty? ? "Non identifié" : room.name %></p>
+          <% end %>
           <p>Likes: <%= room.get_likes.size %></p>
-        <% end %>
+          <% if @participants.size == room.get_likes.size %>
+            <p>Tout le monde est partant ! <%= link_to "Faire la réservation", "#" %></p>
+          <% end %>
+        </div>
         </li>
       <% end %>
     </ul>

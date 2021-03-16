@@ -38,6 +38,8 @@ class RoomsController < ApplicationController
     redirect_to trip_room_path(@room)
   end
 
+  
+
   private
 
   def room_params

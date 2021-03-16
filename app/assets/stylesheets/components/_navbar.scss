@@ -1,12 +1,14 @@
 .navbar-lewagon {
   justify-content: space-between;
-  background: white;
+  background: #202124;
 }
-
 .navbar-lewagon .navbar-collapse {
   flex-grow: 0;
 }
 
-.navbar-lewagon .navbar-brand img {
-  width: 40px;
+.navbar-lewagon .navbar-brand p {
+  font-family: Ranchers;
+  font-size: 1rem;
+  padding: 0;
+  margin: 0;
 }

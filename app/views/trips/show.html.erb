@@ -4,7 +4,11 @@
     <p>Début : <%= @trip.start_date %></p>
     <p>Fin : <%= @trip.end_date %></p>
     <p>Destination : <%= @trip.destination %></p>
-    <p>créé par <%= @trip.user.email %></p>  
+    <p>créé par <%= @trip.user.email %></p>
+    <% if @trip.user == current_user %>
+      (proprio)
+      <%= link_to "Delete", trip_path(@trip), method: :delete, data: { confirm: "Êtes-vous sûr ?"} %>
+    <% end %>
   </div>
   <div class="card my-3 p-3">
     <h4>Participants</h4>

@@ -1,11 +1,5 @@
-<ul>
+<div class="container">
   <% @trips.each do |trip| %>
-    <li>
-      <%= link_to trip.name, trip_path(trip) %>
-      <% if trip.user == current_user %>
-        (proprio)
-        <%= link_to "Delete", trip_path(trip), method: :delete, data: { confirm: "Êtes-vous sûr ?"} %>
-      <% end %>
-    </li>
+      <%= render partial: 'shared/trip', locals: {trip: trip} %>
   <% end %>
-</ul>
+</div>

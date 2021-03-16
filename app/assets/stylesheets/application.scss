@@ -8,6 +8,10 @@
 @import "font-awesome-sprockets";
 @import "font-awesome";
 
+h1, h2, h3, h4, p {
+  margin: 0;
+  padding: 0;
+}
 // Your CSS partials
 @import "components/index";
 @import "pages/index";

@@ -1,13 +1,16 @@
-<div class="d-flex align-items-center justify-content-between shadow rounded my-3 p-3 bg-dark text-light">
-  <div class="trip-text">
-    <h4><%= trip.name %></h4>
-    <p><%= trip.start_date.strftime("%d/%m/%Y") %> > <%= trip.end_date.strftime("%d/%m/%Y") %></p>
-    <p><%= trip.participants.size %> participants</p>
+<div class="row justify-content-center">
+  <div class="col-sm-12 col-lg-8 d-flex align-items-center justify-content-between shadow p-3 bg-dark text-light border-bottom border-white">
+    <div class="trip-text">
+      <h4><%= trip.name %></h4>
+      <p><%= trip.start_date.strftime("%d/%m/%Y") %> > <%= trip.end_date.strftime("%d/%m/%Y") %></p>
+      <p><%= trip.participants.size %> participants</p>
+    </div>
+    <%= link_to trip_path(trip) do  %>
+    <svg width="26" height="13" viewBox="0 0 26 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M1 6.5L24.5714 6.5" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M19.0714 1L24.5714 6.5L19.0714 12" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <% end %>
   </div>
-  <%= link_to trip_path(trip) do  %>
-  <svg width="26" height="13" viewBox="0 0 26 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M1 6.5L24.5714 6.5" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M19.0714 1L24.5714 6.5L19.0714 12" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-  </svg>
-  <% end %>
+
 </div>

@@ -2,6 +2,7 @@
   <div class="trip-text">
     <h4><%= trip.name %></h4>
     <p><%= trip.start_date.strftime("%d/%m/%Y") %> > <%= trip.end_date.strftime("%d/%m/%Y") %></p>
+    <p><%= trip.participants.size %> participants</p>
   </div>
   <%= link_to trip_path(trip) do  %>
   <svg width="26" height="13" viewBox="0 0 26 13" fill="none" xmlns="http://www.w3.org/2000/svg">

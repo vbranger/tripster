@@ -37,12 +37,13 @@ class Room < ApplicationRecord
     # test alternative
     browser = Ferrum::Browser.new({ timeout: 60, headless: true, process_timeout: 60 })
     browser.go_to(url)
-    sleep(5)
+    sleep(1) until !html_doc.search('._mbmcsn h1').empty?
     html_doc = Nokogiri::HTML(browser.body)
     browser.quit
-    p info = html_doc.search('._mbmcsn h1')
+    p title = html_doc.search('._mbmcsn h1').children.text
     p photo = html_doc.search('._6tbg2q')
     p price = html_doc.search('._pgfqnw')
+    self.name = title
 
 
     # CODE VALIDE

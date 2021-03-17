@@ -43,8 +43,8 @@
           <%= image_tag(room.photo, class: "img-fluid col-12 col-md-4") if room.photo %>
           <div class="col-md-8">
             <%= link_to trip_room_path(room) do %>
-              <p><%= room.name? ? "Non identifié" : room.name %></p>
-              <p><%= room.price ? "n/a" : room.price %></p>
+              <p><%= room.name? ? room.name : "Non identifié" %></p>
+              <p><%= room.price ? room.price : "n/a" %></p>
             <% end %>
             <!-- 
             <p>Likes: <%= room.get_likes.size %></p>

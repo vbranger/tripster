@@ -28,8 +28,8 @@ class Room < ApplicationRecord
       tomorrow = "#{t.year}-#{t.month}-#{t.day.to_i + 1}"
       url = "https://www.airbnb.fr/rooms/#{self.web_id}?adults=#{self.trip.participants.size}&check_in=#{today}&check_out=#{tomorrow}"
     end
+    p url
     # url = "https://medium.com/@LindaVivah/the-beginner-s-guide-scraping-in-ruby-cheat-sheet-c4f9c26d1b8c"
-    # p url
     # p url
     # html_file = open(url).read
     # p html_file
@@ -48,8 +48,8 @@ class Room < ApplicationRecord
     html_doc = Nokogiri::HTML(browser.body)
     browser.quit
     p title = html_doc.search('._mbmcsn h1').children.text
-    p photo = html_doc.search('._6tbg2q')
-    p price = html_doc.search('._pgfqnw')
+    p photo = html_doc.search('._6tbg2q').attr('src')
+    p price = html_doc.search('._pgfqnw').children.text
     self.name = title
     # FIN CODE POUR LA PROD
 

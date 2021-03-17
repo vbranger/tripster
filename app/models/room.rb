@@ -37,9 +37,7 @@ class Room < ApplicationRecord
     # test alternative
     browser = Ferrum::Browser.new({ timeout: 60, headless: true, process_timeout: 60 })
     browser.go_to(url)
-    loop do
-      break if browser.evaluate("document.readyState") == "complete"
-    end
+    sleep(5)
     html_doc = Nokogiri::HTML(browser.body)
     browser.quit
     info = html_doc.search('h1')

@@ -48,7 +48,7 @@ class Room < ApplicationRecord
     html_doc = Nokogiri::HTML(browser.body)
     browser.quit
     p title = html_doc.search('._mbmcsn h1').children.text
-    p photo = html_doc.search('._6tbg2q').attr('src')
+    p photo = html_doc.search('._6tbg2q').attr('src').value
     p price = html_doc.search('._pgfqnw').children.text
     self.name = title
     # FIN CODE POUR LA PROD

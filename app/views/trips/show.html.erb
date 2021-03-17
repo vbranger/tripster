@@ -46,6 +46,7 @@
         <div class="col-md-8">
           <%= link_to trip_room_path(room) do %>
             <p><%= room.name.empty? ? "Non identifié" : room.name %></p>
+            <p><%= room.price.empty ? "n/a" : room.price %></p>
           <% end %>
           <!-- 
           <p>Likes: <%= room.get_likes.size %></p>

@@ -40,14 +40,9 @@ class Room < ApplicationRecord
     sleep(5)
     html_doc = Nokogiri::HTML(browser.body)
     browser.quit
-    p info = html_doc.search('._14i#z6h')
+    p info = html_doc.search('._mbmcsn h1')
     p photo = html_doc.search('._6tbg2q')
     p price = html_doc.search('._pgfqnw')
-    self.name = info
-    self.price = price
-    self.photo = photo
-
-
 
 
     # CODE VALIDE

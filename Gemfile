@@ -39,10 +39,9 @@ gem 'ferrum'
 gem 'open-uri'
 gem 'json'
 gem 'acts_as_votable'
-gem 'webdrivers'
-gem 'cliver'
-gem 'capybara', '>= 3.26'
-gem 'selenium-webdriver'
+
+# gem 'cliver'
+
 
 
 
@@ -67,9 +66,10 @@ end
 
 group :test do
   # Adds support for Capybara system testing and selenium driver
-  
+  gem 'capybara', '>= 3.26'
+  gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers
-  
+  gem 'webdrivers'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

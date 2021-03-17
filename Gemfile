@@ -39,6 +39,7 @@ gem 'ferrum'
 gem 'open-uri'
 gem 'json'
 gem 'acts_as_votable'
+gem 'cliver'
 
 group :development, :test do  gem 'pry-byebug'
   gem 'pry-rails'

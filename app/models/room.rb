@@ -21,7 +21,7 @@ class Room < ApplicationRecord
   def scrap
     # url = "https://www.airbnb.fr/embeddable/home?id=#{self.web_id}"
     if self.start_date != self.end_date
-      url = "https://www.airbnb.fr/rooms/#{self.web_id}?adults=#{self.participants.size}&check_in=#{self.start_date}&check_out=#{self.end_date}"
+      url = "https://www.airbnb.fr/rooms/#{self.web_id}?adults=#{self.trip.participants.size}&check_in=#{self.trip.start_date}&check_out=#{self.trip.end_date}"
     else
       t = Time.now
       today = "#{t.year}-#{t.month}-#{t.day}"

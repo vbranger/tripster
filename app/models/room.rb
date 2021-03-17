@@ -26,7 +26,7 @@ class Room < ApplicationRecord
       t = Time.now
       today = "#{t.year}-#{t.month}-#{t.day}"
       tomorrow = "#{t.year}-#{t.month}-#{t.day.to_i + 1}"
-      url = "https://www.airbnb.fr/rooms/#{self.web_id}?adults=#{self.participants.size}&check_in=#{self.start_date}&check_out=#{self.end_date}"
+      url = "https://www.airbnb.fr/rooms/#{self.web_id}?adults=#{self.trip.participants.size}&check_in=#{today}&check_out=#{tomorrow}"
     end
     # url = "https://medium.com/@LindaVivah/the-beginner-s-guide-scraping-in-ruby-cheat-sheet-c4f9c26d1b8c"
     # p url

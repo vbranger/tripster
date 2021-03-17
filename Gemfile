@@ -42,7 +42,7 @@ gem 'acts_as_votable'
 gem 'webdrivers'
 gem 'cliver'
 gem 'capybara', '>= 3.26'
-  gem 'selenium-webdriver'
+gem 'selenium-webdriver'
 
 group :development, :test do  gem 'pry-byebug'
   gem 'pry-rails'

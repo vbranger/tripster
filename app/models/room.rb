@@ -37,7 +37,7 @@ class Room < ApplicationRecord
     # test alternative
     browser = Ferrum::Browser.new({ timeout: 60, headless: true, process_timeout: 60 })
     browser.go_to(url)
-    sleep(1) until !html_doc.search('._mbmcsn h1').empty?
+    sleep(10)
     html_doc = Nokogiri::HTML(browser.body)
     browser.quit
     p title = html_doc.search('._mbmcsn h1').children.text

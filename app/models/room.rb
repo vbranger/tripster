@@ -20,7 +20,14 @@ class Room < ApplicationRecord
 
   def scrap
     # url = "https://www.airbnb.fr/embeddable/home?id=#{self.web_id}"
-    url = "https://www.airbnb.fr/rooms/#{self.web_id}"
+    if self.start_date != self.end_date
+      url = "https://www.airbnb.fr/rooms/#{self.web_id}?adults=#{self.participants.size}&check_in=#{self.start_date}&check_out=#{self.end_date}"
+    else
+      t = Time.now
+      today = "#{t.year}-#{t.month}-#{t.day}"
+      tomorrow = "#{t.year}-#{t.month}-#{t.day.to_i + 1}"
+      url = "https://www.airbnb.fr/rooms/#{self.web_id}?adults=#{self.participants.size}&check_in=#{self.start_date}&check_out=#{self.end_date}"
+    end
     # url = "https://medium.com/@LindaVivah/the-beginner-s-guide-scraping-in-ruby-cheat-sheet-c4f9c26d1b8c"
     # p url
     # p url
@@ -34,7 +41,7 @@ class Room < ApplicationRecord
     # p title
     # self.name = title.text.strip
 
-    # test alternative
+    # CODE POUR LA PROD
     browser = Ferrum::Browser.new({ timeout: 60, headless: true, process_timeout: 60 })
     browser.go_to(url)
     sleep(10)
@@ -44,9 +51,10 @@ class Room < ApplicationRecord
     p photo = html_doc.search('._6tbg2q')
     p price = html_doc.search('._pgfqnw')
     self.name = title
+    # FIN CODE POUR LA PROD
 
 
-    # CODE VALIDE
+    # CODE POUR LOCAL VB
     # br = Ferrum::Browser.new({ timeout: 60, headless: true, process_timeout: 60 })
     # br.go_to(url)
     # html_doc = Nokogiri::HTML(br.body)

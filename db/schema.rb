@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_14_213131) do
+ActiveRecord::Schema.define(version: 2021_03_14_192855) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,13 +34,6 @@ ActiveRecord::Schema.define(version: 2021_03_14_213131) do
     t.string "website"
     t.string "web_id"
     t.string "url"
-    t.integer "cached_votes_total", default: 0
-    t.integer "cached_votes_score", default: 0
-    t.integer "cached_votes_up", default: 0
-    t.integer "cached_votes_down", default: 0
-    t.integer "cached_weighted_score", default: 0
-    t.integer "cached_weighted_total", default: 0
-    t.float "cached_weighted_average", default: 0.0
     t.index ["trip_id"], name: "index_rooms_on_trip_id"
   end
 

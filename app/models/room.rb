@@ -19,7 +19,8 @@ class Room < ApplicationRecord
   end
 
   def scrap
-    url = "https://www.airbnb.fr/embeddable/home?id=#{self.web_id}"
+    # url = "https://www.airbnb.fr/embeddable/home?id=#{self.web_id}"
+    url = "https://www.airbnb.fr/rooms/#{self.web_id}"
     # url = "https://medium.com/@LindaVivah/the-beginner-s-guide-scraping-in-ruby-cheat-sheet-c4f9c26d1b8c"
     # p url
     # p url
@@ -33,27 +34,32 @@ class Room < ApplicationRecord
     # p title
     # self.name = title.text.strip
 
-    # browser = Ferrum::Browser.new({ timeout: 60, headless: true, process_timeout: 60 })
-    # browser.go_to(url)
-    # html_doc = Nokogiri::HTML(browser.body)
-    # info = html_doc.search('#listing-13967239 > div._hgs47m > div')
-    # p info
-    # title = html_doc.search('#listing-13967239 > div._hgs47m > div > div > a > div._wlyu2v > span > span')
-    # p title
-    # browser.quit
-
-    # # p html_doc
-
-    br = Ferrum::Browser.new({ timeout: 60, headless: true, process_timeout: 60 })
-    br.go_to(url)
-    html_doc = Nokogiri::HTML(br.body)
-    p house_name = html_doc.search("#listing-#{self.web_id} > div._hgs47m > div > div > a > div._wlyu2v > span > span").children.text
-    self.name = house_name
-    p photo = html_doc.search("#listing-#{self.web_id} > div._1dp4576 > div._e296pg > div._gjw2an > div > div > div")
-    unless photo.empty? # pour gérer les maisons non identifiées sur airbnb
-      p get_img_url(photo.last.attributes["style"].value)
+    # test alternative
+    browser = Ferrum::Browser.new({ timeout: 60, headless: true, process_timeout: 60 })
+    browser.go_to(url)
+    loop do
+      break if browser.evaluate("document.readyState") == "complete"
     end
-    br.quit
+    html_doc = Nokogiri::HTML(browser.body)
+    browser.quit
+    info = html_doc.search('h1')
+    self.name = info
+
+
+
+    # CODE VALIDE
+    # br = Ferrum::Browser.new({ timeout: 60, headless: true, process_timeout: 60 })
+    # br.go_to(url)
+    # html_doc = Nokogiri::HTML(br.body)
+    # p house_name = html_doc.search("#listing-#{self.web_id} > div._hgs47m > div > div > a > div._wlyu2v > span > span").children.text
+    # self.name = house_name
+    # p photo = html_doc.search("#listing-#{self.web_id} > div._1dp4576 > div._e296pg > div._gjw2an > div > div > div")
+    # unless photo.empty? # pour gérer les maisons non identifiées sur airbnb
+    #   p get_img_url(photo.last.attributes["style"].value)
+    # end
+    # br.quit
+    # FIN CODE VALIDE
+
   end
 
 end

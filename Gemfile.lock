@@ -96,12 +96,12 @@ GEM
       railties (>= 3.2)
     erubi (1.10.0)
     execjs (2.7.0)
-    ferrum (0.10.2)
+    ferrum (0.11)
       addressable (~> 2.5)
       cliver (~> 0.3)
       concurrent-ruby (~> 1.1)
       websocket-driver (>= 0.6, < 0.8)
-    ffi (1.14.2)
+    ffi (1.15.0)
     font-awesome-sass (5.15.1)
       sassc (>= 1.11)
     globalid (0.4.2)
@@ -135,7 +135,7 @@ GEM
     msgpack (1.4.2)
     multi_xml (0.6.0)
     nio4r (2.5.7)
-    nokogiri (1.11.1)
+    nokogiri (1.11.2)
       mini_portile2 (~> 2.5.0)
       racc (~> 1.4)
     open-uri (0.1.0)
@@ -260,6 +260,7 @@ DEPENDENCIES
   bootsnap (>= 1.4.4)
   byebug
   capybara (>= 3.26)
+  cliver
   devise
   dotenv-rails
   ferrum

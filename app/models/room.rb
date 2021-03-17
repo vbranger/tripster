@@ -1,6 +1,7 @@
 require 'open-uri'
 require 'nokogiri'
 require 'ferrum'
+require 'webdrivers/chromedriver'
 
 class Room < ApplicationRecord
   belongs_to :trip

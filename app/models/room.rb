@@ -29,17 +29,6 @@ class Room < ApplicationRecord
       url = "https://www.airbnb.fr/rooms/#{self.web_id}?adults=#{self.trip.participants.size}&check_in=#{today}&check_out=#{tomorrow}"
     end
     p url
-    # url = "https://medium.com/@LindaVivah/the-beginner-s-guide-scraping-in-ruby-cheat-sheet-c4f9c26d1b8c"
-    # p url
-    # html_file = open(url).read
-    # p html_file
-    # p "sleeping sleeping TEST TEST"
-    # p html_file
-    # p html_file = html_file.read
-    # html_doc = Nokogiri::HTML(html_file)
-  
-    # p title
-    # self.name = title.text.strip
 
     # CODE POUR LA PROD
     browser = Ferrum::Browser.new({ timeout: 60, headless: true, process_timeout: 60 })

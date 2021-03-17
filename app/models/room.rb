@@ -51,6 +51,8 @@ class Room < ApplicationRecord
     p photo = html_doc.search('._6tbg2q').attr('src').value
     p price = html_doc.search('._pgfqnw').children.text
     self.name = title
+    self.photo = photo
+    self.price = price
     # FIN CODE POUR LA PROD
 
 

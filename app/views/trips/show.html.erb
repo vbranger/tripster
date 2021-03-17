@@ -47,10 +47,12 @@
           <%= link_to trip_room_path(room) do %>
             <p><%= room.name.empty? ? "Non identifié" : room.name %></p>
           <% end %>
+          <!-- 
           <p>Likes: <%= room.get_likes.size %></p>
           <% if @participants.size == room.get_likes.size %>
             <p>Tout le monde est partant ! <%= link_to "Faire la réservation", "#" %></p>
           <% end %>
+          -->
         </div>
         </li>
       <% end %>

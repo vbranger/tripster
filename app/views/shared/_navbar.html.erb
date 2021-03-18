@@ -1,15 +1,13 @@
 <div class="navbar-lewagon sticky-top">
+      <% if user_signed_in? %>
   <div class="collapse" id="navbarToggleExternalContent">
     <div class="p-4">
-      <% if user_signed_in? %>
             <%= link_to "Mes voyages", trips_path, class: "dropdown-item text-light" %>
             <%= link_to "Mon profil", "#", class: "dropdown-item text-light" %>
             <%= link_to "Se déconnecter", destroy_user_session_path, method: :delete, class: "dropdown-item text-light" %>
-      <% else %>
-          <%= link_to "Login", new_user_session_path, class: "nav-link" %>
-      <% end %>
     </div>
   </div>
+      <% end %>
   <nav class="navbar navbar-dark">
     <% if params[:controller] == 'trips' && params[:action] == 'show' %>
       <%= link_to trips_path do %>
@@ -24,8 +22,12 @@
         <p style="font-family: Ranchers">tripster</p>
       <% end %>
     <% end %>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+    <% if user_signed_in? %>
+      <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-ellipsis-v"></i>
+      </button>
+    <% else %>
+        <%= link_to "Login", new_user_session_path, class: "nav-item text-light" %>
+    <% end %>
   </nav>
 </div>

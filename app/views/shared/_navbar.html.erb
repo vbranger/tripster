@@ -1,64 +1,31 @@
-<div class="navbar navbar-expand-sm navbar-dark navbar-lewagon sticky-top">
-  
-  
-  <% if params[:controller] == 'trips' && params[:action] == 'show' %>
-    <%= link_to trips_path do %>
-      <i class="fas fa-chevron-left text-light"></i>
-    <% end %>
-    <div class="col-10 text-center text-truncate text-light">
-    <p class="text-light font-weight-bold text-truncate"><%= @trip.name %></p>
-    <small class="text-light font-weight-light"><%= @participants_list %></small>
-    </div>
-  <% else %>
-    <%= link_to root_path, class: "navbar-brand" do %>
-      <p style="font-family: Ranchers">tripster</p>
-    <% end %>
-  <% end %>
-  
-
-  <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <i class="fas fa-ellipsis-v text-light"></i>
-  </button>
-
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
+<div class="navbar-lewagon">
+  <div class="collapse" id="navbarToggleExternalContent">
+    <div class="p-4">
       <% if user_signed_in? %>
-        <li class="nav-item dropdown">
-          
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fas fa-ellipsis-v text-light "></i>
-          </a>
-          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-            <%= link_to "Mes voyages", trips_path, class: "dropdown-item" %>
-            <%= link_to "Mon profil", "#", class: "dropdown-item" %>
-            <%= link_to "Se déconnecter", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
-          </div>
-        </li>
-        <!--
-        <li class="nav-item active">
-          <%= link_to "Home", root_path, class: "nav-link" %>
-        </li>
-        <li class="nav-item">
-          <%= link_to "Mes voyages", trips_path, class: "nav-link" %>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Mon Profil
-          </a>
-          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-            <%= link_to "Mes voyages", trips_path, class: "dropdown-item" %>
-            <%= link_to "Mon profil", "#", class: "dropdown-item" %>
-            <%= link_to "Se déconnecter", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
-          </div>
-        </li>
-        -->
-
+            <%= link_to "Mes voyages", trips_path, class: "dropdown-item text-light" %>
+            <%= link_to "Mon profil", "#", class: "dropdown-item text-light" %>
+            <%= link_to "Se déconnecter", destroy_user_session_path, method: :delete, class: "dropdown-item text-light" %>
       <% else %>
-        <li class="nav-item">
           <%= link_to "Login", new_user_session_path, class: "nav-link" %>
-        </li>
       <% end %>
-    </ul>
+    </div>
   </div>
+  <nav class="navbar navbar-dark">
+    <% if params[:controller] == 'trips' && params[:action] == 'show' %>
+      <%= link_to trips_path do %>
+        <i class="fas fa-chevron-left text-light"></i>
+      <% end %>
+      <div class="col-10 text-center text-truncate text-light">
+      <p class="text-light font-weight-bold text-truncate"><%= @trip.name %></p>
+      <small class="text-light font-weight-light"><%= @participants_list %></small>
+      </div>
+    <% else %>
+      <%= link_to root_path, class: "navbar-brand" do %>
+        <p style="font-family: Ranchers">tripster</p>
+      <% end %>
+    <% end %>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </nav>
 </div>

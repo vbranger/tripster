@@ -2,6 +2,8 @@
   <%= simple_form_for(@trip) do |f| %>
     <%= f.input :start_date %>
     <%= f.input :end_date %>
-    <%= f.submit %>
+    <%= f.submit "Enregistrer", :class => "btn btn-dark" %>
   <% end %>
+  <br>
+  <%= link_to "Annuler", reset_dates_path(@trip), class: "text-dark" %>
 </div>

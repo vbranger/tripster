@@ -33,6 +33,13 @@ class TripsController < ApplicationController
     @trip = Trip.find(params[:id])
   end
 
+  def reset_dates
+    @trip = Trip.find(params[:id])
+    @trip.update(start_date: nil, end_date: nil)
+
+    redirect_to trip_path(@trip)
+  end
+
   def edit_dates
     @trip = Trip.find(params[:id])
   end

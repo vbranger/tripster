@@ -1,82 +1,75 @@
 <div class="container py-3">
-  <h5 class="mt-3">Préparatifs</h5>
+
   <div class="card my-1 p-3">
-    <div class="d-flex align-items-center">
-      <i class="fas fa-map-marked-alt mr-1"></i>
-      <p>Destination</p>
-      <button class="btn btn-outline-dark btn-sm ml-auto">Démarrer</button>
+    <div class="d-flex align-items-center mb-3">
+      <i class="fas fa-map-marked-alt mr-3"></i>
+      <p class="text-center">destination</p>
     </div>
-    <div class="d-flex align-items-center">
-      <i class="far fa-calendar-alt mr-1"></i><p>Dates</p>
-      <button class="btn btn-success btn-sm ml-auto"><%= @trip.start_date %> - <%= @trip.end_date %></button>
-    </div>
-    <div class="d-flex align-items-center">
-      <i class="fas fa-users mr-1"></i><p>Participants</p>
-      <button class="btn btn-warning btn-sm ml-auto"><%= @trip.participants.size %> participants</button>
-    </div>
-    <div class="d-flex align-items-center">
-      <i class="fas fa-home mr-1"></i><p>Logement</p>
-      <button class="btn btn-outline-dark btn-sm ml-auto">Démarrer</button>
-    </div>
+    <h4 class="mb-3 text-center"><strong>Non définie</strong></h4>
+    <button class="btn btn-outline-dark btn-sm text-center">Démarrer</button>
   </div>
+
   <div class="card my-1 p-3">
-    <h2><%= @trip.name %></h2>
-    <p>Début : <%= @trip.start_date %></p>
-    <p>Fin : <%= @trip.end_date %></p>
-    <p>Destination : <%= @trip.destination %></p>
-    <p>créé par <%= @trip.user.email %></p>
-    <% if @trip.user == current_user %>
-      (proprio)
-      <%= link_to "Delete", trip_path(@trip), method: :delete, data: { confirm: "Êtes-vous sûr ?"} %>
-    <% end %>
+    <div class="d-flex align-items-center mb-3">
+      <i class="far fa-calendar-alt mr-3"></i>
+      <p class="text-center">dates</p>
+    </div>
+    <h4 class="mb-3 text-center"><strong>Non définie</strong></h4>
+    <button class="btn btn-outline-dark btn-sm text-center">Démarrer</button>
   </div>
-  <div class="card my-3 p-3">
-    <h4>Participants</h4>
-    <ul>
+
+  <div class="card my-1 p-3">
+    <div class="d-flex align-items-center mb-3">
+      <i class="fas fa-users mr-3"></i>
+      <p class="text-center">participants</p>
+    </div>
+    <ul class="list-group list-group-flush">
       <% @participants.each do |participant| %>
-        <li>
+        <li class="list-group-item d-flex">
           <p>
             <%= participant.user.email %>
-            <% if @trip.user == current_user %>
-              <%= link_to "Retirer", participant_path(participant), method: :delete, data: { confirm: "Êtes-vous sûr ?"} %>        
-            <% end %>
           </p>
+          <% if @trip.user == current_user %>
+            <%= link_to "Retirer", participant_path(participant), method: :delete, data: { confirm: "Êtes-vous sûr ?"}, class: "ml-auto" %>        
+          <% end %>
         </li>
       <% end %>
     </ul>
-    <% if @trip.user == current_user %>
-      <%= link_to "Ajouter un participant", new_participant_path(trip: @trip) %>
-    <% end %>
+    <%= link_to "Ajouter un participant", new_participant_path(trip: @trip), class: "btn btn-outline-dark btn-sm text-center" %>
   </div>
 
-  <div class="card my-3 p-3">
-    <h4>Dates</h4>
-    
-  </div>
-  <div class="card my-3 p-3">
-    <h4>Lieux</h4>
-
-    <ul class="p-0">
+  <div class="card my-1 p-3">
+    <div class="d-flex align-items-center mb-3">
+      <i class="fas fa-home mr-3"></i>
+      <p class="text-center">logement</p>
+    </div>
+    <ul class="list-group list-group-flush border-0">
       <% @trip.rooms.each do |room| %>
-        <div class="row my-3">
-        <figure class="col-12 col-md-4">
-          <%= image_tag(room.photo, class: "img-fluid") if room.photo %>
-        </figure>
-          <div class="col-md-8">
-            <%= link_to trip_room_path(room) do %>
-              <p><%= room.name? ? room.name : "Non identifié" %></p>
-              <p><%= room.price ? room.price : "n/a" %></p>
-            <% end %>
-            <!-- 
-            <p>Likes: <%= room.get_likes.size %></p>
-            <% if @participants.size == room.get_likes.size %>
-              <p>Tout le monde est partant ! <%= link_to "Faire la réservation", "#" %></p>
-            <% end %>
-            -->
+        <%= link_to trip_room_path(room) do %>
+          <div class="list-group-item border-0 row my-3">
+            <figure class="col-12 col-md-4">
+              <%= image_tag(room.photo, class: "img-fluid") if room.photo %>
+            </figure>
+            <div class="col-md-8 text-truncate text-dark">
+                <%= room.name? ? room.name : "Non identifié" %>
+                <p><%= room.price ? room.price.to_s + "€" : "n/a" %></p>
+              <!-- 
+              <p>Likes: <%= room.get_likes.size %></p>
+              <% if @participants.size == room.get_likes.size %>
+                <p>Tout le monde est partant ! <%= link_to "Faire la réservation", "#" %></p>
+              <% end %>
+              -->
+            </div>
           </div>
-        </div>
+        <% end %>
       <% end %>
     </ul>
-    <%= link_to "Ajouter un lieu", new_trip_room_path(@trip) %>
+    <%= link_to "Ajouter un lieu", new_trip_room_path(@trip), class: "btn btn-outline-dark btn-sm text-center" %>
   </div>
-</div>
+
+  <div class="card my-1 p-3">
+    <p>créé par <%= @trip.user.email %></p>
+    <% if @trip.user == current_user %>
+      <%= link_to "Supprimer ce trip", trip_path(@trip), method: :delete, data: { confirm: "Êtes-vous sûr ?"}, class: "btn btn-danger d-block" %>
+    <% end %>
+  </div>

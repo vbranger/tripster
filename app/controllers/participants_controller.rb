@@ -6,9 +6,16 @@ class ParticipantsController < ApplicationController
   end
 
   def create
-    @participant = Participant.new(participant_params)
-    @participant.save
-    redirect_to trip_path(@participant.trip)
+    user = User.where(email: params[:email])
+    unless user.empty?
+      @participant = Participant.new(user_id: user.first.id, trip_id: params[:trip])
+      @participant.save
+      redirect_to trip_path(@participant.trip)
+    else
+      @participant = Participant.new
+      @trip = params[:trip]
+      render 'new'
+    end
   end
 
   def destroy

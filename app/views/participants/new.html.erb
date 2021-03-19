@@ -1,7 +1,17 @@
 <div class="container">
+<!--
   <%= simple_form_for(@participant) do |f| %>
     <%= f.input :user_id %>
     <%= f.hidden_field :trip_id, :value => @trip %>
     <%= f.submit %>
   <% end %>
+-->
+<%= form_for(@participant) do %>
+  <%#= label_tag(:trip, "Trip number") %>
+  <%= hidden_field_tag(:trip, @trip) %>
+  <%= label_tag(:email, "Email :") %>
+  <%= text_field_tag(:email, "") %>
+  <%= submit_tag("Inviter") %>
+<% end %>
 </div>
+

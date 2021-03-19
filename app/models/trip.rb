@@ -17,11 +17,11 @@ class Trip < ApplicationRecord
     return string
   end
 
-  def destination_choosen?
+  def destination_chosen?
     self.destination && !self.destination.empty? ? true : false
   end
 
-  def dates_choosen?
+  def dates_chosen?
     self.start_date != nil && self.end_date != nil
   end
 

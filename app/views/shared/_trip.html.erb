@@ -2,7 +2,9 @@
   <div class="col-sm-12 col-lg-8 d-flex align-items-center justify-content-between shadow p-3 bg-dark text-light border-bottom border-white">
     <div class="trip-text">
       <h4><%= trip.name %></h4>
-      <p><%= trip.start_date.strftime("%d/%m/%Y") %> > <%= trip.end_date.strftime("%d/%m/%Y") %></p>
+      <% if trip.dates_chosen? %>
+        <p><%= trip.start_date.strftime("%d/%m/%Y") %> > <%= trip.end_date.strftime("%d/%m/%Y") %></p>
+      <% end %>
       <p><%= trip.participants.size %> participants</p>
     </div>
     <%= link_to trip_path(trip) do  %>

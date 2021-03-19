@@ -5,8 +5,12 @@
       <i class="fas fa-map-marked-alt mr-3"></i>
       <p class="text-center">destination</p>
     </div>
-    <h4 class="mb-3 text-center"><strong>Non définie</strong></h4>
-    <button class="btn btn-outline-dark btn-sm text-center">Démarrer</button>
+    <h4 class="mb-3 text-center"><strong><%= @trip.destination && !@trip.destination.empty? ? @trip.destination : "Non définie" %></strong></h4>
+    <% if @trip.destination && !@trip.destination.empty? %>
+      <%= link_to "Modifier", "#{@trip.id}/edit_destination", class: "btn btn-outline-success btn-sm text-center"  %>
+    <% else %>
+      <%= link_to "Démarrer", "#{@trip.id}/edit_destination", class: "btn btn-outline-dark btn-sm text-center"  %>
+    <% end %>
   </div>
 
   <div class="card my-1 p-3">
@@ -14,8 +18,12 @@
       <i class="far fa-calendar-alt mr-3"></i>
       <p class="text-center">dates</p>
     </div>
-    <h4 class="mb-3 text-center"><strong>Non définie</strong></h4>
-    <button class="btn btn-outline-dark btn-sm text-center">Démarrer</button>
+    <h4 class="mb-3 text-center"><strong><%= @trip.start_date && @trip.end_date ? "#{@trip.start_date.strftime('%d/%m/%y')} - #{@trip.end_date.strftime('%d/%m/%y')}" : "Non définie" %></strong></h4>
+    <% if @trip.start_date && @trip.end_date %>
+      <%= link_to "Modifier", "#{@trip.id}/edit_dates", class: "btn btn-outline-success btn-sm text-center"  %>
+    <% else %>
+      <%= link_to "Démarrer", "#{@trip.id}/edit_dates", class: "btn btn-outline-dark btn-sm text-center"  %>
+    <% end %>
   </div>
 
   <div class="card my-1 p-3">
@@ -30,7 +38,9 @@
             <%= participant.user.email %>
           </p>
           <% if @trip.user == current_user %>
-            <%= link_to "Retirer", participant_path(participant), method: :delete, data: { confirm: "Êtes-vous sûr ?"}, class: "ml-auto" %>        
+            <%= link_to participant_path(participant), method: :delete, data: { confirm: "Êtes-vous sûr ?"}, class: "ml-auto" do %>
+              <i class="fas fa-times-circle text-dark"></i>
+            <% end %>        
           <% end %>
         </li>
       <% end %>

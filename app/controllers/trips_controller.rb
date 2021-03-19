@@ -29,6 +29,21 @@ class TripsController < ApplicationController
     redirect_to trips_path
   end
 
+  def edit_destination
+    @trip = Trip.find(params[:id])
+  end
+
+  def edit_dates
+    @trip = Trip.find(params[:id])
+  end
+
+  def update
+    @trip = Trip.find(params[:id])
+    @trip.update(trip_params)
+
+    redirect_to trip_path(@trip)
+  end
+
   private
 
   def trip_params

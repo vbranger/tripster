@@ -38,6 +38,13 @@ class RoomsController < ApplicationController
     redirect_to trip_room_path(@room)
   end
 
+  def destroy
+    @trip = Trip.find(params[:id])
+    @room = Room.find(params[:trip_id])
+    @room.destroy
+
+    redirect_to trip_path(@trip)
+  end
   
 
   private

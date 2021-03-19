@@ -13,8 +13,8 @@
         Like
         <% end %>
     <% end %>
-    <button type="button" class="btn btn-outline-primary">Editer</button>
-    <button type="button" class="btn btn-outline-danger">Supprimer</button>
+    
+    <%= link_to "Supprimer", trip_room_path(@room), method: :delete, data: { confirm: "Êtes-vous sûr ?"}, class: "btn btn-outline-danger" %>
     <p>Nombre de likes : <%= @room.get_likes.size %></p>
     <%= link_to "Voir sur le site", @room.url  %>
     <br>

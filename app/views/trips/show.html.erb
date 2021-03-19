@@ -32,17 +32,22 @@
     <div class="col-12 col-lg-5 card my-1 p-3">
       <div class="d-flex align-items-center mb-3">
         <p class="text-center"><strong>dates</strong></p>
-        <span class="badge badge-pill badge-success ml-auto text-white">Validé</span>
+        <% if @trip.dates_choosen? %>
+          <span class="badge badge-pill badge-success ml-auto text-white">Validé</span>
+        <% else %>
+          <span class="badge badge-pill badge-danger ml-auto text-white">Non défini</span>
+        <% end %>
       </div>
       <div class="row p-3">
         <figure class="col-sm-12 col-md-4 text-center">
             <%= image_tag "undraw_date_picker_gorr.svg", class: "img-fluid", style: "max-height: 30vh" %>
         </figure>
         <div class="col-sm-12 col-md-8 text-center">
-          <h4 class="mb-3 text-center"><strong><%= @trip.start_date && @trip.end_date ? "#{@trip.start_date.strftime('%d/%m/%y')} - #{@trip.end_date.strftime('%d/%m/%y')}" : "Non définie" %></strong></h4>
-          <% if @trip.start_date && @trip.end_date %>
+          <% if @trip.dates_choosen? %>
+          <h4 class="mb-3 text-center"><strong><%= "#{@trip.start_date.strftime('%d/%m/%y')} - #{@trip.end_date.strftime('%d/%m/%y')}"%></strong></h4>
             <%= link_to "Modifier", "#{@trip.id}/edit_dates", class: "btn btn-outline-success btn-sm text-center"  %>
           <% else %>
+            <p class="mb-3 text-center">Vous pouvez renseigner vos dates ou lancer un choix collectif</p>
             <%= link_to "Démarrer", "#{@trip.id}/edit_dates", class: "btn btn-outline-dark btn-sm text-center"  %>
           <% end %>
         </div>
@@ -85,19 +90,19 @@
       <ul class="list-group list-group-flush border-0">
         <% @trip.rooms.each do |room| %>
           <%= link_to trip_room_path(room) do %>
-            <div class="list-group-item border-0 row my-3">
-              <figure class="col-12 col-md-4">
+            <div class="row border-0 my-3">
+              <figure class="col-12 col-md-4 text-center text-md-left">
                 <%= image_tag(room.photo, class: "img-fluid", style: "max-height: 30vh") if room.photo %>
               </figure>
-              <div class="col-md-8 text-truncate text-dark">
-                  <%= room.name? ? room.name : "Non identifié" %>
-                  <p><%= room.price ? room.price.to_s + "€" : "n/a" %></p>
-                <!-- 
-                <p>Likes: <%= room.get_likes.size %></p>
+              <div class="col-12 col-md-8 text-truncate text-dark text-center text-md-left">
+                  <strong><%= room.name? ? room.name : "Non identifié" %></strong>
+                  <p><%= room.price ? room.price.to_s + "€/nuit" : "-€/nuit" %></p>
+                  <div class="d-flex align-items-center">
+                    <p><%= room.get_likes.size %></p><i class="fas fa-heart ml-1"></i>
+                  </div>
                 <% if @participants.size == room.get_likes.size %>
                   <p>Tout le monde est partant ! <%= link_to "Faire la réservation", "#" %></p>
                 <% end %>
-                -->
               </div>
             </div>
           <% end %>

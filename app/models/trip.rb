@@ -21,4 +21,8 @@ class Trip < ApplicationRecord
     self.destination && !self.destination.empty? ? true : false
   end
 
+  def dates_choosen?
+    self.start_date != nil && self.end_date != nil
+  end
+
 end

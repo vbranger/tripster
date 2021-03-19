@@ -17,4 +17,8 @@ class Trip < ApplicationRecord
     return string
   end
 
+  def destination_choosen?
+    self.destination && !self.destination.empty? ? true : false
+  end
+
 end

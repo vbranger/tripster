@@ -1,81 +1,115 @@
 <div class="container py-3">
-
-  <div class="card my-1 p-3">
-    <div class="d-flex align-items-center mb-3">
-      <i class="fas fa-map-marked-alt mr-3"></i>
-      <p class="text-center">destination</p>
-    </div>
-    <h4 class="mb-3 text-center"><strong><%= @trip.destination && !@trip.destination.empty? ? @trip.destination : "Non définie" %></strong></h4>
-    <% if @trip.destination && !@trip.destination.empty? %>
-      <%= link_to "Modifier", "#{@trip.id}/edit_destination", class: "btn btn-outline-success btn-sm text-center"  %>
-    <% else %>
-      <%= link_to "Démarrer", "#{@trip.id}/edit_destination", class: "btn btn-outline-dark btn-sm text-center"  %>
-    <% end %>
-  </div>
-
-  <div class="card my-1 p-3">
-    <div class="d-flex align-items-center mb-3">
-      <i class="far fa-calendar-alt mr-3"></i>
-      <p class="text-center">dates</p>
-    </div>
-    <h4 class="mb-3 text-center"><strong><%= @trip.start_date && @trip.end_date ? "#{@trip.start_date.strftime('%d/%m/%y')} - #{@trip.end_date.strftime('%d/%m/%y')}" : "Non définie" %></strong></h4>
-    <% if @trip.start_date && @trip.end_date %>
-      <%= link_to "Modifier", "#{@trip.id}/edit_dates", class: "btn btn-outline-success btn-sm text-center"  %>
-    <% else %>
-      <%= link_to "Démarrer", "#{@trip.id}/edit_dates", class: "btn btn-outline-dark btn-sm text-center"  %>
-    <% end %>
-  </div>
-
-  <div class="card my-1 p-3">
-    <div class="d-flex align-items-center mb-3">
-      <i class="fas fa-users mr-3"></i>
-      <p class="text-center">participants</p>
-    </div>
-    <ul class="list-group list-group-flush">
-      <% @participants.each do |participant| %>
-        <li class="list-group-item d-flex">
-          <p>
-            <%= participant.user.email %>
-          </p>
-          <% if @trip.user == current_user %>
-            <%= link_to participant_path(participant), method: :delete, data: { confirm: "Êtes-vous sûr ?"}, class: "ml-auto" do %>
-              <i class="fas fa-times-circle text-dark"></i>
-            <% end %>        
-          <% end %>
-        </li>
-      <% end %>
-    </ul>
-    <%= link_to "Ajouter un participant", new_participant_path(trip: @trip), class: "btn btn-outline-dark btn-sm text-center" %>
-  </div>
-
-  <div class="card my-1 p-3">
-    <div class="d-flex align-items-center mb-3">
-      <i class="fas fa-home mr-3"></i>
-      <p class="text-center">logement</p>
-    </div>
-    <ul class="list-group list-group-flush border-0">
-      <% @trip.rooms.each do |room| %>
-        <%= link_to trip_room_path(room) do %>
-          <div class="list-group-item border-0 row my-3">
-            <figure class="col-12 col-md-4">
-              <%= image_tag(room.photo, class: "img-fluid") if room.photo %>
-            </figure>
-            <div class="col-md-8 text-truncate text-dark">
-                <%= room.name? ? room.name : "Non identifié" %>
-                <p><%= room.price ? room.price.to_s + "€" : "n/a" %></p>
-              <!-- 
-              <p>Likes: <%= room.get_likes.size %></p>
-              <% if @participants.size == room.get_likes.size %>
-                <p>Tout le monde est partant ! <%= link_to "Faire la réservation", "#" %></p>
-              <% end %>
-              -->
-            </div>
-          </div>
+  <div class="row justify-content-around">
+    <!-- CARD DESTINATION -->
+    <div class="col-12 col-lg-5 card my-1 p-3">
+      <div class="d-flex align-items-center mb-3">
+        <p class="text-center"><strong>destination</strong></p>
+        <% if @trip.destination_choosen? %>
+          <span class="badge badge-pill badge-success ml-auto text-white">Validé</span>
+        <% else %>
+          <span class="badge badge-pill badge-danger ml-auto text-white">Non défini</span>
         <% end %>
-      <% end %>
-    </ul>
-    <%= link_to "Ajouter un lieu", new_trip_room_path(@trip), class: "btn btn-outline-dark btn-sm text-center" %>
+      </div>
+      <div class="row p-3">
+        <figure class="col-sm-12 col-md-4 text-center">
+          <%= image_tag "undraw_adventure_4hum.svg", class: "img-fluid", style: "max-height: 30vh" %>
+        </figure>
+        <div class="col-sm-12 col-md-8 text-center">
+          <% if @trip.destination_choosen? %>
+            <h4 class="mb-3 text-center"><strong><%= @trip.destination %></strong></h4>
+          <% else %>
+            <p class="mb-3 text-center">Vous pouvez renseigner votre destination ou lancer un choix collectif</p>
+          <% end %>
+          <% if @trip.destination_choosen? %>
+            <%= link_to "Modifier", "#{@trip.id}/edit_destination", class: "btn btn-outline-success btn-sm text-center"  %>
+          <% else %>
+            <%= link_to "Démarrer", "#{@trip.id}/edit_destination", class: "btn btn-outline-dark btn-sm text-center"  %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <!-- CARD DESTINATION DATES -->
+    <div class="col-12 col-lg-5 card my-1 p-3">
+      <div class="d-flex align-items-center mb-3">
+        <p class="text-center"><strong>dates</strong></p>
+        <span class="badge badge-pill badge-success ml-auto text-white">Validé</span>
+      </div>
+      <div class="row p-3">
+        <figure class="col-sm-12 col-md-4 text-center">
+            <%= image_tag "undraw_date_picker_gorr.svg", class: "img-fluid", style: "max-height: 30vh" %>
+        </figure>
+        <div class="col-sm-12 col-md-8 text-center">
+          <h4 class="mb-3 text-center"><strong><%= @trip.start_date && @trip.end_date ? "#{@trip.start_date.strftime('%d/%m/%y')} - #{@trip.end_date.strftime('%d/%m/%y')}" : "Non définie" %></strong></h4>
+          <% if @trip.start_date && @trip.end_date %>
+            <%= link_to "Modifier", "#{@trip.id}/edit_dates", class: "btn btn-outline-success btn-sm text-center"  %>
+          <% else %>
+            <%= link_to "Démarrer", "#{@trip.id}/edit_dates", class: "btn btn-outline-dark btn-sm text-center"  %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <!-- CARD DESTINATION PARTICIPANTS -->
+    <div class="col-12 col-lg-5 card my-1 p-3">
+      <div class="d-flex align-items-center mb-3">
+        <p class="text-center"><strong>participants</strong></p>
+      </div>
+      <div class="row p-3">
+        <figure class="col-sm-12 col-md-4 text-center">
+            <%= image_tag "undraw_group_selfie_ijc6", class: "img-fluid", style: "max-height: 30vh" %>
+        </figure>
+        <div class="col-sm-12 col-md-8 text-center">
+          <ul class="list-group list-group-flush">
+            <% @participants.each do |participant| %>
+              <li class="list-group-item d-flex">
+                <p>
+                  <%= participant.user.email %>
+                </p>
+                <% if @trip.user == current_user %>
+                  <%= link_to participant_path(participant), method: :delete, data: { confirm: "Êtes-vous sûr ?"}, class: "ml-auto" do %>
+                    <i class="fas fa-times-circle text-dark"></i>
+                  <% end %>        
+                <% end %>
+              </li>
+            <% end %>
+          </ul>
+          <%= link_to "Ajouter un participant", new_participant_path(trip: @trip), class: "btn btn-outline-dark btn-sm" %>
+        </div>
+      </div>
+    </div>
+    <!-- CARD DESTINATION LOGEMENT -->
+    <div class=" col-12 col-lg-5 card my-1 p-3">
+      <div class="d-flex align-items-center mb-3">
+        <p class="text-center"><strong>logement</strong></p>
+        <span class="badge badge-pill badge-warning ml-auto">En cours</span>
+      </div>
+      <ul class="list-group list-group-flush border-0">
+        <% @trip.rooms.each do |room| %>
+          <%= link_to trip_room_path(room) do %>
+            <div class="list-group-item border-0 row my-3">
+              <figure class="col-12 col-md-4">
+                <%= image_tag(room.photo, class: "img-fluid", style: "max-height: 30vh") if room.photo %>
+              </figure>
+              <div class="col-md-8 text-truncate text-dark">
+                  <%= room.name? ? room.name : "Non identifié" %>
+                  <p><%= room.price ? room.price.to_s + "€" : "n/a" %></p>
+                <!-- 
+                <p>Likes: <%= room.get_likes.size %></p>
+                <% if @participants.size == room.get_likes.size %>
+                  <p>Tout le monde est partant ! <%= link_to "Faire la réservation", "#" %></p>
+                <% end %>
+                -->
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </ul>
+      <%= link_to "Ajouter un lieu", new_trip_room_path(@trip), class: "btn btn-outline-dark btn-sm text-center" %>
+    </div>
   </div>
+
+
+
+  
 
   <div class="card my-1 p-3">
     <p>créé par <%= @trip.user.email %></p>

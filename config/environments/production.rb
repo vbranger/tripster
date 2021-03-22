@@ -2,14 +2,10 @@ require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
   config.action_mailer.default_url_options = { host: ENV['URL'] }
-  config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = {
-    :port           => ENV['MAILGUN_SMTP_PORT'],
-    :address        => ENV['MAILGUN_SMTP_SERVER'],
-    :user_name      => ENV['MAILGUN_SMTP_LOGIN'],
-    :password       => ENV['MAILGUN_SMTP_PASSWORD'],
-    :domain         => ENV['URL'],
-    :authentication => :plain,
+  config.action_mailer.delivery_method = :sendgrid_actionmailer
+  config.action_mailer.sendgrid_actionmailer_settings = {
+    api_key: ENV['SENDGRID_API_KEY'],
+    raise_delivery_errors: true
   }
   # Settings specified here will take precedence over those in config/application.rb.
 

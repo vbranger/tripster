@@ -40,6 +40,7 @@ gem 'open-uri'
 gem 'json'
 gem 'acts_as_votable'
 gem 'cliver'
+gem 'sendgrid-actionmailer', '~> 2.4.0'
 
 group :development, :test do  gem 'pry-byebug'
   gem 'pry-rails'

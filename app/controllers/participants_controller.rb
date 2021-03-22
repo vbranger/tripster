@@ -9,8 +9,11 @@ class ParticipantsController < ApplicationController
     user = User.where(email: params[:email])
     unless user.empty?
       @participant = Participant.new(user_id: user.first.id, trip_id: params[:trip])
-      @participant.save
-      redirect_to trip_path(@participant.trip)
+      @trip = Trip.find(params[:trip])
+      if @participant.save
+        UserMailer.notify_invitation(@participant.user, @trip).deliver_now
+        redirect_to trip_path(@participant.trip)
+      end
     else
       @participant = Participant.new
       @trip = params[:trip]

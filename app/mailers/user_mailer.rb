@@ -8,4 +8,10 @@ class UserMailer < ApplicationMailer
     @user = user
     mail to: user.email, subject: "Welcome to Tripster"
   end
+
+  def notify_invitation(user, trip)
+    @user = user
+    @trip = trip
+    mail to: user.email, subject: "You received an invitation"
+  end
 end

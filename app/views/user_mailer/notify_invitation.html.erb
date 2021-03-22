@@ -1,6 +1,4 @@
-Bonjour <%= @user.email %>,
-
-Vous avez été invité à rejoindre un nouveau trip.
-<%= link_to "Page du trip", trip_url(@trip)  %>
-
-<%= link_to "get back on website", root_url %>
+<p>Bonjour <%= @user.email %>,</p>
+<p>Vous avez été invité à rejoindre <%= @trip.name %> par <%= @trip.user.email %></p>
+<p><%= link_to "Voir le voyage", trip_url(@trip)  %></p>
+<p>L'équipe de Tripster</p>

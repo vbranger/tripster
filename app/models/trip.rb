@@ -9,9 +9,9 @@ class Trip < ApplicationRecord
     p participants
     participants.each do |participant|
       if participant == participants.last
-        string += participant.user.email
+        string += participant.user.first_name
       else
-        string += participant.user.email + ', '
+        string += participant.user.first_name + ', '
       end
     end
     return string

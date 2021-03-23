@@ -67,7 +67,7 @@
             <% @participants.each do |participant| %>
               <li class="list-group-item d-flex">
                 <p>
-                  <%= participant.user.email %>
+                  <%= participant.user.first_name %>
                 </p>
                 <% if @trip.user == current_user %>
                   <%= link_to participant_path(participant), method: :delete, data: { confirm: "Êtes-vous sûr ?"}, class: "ml-auto" do %>
@@ -117,7 +117,7 @@
   
 
   <div class="card my-1 p-3">
-    <p>créé par <%= @trip.user.email %></p>
+    <p>créé par <%= @trip.user.first_name %></p>
     <% if @trip.user == current_user %>
       <%= link_to "Supprimer ce trip", trip_path(@trip), method: :delete, data: { confirm: "Êtes-vous sûr ?"}, class: "btn btn-danger d-block" %>
     <% end %>

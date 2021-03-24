@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  devise_for :users, :controllers => { :registrations => "users/registrations"}
+  devise_for :users, :controllers => { :registrations => "users/registrations",
+                                       :confirmations => "users/confirmations" }
   root to: 'trips#index'
 
   get 'waiting_confirmation', to: 'pages#waiting_confirmation'

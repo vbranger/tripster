@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, :controllers => { :registrations => "users/registrations"}
   root to: 'trips#index'
+
+  get 'waiting_confirmation', to: 'pages#waiting_confirmation'
 
   get 'trips/:id/reset_dates', to: 'trips#reset_dates', as: 'reset_dates'
   get 'trips/:id/edit_destination', to: 'trips#edit_destination'

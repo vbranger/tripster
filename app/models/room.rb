@@ -19,7 +19,7 @@ class Room < ApplicationRecord
   end
 
   def scrap
-    # url = "https://www.airbnb.fr/embeddable/home?id=#{self.web_id}"
+    # CODE POUR LA PROD
     if self.trip.start_date != self.trip.end_date
       url = "https://www.airbnb.fr/rooms/#{self.web_id}?adults=#{self.trip.participants.size}&check_in=#{self.trip.start_date}&check_out=#{self.trip.end_date}"
     else
@@ -30,7 +30,6 @@ class Room < ApplicationRecord
     end
     p url
 
-    # CODE POUR LA PROD
     browser = Ferrum::Browser.new({ timeout: 60, headless: true, process_timeout: 60 })
     browser.go_to(url)
     sleep(10)
@@ -47,6 +46,7 @@ class Room < ApplicationRecord
 
 
     # CODE POUR LOCAL VB
+    # url = "https://www.airbnb.fr/embeddable/home?id=#{self.web_id}"
     # br = Ferrum::Browser.new({ timeout: 60, headless: true, process_timeout: 60 })
     # br.go_to(url)
     # html_doc = Nokogiri::HTML(br.body)
@@ -56,6 +56,7 @@ class Room < ApplicationRecord
     # unless photo.empty? # pour gérer les maisons non identifiées sur airbnb
     #   p get_img_url(photo.last.attributes["style"].value)
     # end
+    # self.price = rand(80..300).to_f
     # br.quit
     # FIN CODE VALIDE
 

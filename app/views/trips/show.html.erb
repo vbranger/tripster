@@ -28,7 +28,7 @@
         </div>
       </div>
     </div>
-    <!-- CARD DESTINATION DATES -->
+    <!-- CARD DATES -->
     <div class="col-12 col-lg-5 card my-1 p-3">
       <div class="d-flex align-items-center mb-3">
         <p class="text-center"><strong>dates</strong></p>
@@ -53,7 +53,7 @@
         </div>
       </div>
     </div>
-    <!-- CARD DESTINATION PARTICIPANTS -->
+    <!-- CARD PARTICIPANTS -->
     <div class="col-12 col-lg-5 card my-1 p-3">
       <div class="d-flex align-items-center mb-3">
         <p class="text-center"><strong>participants</strong></p>
@@ -81,31 +81,15 @@
         </div>
       </div>
     </div>
-    <!-- CARD DESTINATION LOGEMENT -->
+    <!-- CARD LOGEMENT -->
     <div class=" col-12 col-lg-5 card my-1 p-3">
       <div class="d-flex align-items-center mb-3">
-        <p class="text-center"><strong>logement</strong></p>
+        <p class="text-center"><strong><%= @trip.rooms.count < 2 ? @trip.rooms.count.to_s + ' logement' : @trip.rooms.count.to_s + ' logements' %> </strong></p>
         <span class="badge badge-pill badge-warning ml-auto">En cours</span>
       </div>
       <ul class="list-group list-group-flush border-0">
         <% @trip.rooms.each do |room| %>
-          <%= link_to trip_room_path(room) do %>
-            <div class="row border-0 my-3">
-              <figure class="col-12 col-md-4 text-center text-md-left">
-                <%= image_tag(room.photo, class: "img-fluid", style: "max-height: 30vh") if room.photo %>
-              </figure>
-              <div class="col-12 col-md-8 text-truncate text-dark text-center text-md-left">
-                  <strong><%= room.name? ? room.name : "Non identifié" %></strong>
-                  <p><%= room.price ? room.price.to_s + "€/nuit" : "-€/nuit" %></p>
-                  <div class="d-flex align-items-center">
-                    <p><%= room.get_likes.size %></p><i class="fas fa-heart ml-1"></i>
-                  </div>
-                <% if @participants.size == room.get_likes.size %>
-                  <p>Tout le monde est partant ! <%= link_to "Faire la réservation", "#" %></p>
-                <% end %>
-              </div>
-            </div>
-          <% end %>
+          <%= render partial: 'shared/room_card', locals: {room: room} %>
         <% end %>
       </ul>
       <%= link_to "Ajouter un lieu", new_trip_room_path(@trip), class: "btn btn-outline-dark btn-sm text-center" %>

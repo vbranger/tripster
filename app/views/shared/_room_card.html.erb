@@ -3,11 +3,11 @@
     <figure class="col-12 col-md-4 text-md-left ">
       <%= image_tag(room.photo, class: "img-fluid rounded", style: "max-height: 30vh; width: 100%; object-fit: cover;") if room.photo %>
       <% if current_user.liked? room %>
-        <%= link_to like_trip_room_path(room, format: 'unlike'), class: "text-danger", style: "position: absolute; right: 1.5rem; top: 0.5rem;", method: :put do %> 
+        <%= link_to like_trip_room_path(room, {format: 'unlike', page: params[:controller]}), class: "text-danger", style: "position: absolute; right: 1.5rem; top: 0.5rem;", method: :put do %> 
           <i class="fas fa-heart" style="font-size: 1.5rem"></i>
         <% end %>
       <% else %>
-        <%= link_to like_trip_room_path(room, format: 'like'), class: "text-danger", style: "position: absolute; right: 1.5rem; top: 0.5rem;", method: :put do %> 
+        <%= link_to like_trip_room_path(room, {format: 'like', page: params[:controller]}), class: "text-danger", style: "position: absolute; right: 1.5rem; top: 0.5rem;", method: :put do %> 
           <i class="far fa-heart" style="font-size: 1.5rem"></i>
         <% end %>
       <% end %>

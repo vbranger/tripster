@@ -35,7 +35,11 @@ class RoomsController < ApplicationController
     elsif params[:format] == 'unlike'
       @room.unliked_by current_user
     end
-    redirect_to trip_room_path(@room)
+    if params[:page] == 'trips'
+      redirect_to trip_path(@trip)
+    else
+      redirect_to trip_room_path(@room)
+    end
   end
 
   def destroy

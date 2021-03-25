@@ -36,15 +36,12 @@ class Room < ApplicationRecord
     p "print on arrival_input"
     # price recovering
       # 1. fake arrival date
-      p 'print browser'
-      p browser
+      p 'print arrival input'
       p arrival_input = browser.at_css('._11wiged')
       p "click on it"
       arrival_input.click
-      p "select div availability"
-      p div_availability = browser.at_css('._13ah4vr')
       p "search tables"
-      p div_availability.search('table')
+      p browser.search('table')
 
     html_doc = Nokogiri::HTML(browser.body)
     browser.quit

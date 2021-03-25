@@ -24,8 +24,8 @@ class Room < ApplicationRecord
       url = "https://www.airbnb.fr/rooms/#{self.web_id}?adults=#{self.trip.participants.size}&check_in=#{self.trip.start_date}&check_out=#{self.trip.end_date}"
     else
       t = Time.now
-      today = "#{t.year - 1} - #{t.month} - #{t.day}"
-      tomorrow = "#{t.year - 1} - #{t.month} - #{t.day.to_i + 1}"
+      today = "#{t.year - 1}-#{t.month}-#{t.day}"
+      tomorrow = "#{t.year - 1}-#{t.month}-#{t.day.to_i + 1}"
       url = "https://www.airbnb.fr/rooms/#{self.web_id}?adults=#{self.trip.participants.size}&check_in=#{today}&check_out=#{tomorrow}"
     end
     p url

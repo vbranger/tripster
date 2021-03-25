@@ -43,14 +43,14 @@ class Room < ApplicationRecord
     p "search tables"
     p tables = browser.css('table')
     p tds = tables.last.css('td')
+    count = 0
     tds.each do |td|
       p td
-      count = 0
       break if count == 2
       if !td.description['attributes'].empty? && td.description['attributes'][7].include?("Choisissez")
         p "date disponible"
         td.click
-        count += 1
+        p count += 1
         match_data = td.description['attributes'][7].match(/(Choisissez \w+, )(\d+ \w+ \d{4})/)
         p match_data[2]
         p "séjour minimum"

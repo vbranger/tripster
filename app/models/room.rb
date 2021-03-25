@@ -41,7 +41,8 @@ class Room < ApplicationRecord
       p "click on it"
       arrival_input.click
       p "search tables"
-      p browser.at_css('table')
+      p tables = browser.css('table')
+      p tables.first.css('td')
 
     html_doc = Nokogiri::HTML(browser.body)
     browser.quit

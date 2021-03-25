@@ -42,7 +42,7 @@ class Room < ApplicationRecord
       arrival_input.click
       p "search tables"
       p tables = browser.css('table')
-      p tds = tables.first.css('td')
+      p tds = tables.last.css('td')
       tds.each do |td|
         p td["attributes"]
         if td["attributes"].include?("Choisissez")

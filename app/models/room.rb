@@ -41,9 +41,9 @@ class Room < ApplicationRecord
     # price recovering
       # 1. fake arrival date
       p "click on arrival_input"
-      arrival_input = html.search('._1ygdnkvm').click
+      arrival_input = html_doc.search('._1ygdnkvm').click
       p "select div availability"
-      p div_availability = html.search('._13ah4vr')
+      p div_availability = html_doc.search('._13ah4vr')
       p "search tables"
       p div_availability.search('table')
 

@@ -44,7 +44,6 @@ class Room < ApplicationRecord
       p tables = browser.css('table')
       p tds = tables.last.css('td')
       tds.each do |td|
-        p td.attributes
         if td.description['attributes'].include?("Choisissez")
           p "date disponible"
           p td.description['attributes']

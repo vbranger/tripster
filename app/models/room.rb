@@ -37,6 +37,16 @@ class Room < ApplicationRecord
     browser.quit
     p title = html_doc.search('._mbmcsn h1').children.text
     p photo = html_doc.search('._6tbg2q').attr('src').value
+
+    # price recovering
+      # 1. fake arrival date
+      p "click on arrival_input"
+      arrival_input = html.search('._1ygdnkvm').click
+      p "select div availability"
+      p div_availability = html.search('._13ah4vr')
+      p "search tables"
+      p div_availability.search('table')
+
     p price = html_doc.search('._pgfqnw').children.text
     self.name = title
     self.photo = photo

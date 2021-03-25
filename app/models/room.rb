@@ -33,19 +33,22 @@ class Room < ApplicationRecord
     browser = Ferrum::Browser.new({ timeout: 60, headless: true, process_timeout: 60 })
     browser.go_to(url)
     sleep(10)
+    p "print on arrival_input"
+    # price recovering
+      # 1. fake arrival date
+      p arrival_input = browser.at_css('._11wiged')
+      p "click on it"
+      arrival_input.click
+      p "select div availability"
+      p div_availability = browser.at_css('._13ah4vr')
+      p "search tables"
+      p div_availability.search('table')
+
     html_doc = Nokogiri::HTML(browser.body)
     browser.quit
     p title = html_doc.search('._mbmcsn h1').children.text
     p photo = html_doc.search('._6tbg2q').attr('src').value
 
-    # price recovering
-      # 1. fake arrival date
-      p "click on arrival_input"
-      arrival_input = html_doc.search('._11wiged').click
-      p "select div availability"
-      p div_availability = html_doc.search('._13ah4vr')
-      p "search tables"
-      p div_availability.search('table')
 
     p price = html_doc.search('._pgfqnw').children.text
     self.name = title

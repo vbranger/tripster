@@ -36,6 +36,8 @@ class Room < ApplicationRecord
     p "print on arrival_input"
     # price recovering
       # 1. fake arrival date
+      p 'print browser'
+      p browser
       p arrival_input = browser.at_css('._11wiged')
       p "click on it"
       arrival_input.click

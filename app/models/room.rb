@@ -47,7 +47,7 @@ class Room < ApplicationRecord
       p td
       if !td.description['attributes'].empty? && td.description['attributes'][7].include?("Choisissez")
         p "date disponible"
-        match_data = td.description['attributes'][7].match(/(Choisissez \w+, )(\d \w+ \d{4})/)
+        match_data = td.description['attributes'][7].match(/(Choisissez \w+, )(\d+ \w+ \d{4})/)
         p match_data[2]
         p "séjour minimum"
         second_match_data = td.description['attributes'][7].match(/(minimum de )(\d+)/)

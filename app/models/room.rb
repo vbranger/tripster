@@ -35,16 +35,18 @@ class Room < ApplicationRecord
     sleep(10)
     p "print on arrival_input"
     # price recovering
-      # 1. fake arrival date
-      p 'print arrival input'
-      p arrival_input = browser.at_css('._11wiged')
-      p "click on it"
-      arrival_input.click
-      p "search tables"
-      p tables = browser.css('table')
-      p tds = tables.last.css('td')
+    # 1. fake arrival date
+    p 'print arrival input'
+    p arrival_input = browser.at_css('._11wiged')
+    p "click on it"
+    arrival_input.click
+    p "search tables"
+    p tables = browser.css('table')
+    html_doc = Nokogiri::HTML(browser.body)
+    browser.quit
+    p tds = tables.last.css('td')
       tds.each do |td|
-        if td.description['attributes'][7].include?("Choisissez")
+        if !td.description['attributes'].empty? && td.description['attributes'][7].include?("Choisissez")
           p "date disponible"
           match_data = td.description['attributes'][7].match(/(Choisissez \w+, )(\d \w+ \d{4})/)
           p match_data[2]
@@ -54,8 +56,6 @@ class Room < ApplicationRecord
         end
       end
 
-    html_doc = Nokogiri::HTML(browser.body)
-    browser.quit
     p title = html_doc.search('._mbmcsn h1').children.text
     p photo = html_doc.search('._6tbg2q').attr('src').value
 

@@ -45,9 +45,9 @@ class Room < ApplicationRecord
       p tds = tables.last.css('td')
       tds.each do |td|
         p td.attributes
-        if td[ tds.last.description['attributes'].include?("Choisissez")
+        if td.description['attributes'].include?("Choisissez")
           p "date disponible"
-          p td tds.last.description['attributes']
+          p td.description['attributes']
         end
       end
 

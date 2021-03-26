@@ -33,31 +33,33 @@ class Room < ApplicationRecord
     browser = Ferrum::Browser.new({ timeout: 60, headless: true, process_timeout: 60 })
     browser.go_to(url)
     sleep(10)
-    p "print on arrival_input"
-    # price recovering
-    # 1. fake arrival date
     p 'print arrival input'
     p arrival_input = browser.at_css('._11wiged')
     p "click on it"
     arrival_input.click
-    p "search tables"
+    p "Print tables"
     p tables = browser.css('table')
+    p "Print Tds"
     p tds = tables.last.css('td')
-    count = 0
+    p "start iteration in tds"
+    dates = {}
     tds.each do |td|
       p td
-      break if count == 2
+      break if dates.count == 2
       if !td.description['attributes'].empty? && td.description['attributes'][7].include?("Choisissez")
         p "date disponible"
-        td.click
-        p count += 1
         match_data = td.description['attributes'][7].match(/(Choisissez \w+, )(\d+ \w+ \d{4})/)
-        p match_data[2]
+        p start_date = match_data[2]
+        p "Conversion date from 6 avril 2021 to 2021-04-06"
+        rematch = start_date.match(/(d{1|2}) (w+) (d{4}))
+        p new_date = "#{rematch[3]}-#{rematch[2]}-#{rematch[1]}"
+        dates << new_date
         p "séjour minimum"
         second_match_data = td.description['attributes'][7].match(/(minimum de )(\d+)/)
         p second_match_data[2]
       end
     end
+    p dates
       
     html_doc = Nokogiri::HTML(browser.body)
     browser.quit

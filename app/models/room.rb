@@ -7,6 +7,12 @@ class Room < ApplicationRecord
   belongs_to :trip
   acts_as_votable
 
+  MONTHS = {
+    'janvier'  => 1, 'février' => 2, 'mars'    => 3, 'avril'    => 4,
+    'mai'      => 5, 'juin'     => 6, 'juillet'     => 7, 'août'   => 8,
+    'septembre'=> 9, 'octobre'  => 10, 'novembre' => 11, 'décembre' => 12
+  }
+
   def get_id
     match_data = self.url.match(/^(?<website_url>https:\/\/www.airbnb.[a-z]+\/rooms\/)(?<id>\d+)/)
     return self.web_id = match_data[:id]
@@ -49,11 +55,9 @@ class Room < ApplicationRecord
       if !td.description['attributes'].empty? && td.description['attributes'][7].include?("Choisissez")
         p "date disponible"
         match_data = td.description['attributes'][7].match(/(Choisissez \w+, )(\d+ \w+ \d{4})/)
-        p start_date = match_data[2]
         p "Conversion date from 6 avril 2021 to 2021-04-06"
-        rematch = start_date.match(/(\d{1|2}) (\w+) (\d{4})/)
-        p new_date = "#{rematch[3]}-#{rematch[2]}-#{rematch[1]}"
-        dates << new_date
+        p date = match_data[2]
+        dates << date_conversion(date)
         p "séjour minimum"
         second_match_data = td.description['attributes'][7].match(/(minimum de )(\d+)/)
         p second_match_data[2]
@@ -90,6 +94,14 @@ class Room < ApplicationRecord
     # br.quit
     # FIN CODE VALIDE
 
+  end
+
+  private
+
+  def date_conversion(string_date)
+    match_data = start_date.match(/(?<day>\d{1,2})(\s)(?<month>\w+)(\s)(?<year>\d{4})/)
+    month = MONTH[match_data[:month]]
+    return "#{match_data[:year]}-#{month}-#{match_data[:day]}"
   end
 
 end

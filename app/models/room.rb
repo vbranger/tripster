@@ -64,6 +64,10 @@ class Room < ApplicationRecord
       end
     end
     p dates
+    p "getting title"
+    p title = browser.at_css('._mbmcsn h1').text
+    p "getting photo"
+    p photo = browser.at_css('._6tbg2q').description['attributes'][11]
     p "browser quit"
     browser.quit
 
@@ -74,9 +78,7 @@ class Room < ApplicationRecord
     browser = Ferrum::Browser.new({ timeout: 60, headless: true, process_timeout: 60 })
     browser.go_to(url)
 
-    title = browser.at_css('._mbmcsn h1').text
-    photo = browser.at_css('._6tbg2q').description['attributes'][11]
-    price = browser.at_css('._pgfqnw').text.gsub!('€','')
+    p price = browser.at_css('._pgfqnw').text.gsub!('€','')
 
     # url = "https://www.airbnb.fr/rooms/45359210?check_in=2021-04-05&check_out=2021-04-07"
 

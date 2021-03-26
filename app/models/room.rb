@@ -44,8 +44,8 @@ class Room < ApplicationRecord
     p arrival_input = browser.at_css('._11wiged')
     p "click on it"
     arrival_input.click
-    p "sleep 2sec after click"
-    sleep(2)
+    p "sleep 10sec after click"
+    sleep(10)
     p "Print tables"
     p tables = browser.css('table')
     while tables.empty?

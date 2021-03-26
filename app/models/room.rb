@@ -41,7 +41,7 @@ class Room < ApplicationRecord
     p "Search for tables"
     p tables = browser.css('table')
     while tables.empty?
-      "not found yet, retry in 1sec"
+      p "not found yet, retry in 1sec"
       tables = browser.css('table')
       sleep(1)
     end

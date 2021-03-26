@@ -38,12 +38,13 @@ class Room < ApplicationRecord
 
     browser = Ferrum::Browser.new({ timeout: 60, headless: true, process_timeout: 60 })
     browser.go_to(url)
+    sleep(10)
     p "Search for tables"
     p tables = browser.css('table')
     while tables.empty?
       p "not found yet, retry in 1sec"
       tables = browser.css('table')
-      sleep(1)
+      sleep(0.1)
     end
     p "Print Tds"
     p tds = tables.last.css('td')

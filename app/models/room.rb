@@ -68,7 +68,7 @@ class Room < ApplicationRecord
     browser.quit
 
     p "new url"
-    p url = "https://www.airbnb.fr/rooms/#{self.web_id}?check_in=#{date[0]}&check_out=#{date[1]}"
+    p url = "https://www.airbnb.fr/rooms/#{self.web_id}?check_in=#{dates[0]}&check_out=#{dates[1]}"
     
     p "new browser"
     browser = Ferrum::Browser.new({ timeout: 60, headless: true, process_timeout: 60 })

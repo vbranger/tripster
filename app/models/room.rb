@@ -78,7 +78,7 @@ class Room < ApplicationRecord
     p "new browser"
     browser = Ferrum::Browser.new({ timeout: 60, headless: true, process_timeout: 60 })
     browser.go_to(url)
-
+    sleep(10)
     p price = browser.at_css('._pgfqnw').text.gsub!('€','')
 
     # url = "https://www.airbnb.fr/rooms/45359210?check_in=2021-04-05&check_out=2021-04-07"

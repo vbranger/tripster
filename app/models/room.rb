@@ -101,7 +101,7 @@ class Room < ApplicationRecord
 
   def date_conversion(string_date)
     match_data = string_date.match(/(?<day>\d{1,2})(\s)(?<month>\w+)(\s)(?<year>\d{4})/)
-    month = MONTH[match_data[:month]]
+    month = MONTHS[match_data[:month]]
     return "#{match_data[:year]}-#{month}-#{match_data[:day]}"
   end
 

@@ -42,7 +42,7 @@ class Room < ApplicationRecord
     p "Print Tds"
     p tds = tables.last.css('td')
     p "start iteration in tds"
-    dates = {}
+    dates = []
     tds.each do |td|
       p td
       break if dates.count == 2

@@ -51,7 +51,7 @@ class Room < ApplicationRecord
         match_data = td.description['attributes'][7].match(/(Choisissez \w+, )(\d+ \w+ \d{4})/)
         p start_date = match_data[2]
         p "Conversion date from 6 avril 2021 to 2021-04-06"
-        rematch = start_date.match(/(d{1|2}) (w+) (d{4}))
+        rematch = start_date.match(/(\d{1|2}) (\w+) (\d{4})/)
         p new_date = "#{rematch[3]}-#{rematch[2]}-#{rematch[1]}"
         dates << new_date
         p "séjour minimum"

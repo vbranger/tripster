@@ -38,20 +38,12 @@ class Room < ApplicationRecord
 
     browser = Ferrum::Browser.new({ timeout: 60, headless: true, process_timeout: 60 })
     browser.go_to(url)
-    p "sleep 10sec after go_to"
-    sleep(10)
-    p 'print arrival input'
-    p arrival_input = browser.at_css('._11wiged')
-    p "click on it"
-    arrival_input.click
-    p "sleep 10sec after click"
-    sleep(10)
-    p "Print tables"
+    p "Search for tables"
     p tables = browser.css('table')
     while tables.empty?
-      "sleep for tables"
+      "not found yet, retry in 1sec"
       tables = browser.css('table')
-      sleep(0.1)
+      sleep(1)
     end
     p "Print Tds"
     p tds = tables.last.css('td')
@@ -86,7 +78,7 @@ class Room < ApplicationRecord
     photo = browser.at_css('._6tbg2q').description['attributes'][11]
     price = browser.at_css('._pgfqnw').text.gsub!('€','')
 
-    # https://www.airbnb.fr/rooms/45359210?check_in=2021-04-05&check_out=2021-04-07
+    # url = "https://www.airbnb.fr/rooms/45359210?check_in=2021-04-05&check_out=2021-04-07"
 
     # NOKO IN
     # html_doc = Nokogiri::HTML(browser.body)

@@ -26,15 +26,15 @@ class Room < ApplicationRecord
 
   def scrap
     # CODE POUR LA PROD
-    if self.trip.start_date != self.trip.end_date
-      url = "https://www.airbnb.fr/rooms/#{self.web_id}?adults=#{self.trip.participants.size}&check_in=#{self.trip.start_date}&check_out=#{self.trip.end_date}"
-    else
-      t = Time.now
-      today = "#{t.year}-#{t.month}-#{t.day}"
-      tomorrow = "#{t.year}-#{t.month}-#{t.day.to_i + 1}"
-      url = "https://www.airbnb.fr/rooms/#{self.web_id}?adults=#{self.trip.participants.size}&check_in=#{today}&check_out=#{tomorrow}"
-    end
-    p url
+    # if self.trip.start_date != self.trip.end_date
+    #   url = "https://www.airbnb.fr/rooms/#{self.web_id}?adults=#{self.trip.participants.size}&check_in=#{self.trip.start_date}&check_out=#{self.trip.end_date}"
+    # else
+    #   t = Time.now
+    #   today = "#{t.year}-#{t.month}-#{t.day}"
+    #   tomorrow = "#{t.year}-#{t.month}-#{t.day.to_i + 1}"
+    #   url = "https://www.airbnb.fr/rooms/#{self.web_id}?adults=#{self.trip.participants.size}&check_in=#{today}&check_out=#{tomorrow}"
+    # end
+    p url = "https://www.airbnb.fr/rooms/#{self.web_id}"
 
     browser = Ferrum::Browser.new({ timeout: 60, headless: true, process_timeout: 60 })
     browser.go_to(url)
@@ -43,6 +43,7 @@ class Room < ApplicationRecord
     p arrival_input = browser.at_css('._11wiged')
     p "click on it"
     arrival_input.click
+    sleep(2)
     p "Print tables"
     p tables = browser.css('table')
     p "Print Tds"

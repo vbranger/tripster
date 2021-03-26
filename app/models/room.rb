@@ -38,14 +38,21 @@ class Room < ApplicationRecord
 
     browser = Ferrum::Browser.new({ timeout: 60, headless: true, process_timeout: 60 })
     browser.go_to(url)
+    p "sleep 10sec after go_to"
     sleep(10)
     p 'print arrival input'
     p arrival_input = browser.at_css('._11wiged')
     p "click on it"
     arrival_input.click
+    p "sleep 2sec after click"
     sleep(2)
     p "Print tables"
     p tables = browser.css('table')
+    while tables.empty?
+      "sleep for tables"
+      tables = browser.css('table')
+      sleep(0.1)
+    end
     p "Print Tds"
     p tds = tables.last.css('td')
     p "start iteration in tds"
@@ -65,18 +72,35 @@ class Room < ApplicationRecord
       end
     end
     p dates
-      
-    html_doc = Nokogiri::HTML(browser.body)
+    p "browser quit"
     browser.quit
-    p title = html_doc.search('._mbmcsn h1').children.text
-    p photo = html_doc.search('._6tbg2q').attr('src').value
+
+    p "new url"
+    p url = "https://www.airbnb.fr/rooms/#{self.web_id}?check_in=#{date[0]}&check_out=#{date[1]}"
+    
+    p "new browser"
+    browser = Ferrum::Browser.new({ timeout: 60, headless: true, process_timeout: 60 })
+    browser.go_to(url)
+
+    title = browser.at_css('._mbmcsn h1').text
+    photo = browser.at_css('._6tbg2q').description['attributes'][11]
+    price = browser.at_css('._pgfqnw').text.gsub!('€','')
+
+    # https://www.airbnb.fr/rooms/45359210?check_in=2021-04-05&check_out=2021-04-07
+
+    # NOKO IN
+    # html_doc = Nokogiri::HTML(browser.body)
+    # p title = html_doc.search('._mbmcsn h1').children.text
+    # p photo = html_doc.search('._6tbg2q').attr('src').value
 
 
-    p price = html_doc.search('._pgfqnw').children.text
-    self.name = title
-    self.photo = photo
-    length = price.length/2
-    self.price = price[0...-length].gsub!("€","").to_f
+    # p price = html_doc.search('._pgfqnw').children.text
+    # self.name = title
+    # self.photo = photo
+    # length = price.length/2
+    # self.price = price[0...-length].gsub!("€","").to_f
+    # NOKO OUT 
+
     # FIN CODE POUR LA PROD
 
 

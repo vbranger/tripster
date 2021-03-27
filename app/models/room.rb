@@ -70,7 +70,7 @@ class Room < ApplicationRecord
         if minimum == 0
           p "séjour minimum"
           second_match_data = td.description['attributes'][7].match(/(minimum de )(\d+)/)
-          p minimum = second_match_data[2]
+          p minimum = second_match_data[2].to_i
         end
       end
     end

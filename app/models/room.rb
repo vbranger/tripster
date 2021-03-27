@@ -50,18 +50,28 @@ class Room < ApplicationRecord
     p tds = tables.last.css('td')
     p "start iteration in tds"
     dates = []
+    minimum = 0
     tds.each do |td|
       p td
+      # break quand 2 dates sont récupérées
       break if dates.count == 2
+
+      if minimum > 1
+        minimum -= 1
+        next
+      end
+  
       if !td.description['attributes'].empty? && td.description['attributes'][7].include?("Choisissez")
         p "date disponible"
         match_data = td.description['attributes'][7].match(/(Choisissez \w+, )(\d+ \w+ \d{4})/)
         p "Conversion date from 6 avril 2021 to 2021-04-06"
         p date = match_data[2]
         dates << date_conversion(date)
-        p "séjour minimum"
-        second_match_data = td.description['attributes'][7].match(/(minimum de )(\d+)/)
-        p second_match_data[2]
+        if minimum == 0
+          p "séjour minimum"
+          second_match_data = td.description['attributes'][7].match(/(minimum de )(\d+)/)
+          p minimum = second_match_data[2]
+        end
       end
     end
     p dates

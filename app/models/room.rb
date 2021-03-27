@@ -38,7 +38,9 @@ class Room < ApplicationRecord
 
     browser = Ferrum::Browser.new({ timeout: 60, headless: true, process_timeout: 60 })
     browser.go_to(url)
+    browser.screenshot(path: "1.png") # => 134660
     sleep(10)
+    browser.screenshot(path: "2.png") # => 134660
     p "Search for tables"
     p tables = browser.css('table')
     while tables.empty?
@@ -89,6 +91,8 @@ class Room < ApplicationRecord
     browser = Ferrum::Browser.new({ timeout: 60, headless: true, process_timeout: 60 })
     browser.go_to(url)
     sleep(10)
+    # click date 1
+    
     p price = browser.at_css('._pgfqnw').text.gsub!('€','')
 
     # url = "https://www.airbnb.fr/rooms/45359210?check_in=2021-04-05&check_out=2021-04-07"

@@ -19,7 +19,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     else
       # do normal registration things #
     end
-    root_path
+    redirect_to waiting_confirmation_path
   end
 
   

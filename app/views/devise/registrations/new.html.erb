@@ -32,6 +32,9 @@
                   placeholder: "Confirmer mot de passe",
                   required: true,
                   input_html: { autocomplete: "new-password" } %>
+      <% if @token != nil %>
+          <%= hidden_field_tag :invite_token, @token %>
+      <% end %>
     </div>
 
     <div class="form-actions my-3">

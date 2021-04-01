@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_23_190931) do
+ActiveRecord::Schema.define(version: 2021_03_29_091809) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "invites", force: :cascade do |t|
+    t.string "email"
+    t.integer "trip_id"
+    t.integer "sender_id"
+    t.integer "recipient_id"
+    t.string "token"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "participants", force: :cascade do |t|
     t.bigint "user_id", null: false

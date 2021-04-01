@@ -94,7 +94,7 @@ class Room < ApplicationRecord
     # click date 1
     
     p price = browser.at_css('._pgfqnw').text.gsub!('€','')
-
+    browser.quit
     # url = "https://www.airbnb.fr/rooms/45359210?check_in=2021-04-05&check_out=2021-04-07"
 
     # NOKO IN

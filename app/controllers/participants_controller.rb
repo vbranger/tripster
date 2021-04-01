@@ -5,6 +5,7 @@ class ParticipantsController < ApplicationController
     @trip = params[:trip]
   end
 
+  # probablement obsolète
   def create
     user = User.where(email: params[:email])
     unless user.empty?
@@ -20,6 +21,7 @@ class ParticipantsController < ApplicationController
       render 'new'
     end
   end
+  # fin probablement obsolète
 
   def destroy
     @participant = Participant.find(params[:id])

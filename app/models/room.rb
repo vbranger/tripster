@@ -85,17 +85,18 @@ class Room < ApplicationRecord
     p "browser quit"
     browser.quit
 
-    p "new url"
-    p url = "https://www.airbnb.fr/rooms/#{self.web_id}?check_in=#{dates[0]}&check_out=#{dates[1]}"
+    # p "new url"
+    # p url = "https://www.airbnb.fr/rooms/#{self.web_id}?check_in=#{dates[0]}&check_out=#{dates[1]}"
     
-    p "new browser"
-    browser = Ferrum::Browser.new({ timeout: 60, headless: true, process_timeout: 60 })
-    browser.go_to(url)
-    sleep(10)
-    # click date 1
+    # p "new browser"
+    # browser = Ferrum::Browser.new({ timeout: 60, headless: true, process_timeout: 60 })
+    # browser.go_to(url)
+    # sleep(10)
+    # # click date 1
     
-    p price = browser.at_css('._pgfqnw').text.gsub!('€','')
-    browser.quit
+    # p price = browser.at_css('._pgfqnw').text.gsub!('€','')
+    # browser.quit
+
     # url = "https://www.airbnb.fr/rooms/45359210?check_in=2021-04-05&check_out=2021-04-07"
 
     # NOKO IN

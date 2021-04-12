@@ -106,10 +106,10 @@ class Room < ApplicationRecord
 
 
     # p price = html_doc.search('._pgfqnw').children.text
-    # self.name = title
-    # self.photo = photo
-    # length = price.length/2
-    # self.price = price[0...-length].gsub!("€","").to_f
+    self.name = title
+    self.photo = photo
+    length = price.length/2
+    self.price = price[0...-length].gsub!("€","").to_f
     # NOKO OUT 
 
     # FIN CODE POUR LA PROD

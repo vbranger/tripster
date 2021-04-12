@@ -19,6 +19,7 @@ class RoomsController < ApplicationController
       p "ended scrap"
     end
     @room.save
+    News.create!(user: current_user, trip: @trip, action_type: "#{params[:controller]}##{params[:action]}", imageable_type: "Room", imageable_id: @trip)
     redirect_to trip_path(params[:trip_id])
   end
 

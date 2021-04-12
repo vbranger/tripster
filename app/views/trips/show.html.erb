@@ -1,100 +1,126 @@
 <div class="container py-3">
-  <div class="row justify-content-around">
-    <!-- CARD DESTINATION -->
-    <div class="col-12 col-lg-5 card my-1 p-3">
-      <div class="d-flex align-items-center mb-3">
-        <p class="text-center"><strong>destination</strong></p>
-        <% if @trip.destination_chosen? %>
-          <span class="badge badge-pill badge-success ml-auto text-white">Validé</span>
-        <% else %>
-          <span class="badge badge-pill badge-danger ml-auto text-white">Non défini</span>
-        <% end %>
-      </div>
-      <div class="row p-3">
-        <figure class="col-sm-12 col-md-4 text-center">
-          <%= image_tag "undraw_adventure_4hum.svg", class: "img-fluid", style: "max-height: 30vh" %>
-        </figure>
-        <div class="col-sm-12 col-md-8 text-center">
-          <% if @trip.destination_chosen? %>
-            <h4 class="mb-3 text-center"><strong><%= @trip.destination %></strong></h4>
-          <% else %>
-            <p class="mb-3 text-center">Vous pouvez renseigner votre destination ou lancer un choix collectif</p>
-          <% end %>
-          <% if @trip.destination_chosen? %>
-            <%= link_to "Modifier", "#{@trip.id}/edit_destination", class: "btn btn-outline-success btn-sm text-center"  %>
-          <% else %>
-            <%= link_to "Démarrer", "#{@trip.id}/edit_destination", class: "btn btn-outline-dark btn-sm text-center"  %>
-          <% end %>
+
+  <ul class="nav nav-tabs justify-content-between" id="myTab" role="tablist">
+    <li class="nav-item" role="presentation">
+      <button class="nav-link active" id="home-tab" data-toggle="tab" href="#home" type="button" role="tab" aria-controls="home" aria-selected="true">HOME</button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="news-tab" data-toggle="tab" href="#news" type="button" role="tab" aria-controls="news" aria-selected="false">NEWS</button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="people-tab" data-toggle="tab" href="#people" type="button" role="tab" aria-controls="people" aria-selected="false">PEOPLE</button>
+    </li>
+  </ul>
+
+  <div class="tab-content" id="myTabContent">
+
+    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+      <div class="row justify-content-around">
+        <!-- CARD DESTINATION -->
+        <div class="col-12 col-lg-5 card my-1 p-3">
+          <div class="d-flex align-items-center mb-3">
+            <p class="text-center"><strong>destination</strong></p>
+            <% if @trip.destination_chosen? %>
+              <span class="badge badge-pill badge-success ml-auto text-white">Validé</span>
+            <% else %>
+              <span class="badge badge-pill badge-danger ml-auto text-white">Non défini</span>
+            <% end %>
+          </div>
+          <div class="row p-3">
+            <figure class="col-sm-12 col-md-4 text-center">
+              <%= image_tag "undraw_adventure_4hum.svg", class: "img-fluid", style: "max-height: 30vh" %>
+            </figure>
+            <div class="col-sm-12 col-md-8 text-center">
+              <% if @trip.destination_chosen? %>
+                <h4 class="mb-3 text-center"><strong><%= @trip.destination %></strong></h4>
+              <% else %>
+                <p class="mb-3 text-center">Vous pouvez renseigner votre destination ou lancer un choix collectif</p>
+              <% end %>
+              <% if @trip.destination_chosen? %>
+                <%= link_to "Modifier", "#{@trip.id}/edit_destination", class: "btn btn-outline-success btn-sm text-center"  %>
+              <% else %>
+                <%= link_to "Démarrer", "#{@trip.id}/edit_destination", class: "btn btn-outline-dark btn-sm text-center"  %>
+              <% end %>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-    <!-- CARD DATES -->
-    <div class="col-12 col-lg-5 card my-1 p-3">
-      <div class="d-flex align-items-center mb-3">
-        <p class="text-center"><strong>dates</strong></p>
-        <% if @trip.dates_chosen? %>
-          <span class="badge badge-pill badge-success ml-auto text-white">Validé</span>
-        <% else %>
-          <span class="badge badge-pill badge-danger ml-auto text-white">Non défini</span>
-        <% end %>
-      </div>
-      <div class="row p-3">
-        <figure class="col-sm-12 col-md-4 text-center">
-            <%= image_tag "undraw_date_picker_gorr.svg", class: "img-fluid", style: "max-height: 30vh" %>
-        </figure>
-        <div class="col-sm-12 col-md-8 text-center">
-          <% if @trip.dates_chosen? %>
-          <h4 class="mb-3 text-center"><strong><%= "#{@trip.start_date.strftime('%d/%m/%y')} - #{@trip.end_date.strftime('%d/%m/%y')}"%></strong></h4>
-            <%= link_to "Modifier", "#{@trip.id}/edit_dates", class: "btn btn-outline-success btn-sm text-center"  %>
-          <% else %>
-            <p class="mb-3 text-center">Vous pouvez renseigner vos dates ou lancer un choix collectif</p>
-            <%= link_to "Démarrer", "#{@trip.id}/edit_dates", class: "btn btn-outline-dark btn-sm text-center"  %>
-          <% end %>
+        <!-- CARD DATES -->
+        <div class="col-12 col-lg-5 card my-1 p-3">
+          <div class="d-flex align-items-center mb-3">
+            <p class="text-center"><strong>dates</strong></p>
+            <% if @trip.dates_chosen? %>
+              <span class="badge badge-pill badge-success ml-auto text-white">Validé</span>
+            <% else %>
+              <span class="badge badge-pill badge-danger ml-auto text-white">Non défini</span>
+            <% end %>
+          </div>
+          <div class="row p-3">
+            <figure class="col-sm-12 col-md-4 text-center">
+                <%= image_tag "undraw_date_picker_gorr.svg", class: "img-fluid", style: "max-height: 30vh" %>
+            </figure>
+            <div class="col-sm-12 col-md-8 text-center">
+              <% if @trip.dates_chosen? %>
+              <h4 class="mb-3 text-center"><strong><%= "#{@trip.start_date.strftime('%d/%m/%y')} - #{@trip.end_date.strftime('%d/%m/%y')}"%></strong></h4>
+                <%= link_to "Modifier", "#{@trip.id}/edit_dates", class: "btn btn-outline-success btn-sm text-center"  %>
+              <% else %>
+                <p class="mb-3 text-center">Vous pouvez renseigner vos dates ou lancer un choix collectif</p>
+                <%= link_to "Démarrer", "#{@trip.id}/edit_dates", class: "btn btn-outline-dark btn-sm text-center"  %>
+              <% end %>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-    <!-- CARD PARTICIPANTS -->
-    <div class="col-12 col-lg-5 card my-1 p-3">
-      <div class="d-flex align-items-center mb-3">
-        <p class="text-center"><strong>participants</strong></p>
-      </div>
-      <div class="row p-3">
-        <figure class="col-sm-12 col-md-4 text-center">
-            <%= image_tag "undraw_group_selfie_ijc6.svg", class: "img-fluid", style: "max-height: 30vh" %>
-        </figure>
-        <div class="col-sm-12 col-md-8 text-center">
-          <ul class="list-group list-group-flush">
-            <% @participants.each do |participant| %>
-              <li class="list-group-item d-flex">
-                <p>
-                  <%= participant.user.first_name %>
-                </p>
-                <% if @trip.user == current_user %>
-                  <%= link_to participant_path(participant), method: :delete, data: { confirm: "Êtes-vous sûr ?"}, class: "ml-auto" do %>
-                    <i class="fas fa-times-circle text-dark"></i>
-                  <% end %>        
-                <% end %>
-              </li>
+        
+        <!-- CARD LOGEMENT -->
+        <div class=" col-12 col-lg-5 card my-1 p-3">
+          <div class="d-flex align-items-center mb-3">
+            <p class="text-center"><strong><%= @trip.rooms.count < 2 ? @trip.rooms.count.to_s + ' logement' : @trip.rooms.count.to_s + ' logements' %> </strong></p>
+            <span class="badge badge-pill badge-warning ml-auto">En cours</span>
+          </div>
+          <ul class="list-group list-group-flush border-0">
+            <% @trip.rooms.each do |room| %>
+              <%= render partial: 'shared/room_card', locals: {room: room} %>
             <% end %>
           </ul>
-          <%= link_to "Ajouter un participant", new_invite_path(trip: @trip), class: "btn btn-outline-dark btn-sm" %>
+          <%= link_to "Ajouter un lieu", new_trip_room_path(@trip), class: "btn btn-outline-dark btn-sm text-center" %>
         </div>
       </div>
     </div>
-    <!-- CARD LOGEMENT -->
-    <div class=" col-12 col-lg-5 card my-1 p-3">
-      <div class="d-flex align-items-center mb-3">
-        <p class="text-center"><strong><%= @trip.rooms.count < 2 ? @trip.rooms.count.to_s + ' logement' : @trip.rooms.count.to_s + ' logements' %> </strong></p>
-        <span class="badge badge-pill badge-warning ml-auto">En cours</span>
-      </div>
-      <ul class="list-group list-group-flush border-0">
-        <% @trip.rooms.each do |room| %>
-          <%= render partial: 'shared/room_card', locals: {room: room} %>
-        <% end %>
-      </ul>
-      <%= link_to "Ajouter un lieu", new_trip_room_path(@trip), class: "btn btn-outline-dark btn-sm text-center" %>
+
+    <div class="tab-pane fade" id="news" role="tabpanel" aria-labelledby="news-tab">...</div>
+    
+    <div class="tab-pane fade" id="people" role="tabpanel" aria-labelledby="people-tab">
+      <!-- CARD PARTICIPANTS -->
+        <div class="col-12 col-lg-5 card my-1 p-3">
+          <div class="d-flex align-items-center mb-3">
+            <p class="text-center"><strong>participants</strong></p>
+          </div>
+          <div class="row p-3">
+            <figure class="col-sm-12 col-md-4 text-center">
+                <%= image_tag "undraw_group_selfie_ijc6.svg", class: "img-fluid", style: "max-height: 30vh" %>
+            </figure>
+            <div class="col-sm-12 col-md-8 text-center">
+              <ul class="list-group list-group-flush">
+                <% @participants.each do |participant| %>
+                  <li class="list-group-item d-flex">
+                    <p>
+                      <%= participant.user.first_name %>
+                    </p>
+                    <% if @trip.user == current_user %>
+                      <%= link_to participant_path(participant), method: :delete, data: { confirm: "Êtes-vous sûr ?"}, class: "ml-auto" do %>
+                        <i class="fas fa-times-circle text-dark"></i>
+                      <% end %>        
+                    <% end %>
+                  </li>
+                <% end %>
+              </ul>
+              <%= link_to "Ajouter un participant", new_invite_path(trip: @trip), class: "btn btn-outline-dark btn-sm" %>
+            </div>
+          </div>
+        </div>
     </div>
   </div>
+
+
 
 
 
@@ -106,3 +132,4 @@
       <%= link_to "Supprimer ce trip", trip_path(@trip), method: :delete, data: { confirm: "Êtes-vous sûr ?"}, class: "btn btn-danger d-block" %>
     <% end %>
   </div>
+</div>

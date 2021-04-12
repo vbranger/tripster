@@ -3,6 +3,7 @@ class Trip < ApplicationRecord
   has_many :users, through: :participants
   has_many :rooms, dependent: :destroy
   has_many :invites
+  has_many :notifications, as: :imageable
   belongs_to :user
 
   def participants_list

@@ -2,6 +2,7 @@ class Invite < ApplicationRecord
   belongs_to :trip
   belongs_to :sender, :class_name => 'User'
   belongs_to :recipient, :class_name => 'User', optional: true
+  has_many :notifications, as: :imageable
   
   before_create :generate_token
   before_save :check_user_existence

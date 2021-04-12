@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_29_091809) do
+ActiveRecord::Schema.define(version: 2021_04_12_200243) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,32 @@ ActiveRecord::Schema.define(version: 2021_03_29_091809) do
     t.string "token"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "news", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "action_type"
+    t.string "content"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "imageable_type"
+    t.bigint "imageable_id"
+    t.bigint "trip_id"
+    t.index ["imageable_type", "imageable_id"], name: "index_news_on_imageable"
+    t.index ["trip_id"], name: "index_news_on_trip_id"
+    t.index ["user_id"], name: "index_news_on_user_id"
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.string "recipient_type", null: false
+    t.bigint "recipient_id", null: false
+    t.string "type", null: false
+    t.jsonb "params"
+    t.datetime "read_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["read_at"], name: "index_notifications_on_read_at"
+    t.index ["recipient_type", "recipient_id"], name: "index_notifications_on_recipient"
   end
 
   create_table "participants", force: :cascade do |t|
@@ -93,6 +119,7 @@ ActiveRecord::Schema.define(version: 2021_03_29_091809) do
     t.index ["voter_type", "voter_id"], name: "index_votes_on_voter_type_and_voter_id"
   end
 
+  add_foreign_key "news", "users"
   add_foreign_key "participants", "trips"
   add_foreign_key "participants", "users"
   add_foreign_key "rooms", "trips"

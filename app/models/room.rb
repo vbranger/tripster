@@ -5,6 +5,7 @@ require 'ferrum'
 
 class Room < ApplicationRecord
   belongs_to :trip
+  has_many :notifications, as: :imageable
   acts_as_votable
 
   MONTHS = {

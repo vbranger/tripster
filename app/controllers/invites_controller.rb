@@ -15,6 +15,8 @@ class InvitesController < ApplicationController
         UserMailer.notify_invitation(@invite).deliver
         #Add the user to the user group
         @invite.recipient.trips.push(@invite.trip)
+        # Add news
+        News.create!(user: @invite.recipient, trip_id: @invite.trip.id, action_type: "#{params[:controller]}##{params[:action]}", imageable_type: "Participant", imageable_id: Participant.last)
       else
         UserMailer.new_user_invite(@invite, new_user_registration_url(:invite_token => @invite.token)).deliver #send the invite data to our mailer to deliver the email
       end

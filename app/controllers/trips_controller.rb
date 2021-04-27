@@ -9,7 +9,6 @@ class TripsController < ApplicationController
     @trip.user_id = current_user.id
     @trip.save
     Participant.create!(trip_id: @trip.id, user_id: current_user.id)
-    
     News.create!(user: current_user, trip_id: @trip.id, action_type: "#{params[:controller]}##{params[:action]}", imageable_type: "Trip", imageable_id: @trip.id)
     redirect_to trips_path
   end
@@ -22,7 +21,7 @@ class TripsController < ApplicationController
     @trip = Trip.find(params[:id])
     @participants = Participant.where(trip_id: params[:id])
     @participants_list = @trip.participants_list
-    @news = News.where(trip_id: @trip.id)
+    @news = News.where(trip_id: @trip.id).order(created_at: :desc)
   end
 
   def destroy

@@ -88,7 +88,7 @@
     <!--  TAB NEWS -->
     <div class="tab-pane fade  show active" id="news" role="tabpanel" aria-labelledby="news-tab">
       <% @news.each do |new| %>
-        <p><strong><%= new.content %></strong> by <%= new.user.first_name %> - <%= new.time_since_created %></p>
+        <%= render partial: 'shared/news_card', locals: {new: new} %>
       <% end %>
     </div>
     <!--  TAB PEOPLE -->

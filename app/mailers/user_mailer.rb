@@ -18,7 +18,7 @@ class UserMailer < ApplicationMailer
 
   def new_user_invite(invite, url)
     @url = url
-    @sender = invite.sender_id
+    @sender = invite.sender
     @trip = invite.trip
 
     mail to: invite.email, subject: "You received an invitation for a Tripster"

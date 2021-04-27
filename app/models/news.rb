@@ -23,6 +23,10 @@ class News < ApplicationRecord
       self.update(content: "#{self.user.first_name} a défini une nouvelle destination : #{Trip.find(self.trip_id).destination}")
     when "trips#create"
       self.update(content: "#{self.user.first_name} a créé #{Trip.find(self.trip_id).name}")
+    when "invites#create"
+      self.update(content: "#{self.user.first_name} a rejoint #{Trip.find(self.trip_id).name}")
+    when "participants#destroy"
+      self.update(content: "#{self.user.first_name} a quitté #{Trip.find(self.trip_id).name}")
     else
       self.update(content: "Autre info")
     end

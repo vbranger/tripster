@@ -11,12 +11,19 @@ class Users::RegistrationsController < Devise::RegistrationsController
     build_resource(sign_up_params)
     resource.save
     @token = params[:invite_token]
-    if !@token.nil?
+    unless @token.nil?
       p "org"
-      p org =  Invite.find_by_token(@token).trip #find the user group attached to the invite
+      p trip =  Invite.find_by_token(@token).trip #find the user group attached to the invite
       p "push"
-      p resource.trips.push(org) #add this user to the new user group as a member
-    else
+      p resource.trips.push(trip) #add this user to the new user group as a member
+      News.create!(
+        user: resource,
+        trip_id: trip.id,
+        action_type: "#{params[:controller]}##{params[:action]}",
+        imageable_type: "Participant",
+        imageable_id: Participant.last
+      )
+
       # do normal registration things #
     end
     redirect_to waiting_confirmation_path

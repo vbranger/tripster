@@ -1,0 +1,12 @@
+<div class="card my-3 p-3">
+  <div class="row">
+    <div class="col-3">
+      <%= image_tag "avatar-placeholder.png", class: "img-fluid" %>
+    </div>
+    <div class="col pl-0">
+      <p><strong><%= new.user.first_name %></strong></p>
+      <p><small><%= new.time_since_created %></small></p>
+    </div>
+  </div>
+  <p><strong><%= new.content %></strong </p>
+</div>

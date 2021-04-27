@@ -26,7 +26,7 @@ class ParticipantsController < ApplicationController
   def destroy
     @participant = Participant.find(params[:id])
     @participant.destroy
-
+    News.create!(user: @participant.user, trip_id: @participant.trip.id, action_type: "#{params[:controller]}##{params[:action]}", imageable_type: "Participant", imageable_id: @participant)
     redirect_to trip_path(@participant.trip)
   end
 

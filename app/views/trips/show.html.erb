@@ -14,77 +14,51 @@
 
   <div class="tab-content" id="myTabContent">
     <!--  TAB HOME -->
-    <div class="tab-pane fade" id="home" role="tabpanel" aria-labelledby="home-tab">
-      <div class="row justify-content-around">
-        <!-- CARD DESTINATION -->
-        <div class="col-12 col-lg-5 card my-1 p-3">
-          <div class="d-flex align-items-center mb-3">
-            <p class="text-center"><strong>destination</strong></p>
-            <% if @trip.destination_chosen? %>
-              <span class="badge badge-pill badge-success ml-auto text-white">Validé</span>
-            <% else %>
-              <span class="badge badge-pill badge-danger ml-auto text-white">Non défini</span>
-            <% end %>
+    <div class="tab-pane fade my-1" id="home" role="tabpanel" aria-labelledby="home-tab">
+      <!-- CARD DESTINATION -->
+      <div class="home_card">
+            <%= image_tag "undraw_adventure_4hum.svg", class:"d-sm-block" %>
+          <div class="home_card__info">
+            <p class="home_card__category">destination</p>
+            <p class="home_card__status">Propositions</p>
           </div>
-          <div class="row p-3">
-            <figure class="col-sm-12 col-md-4 text-center">
-              <%= image_tag "undraw_adventure_4hum.svg", class: "img-fluid", style: "max-height: 30vh" %>
-            </figure>
-            <div class="col-sm-12 col-md-8 text-center">
-              <% if @trip.destination_chosen? %>
-                <h4 class="mb-3 text-center"><strong><%= @trip.destination %></strong></h4>
-              <% else %>
-                <p class="mb-3 text-center">Vous pouvez renseigner votre destination ou lancer un choix collectif</p>
-              <% end %>
-              <% if @trip.destination_chosen? %>
-                <%= link_to "Modifier", "#{@trip.id}/edit_destination", class: "btn btn-outline-success btn-sm text-center"  %>
-              <% else %>
-                <%= link_to "Démarrer", "#{@trip.id}/edit_destination", class: "btn btn-outline-dark btn-sm text-center"  %>
-              <% end %>
-            </div>
-          </div>
-        </div>
-        <!-- CARD DATES -->
-        <div class="col-12 col-lg-5 card my-1 p-3">
-          <div class="d-flex align-items-center mb-3">
-            <p class="text-center"><strong>dates</strong></p>
-            <% if @trip.dates_chosen? %>
-              <span class="badge badge-pill badge-success ml-auto text-white">Validé</span>
-            <% else %>
-              <span class="badge badge-pill badge-danger ml-auto text-white">Non défini</span>
-            <% end %>
-          </div>
-          <div class="row p-3">
-            <figure class="col-sm-12 col-md-4 text-center">
-                <%= image_tag "undraw_date_picker_gorr.svg", class: "img-fluid", style: "max-height: 30vh" %>
-            </figure>
-            <div class="col-sm-12 col-md-8 text-center">
-              <% if @trip.dates_chosen? %>
-              <h4 class="mb-3 text-center"><strong><%= "#{@trip.start_date.strftime('%d/%m/%y')} - #{@trip.end_date.strftime('%d/%m/%y')}"%></strong></h4>
-                <%= link_to "Modifier", "#{@trip.id}/edit_dates", class: "btn btn-outline-success btn-sm text-center"  %>
-              <% else %>
-                <p class="mb-3 text-center">Vous pouvez renseigner vos dates ou lancer un choix collectif</p>
-                <%= link_to "Démarrer", "#{@trip.id}/edit_dates", class: "btn btn-outline-dark btn-sm text-center"  %>
-              <% end %>
-            </div>
-          </div>
-        </div>
-        
-        <!-- CARD LOGEMENT -->
-        <div class=" col-12 col-lg-5 card my-1 p-3">
-          <div class="d-flex align-items-center mb-3">
-            <p class="text-center"><strong><%= @trip.rooms.count < 2 ? @trip.rooms.count.to_s + ' logement' : @trip.rooms.count.to_s + ' logements' %> </strong></p>
-            <span class="badge badge-pill badge-warning ml-auto">En cours</span>
-          </div>
-          <ul class="list-group list-group-flush border-0">
-            <% @trip.rooms.each do |room| %>
-              <%= render partial: 'shared/room_card', locals: {room: room} %>
-            <% end %>
-          </ul>
-          <%= link_to "Ajouter un lieu", new_trip_room_path(@trip), class: "btn btn-outline-dark btn-sm text-center" %>
-        </div>
+          <button class="btn btn-secondary button-custom">Voir</button>
       </div>
+
+      <!-- CARD DATES -->
+      <div class="home_card">
+        <%= image_tag "undraw_date_picker_gorr.svg", class:"d-sm-block"  %>
+        <% if @trip.dates_chosen? %>
+          <div class="home_card__info">
+            <p class="home_card__category">dates</p>
+            <p class="home_card__status"><%= "#{@trip.start_date.strftime('%d/%m/%y')} - #{@trip.end_date.strftime('%d/%m/%y')}"%></p>
+          </div>
+          <%= link_to "Modifier", "#{@trip.id}/edit_dates", class: "btn btn-secondary button-custom"  %>
+        <% else %>
+          <div class="home_card__info">
+            <p class="home_card__category">dates</p>
+            <p class="home_card__status">A définir</p>
+          </div>
+          <%= link_to "Démarrer", "#{@trip.id}/edit_dates", class: "btn btn-secondary btn-sm text-center"  %>
+        <% end %>
+      </div>
+      
+      <!-- CARD LOGEMENT -->
+      <div class=" col-12 col-lg-5 card my-1 p-3">
+        <div class="d-flex align-items-center mb-3">
+          <p class="text-center"><strong><%= @trip.rooms.count < 2 ? @trip.rooms.count.to_s + ' logement' : @trip.rooms.count.to_s + ' logements' %> </strong></p>
+          <span class="badge badge-pill badge-warning ml-auto">En cours</span>
+        </div>
+        <ul class="list-group list-group-flush border-0">
+          <% @trip.rooms.each do |room| %>
+            <%= render partial: 'shared/room_card', locals: {room: room} %>
+          <% end %>
+        </ul>
+        <%= link_to "Ajouter un lieu", new_trip_room_path(@trip), class: "btn btn-outline-dark btn-sm text-center" %>
+      </div>
+
     </div>
+
     <!--  TAB NEWS -->
     <div class="tab-pane fade  show active" id="news" role="tabpanel" aria-labelledby="news-tab">
       <% @news.each do |new| %>

@@ -53,24 +53,7 @@
           <button class="btn btn-secondary button-custom">Voir</button>
       </div>
 
-
-      <!-- OLD CARD LOGEMENT
-      <div class=" col-12 col-lg-5 card my-1 p-3">
-        <div class="d-flex align-items-center mb-3">
-          <p class="text-center"><strong><%= @trip.rooms.count < 2 ? @trip.rooms.count.to_s + ' logement' : @trip.rooms.count.to_s + ' logements' %> </strong></p>
-          <span class="badge badge-pill badge-warning ml-auto">En cours</span>
-        </div>
-        <ul class="list-group list-group-flush border-0">
-          <% @trip.rooms.each do |room| %>
-            <%= render partial: 'shared/room_card', locals: {room: room} %>
-          <% end %>
-        </ul>
-        <%= link_to "Ajouter un lieu", new_trip_room_path(@trip), class: "btn btn-outline-dark btn-sm text-center" %>
-      </div>
-      --> 
-
     </div>
-
     <!--  TAB NEWS -->
     <div class="tab-pane fade  show active" id="news" role="tabpanel" aria-labelledby="news-tab">
       <% @news.each do |new| %>
@@ -110,16 +93,11 @@
     </div>
   </div>
 
-
-
-
-
-  
-
   <div class="card p-3">
     <p>créé par <%= @trip.user.first_name %></p>
     <% if @trip.user == current_user %>
       <%= link_to "Supprimer ce trip", trip_path(@trip), method: :delete, data: { confirm: "Êtes-vous sûr ?"}, class: "btn btn-danger d-block" %>
     <% end %>
   </div>
+  
 </div>

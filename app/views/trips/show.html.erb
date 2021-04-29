@@ -12,7 +12,7 @@
     </li>
   </ul>
 
-  <div class="tab-content" id="myTabContent" style="border-radius: 8px 8px 0px 0px; background-color: white">
+  <div class="tab-content background-rounded-white" id="myTabContent">
     <!--  TAB HOME -->
     <div class="tab-pane fade p-3" id="home" role="tabpanel" aria-labelledby="home-tab">
       <!-- CARD DESTINATION -->
@@ -55,7 +55,7 @@
 
     </div>
     <!--  TAB NEWS -->
-    <div class="tab-pane fade p-3  show active" id="news" role="tabpanel" aria-labelledby="news-tab">
+    <div class="tab-pane fade p-3 show active" id="news" role="tabpanel" aria-labelledby="news-tab">
       <% @news.each do |new| %>
         <%= render layout: 'shared/news_card', locals: { new: new } do %>
           <%= render partial: 'shared/news_content', locals: { new: new } %>
@@ -93,13 +93,6 @@
           </div>
         </div>
     </div>
-  </div>
-
-  <div class="card p-3">
-    <p>créé par <%= @trip.user.first_name %></p>
-    <% if @trip.user == current_user %>
-      <%= link_to "Supprimer ce trip", trip_path(@trip), method: :delete, data: { confirm: "Êtes-vous sûr ?"}, class: "btn btn-danger d-block" %>
-    <% end %>
   </div>
 
 </div>

@@ -5,6 +5,9 @@
             <%= link_to "Mes voyages", trips_path, class: "dropdown-item text-light" %>
             <%= link_to "Mon profil", "#", class: "dropdown-item text-light" %>
             <%= link_to "Se déconnecter", destroy_user_session_path, method: :delete, class: "dropdown-item text-light" %>
+            <% if params[:controller] == 'trips' && params[:action] == 'show' && @trip.user == current_user %>
+              <%= link_to "Supprimer ce trip", trip_path(@trip), method: :delete, data: { confirm: "Êtes-vous sûr ?"}, class: "dropdown-item text-danger" %>
+            <% end %>
     </div>
   </div>
       <% end %>

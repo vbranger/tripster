@@ -20,9 +20,9 @@ class News < ApplicationRecord
   def write_content
     case self.action_type 
     when "trips#update"
-      self.update(content: "#{self.user.first_name} a défini une nouvelle destination : #{Trip.find(self.trip_id).destination}")
+      self.update(content: "<a href='/user/#{self.user.id}'>#{self.user.first_name}</a> a défini une nouvelle destination : #{Trip.find(self.trip_id).destination}")
     when "trips#create"
-      self.update(content: "#{self.user.first_name} a créé #{Trip.find(self.trip_id).name}")
+      self.update(content: "#{self.user.first_name} a créé <a href='/trips/#{self.trip_id}'>#{Trip.find(self.trip_id).name}</a>")
     when "invites#create"
       self.update(content: "#{self.user.first_name} a rejoint #{Trip.find(self.trip_id).name}")
     when "participants#destroy"

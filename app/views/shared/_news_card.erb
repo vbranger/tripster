@@ -2,7 +2,7 @@
     <%= image_tag "avatar-placeholder.png" %>
     <div class="news_card__info">
       <p class="news_card__time"><small><%= new.time_since_created %></small></p>
-      <p class="news_card__content"><%= new.content %></p>
+      <p class="news_card__content"><%= yield %></p>
     </div>
     <div class="d-flex align-items-center">
       <i class="far fa-thumbs-up mr-1"></i>

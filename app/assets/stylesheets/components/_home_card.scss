@@ -1,7 +1,15 @@
 .background-rounded-white {
-  border-radius: 8px 8px 0px 0px; 
+  border-radius: 16px 16px 0px 0px; 
   background-color: white; 
   min-height: calc(100vh - 64px - 38px);
+}
+
+.dot {
+  height: 25px;
+  width: 25px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: block;
 }
 
 .home_card {

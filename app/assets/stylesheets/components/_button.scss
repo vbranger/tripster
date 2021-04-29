@@ -8,6 +8,20 @@
 .button-tab {
   color: white;
   opacity: 0.5;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  position: relative;
+}
+
+.dot {
+  height: 1rem;
+  width: 1rem;
+  background-color: white;
+  border-radius: 50%;
+  display: block;
+  position: absolute;
+  top: 2rem;
 }
 
 li > .active {

@@ -55,7 +55,7 @@
 
     </div>
     <!--  TAB NEWS -->
-    <div class="tab-pane fade  show active" id="news" role="tabpanel" aria-labelledby="news-tab">
+    <div class="tab-pane fade p-3  show active" id="news" role="tabpanel" aria-labelledby="news-tab">
       <% @news.each do |new| %>
         <%= render partial: 'shared/news_card', locals: {new: new} %>
       <% end %>
@@ -99,5 +99,5 @@
       <%= link_to "Supprimer ce trip", trip_path(@trip), method: :delete, data: { confirm: "Êtes-vous sûr ?"}, class: "btn btn-danger d-block" %>
     <% end %>
   </div>
-  
+
 </div>

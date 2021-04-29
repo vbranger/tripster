@@ -8,13 +8,16 @@ class News < ApplicationRecord
     p time_ellapsed
 
     if time_ellapsed < 60 # Moins d'une minute
-      "Il y a #{time_ellapsed} #{time_ellapsed ? "seconde" : "secondes"}"
+      "Il y a #{time_ellapsed} #{time_ellapsed  <= 1 ? "seconde" : "secondes"}"
     elsif time_ellapsed < 3600 # Mois d'une heure
-      "Il y a #{time = time_ellapsed / 60} #{time <= 1 ? "minute" : "minutes"}"
+      time = time_ellapsed / 60
+      "Il y a #{time} #{time <= 1 ? "minute" : "minutes"}"
     elsif time_ellapsed < 86_400 # Moins d'une journée
-      "Il y a #{time_ellapsed / 3_600} #{time <= 1 ? "heure" : "heures"}"
+      time = time_ellapsed / 3_600
+      "Il y a #{time} #{time <= 1 ? "heure" : "heures"}"
     else
-      "Il y a #{time_ellapsed / 86_400} #{time <= 1 ? "jour" : "jours"}"
+      time = time_ellapsed / 86_400
+      "Il y a #{time} #{time <= 1 ? "jour" : "jours"}"
     end
   end
 

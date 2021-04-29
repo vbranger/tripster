@@ -12,6 +12,7 @@
   flex-flow: column;
   align-items: center;
   position: relative;
+  margin-bottom: 0.3rem;
 }
 
 .dot {
@@ -21,7 +22,7 @@
   border-radius: 50%;
   display: block;
   position: absolute;
-  top: 2rem;
+  top: 2.3rem;
 }
 
 li > .active {

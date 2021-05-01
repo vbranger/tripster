@@ -22,6 +22,7 @@ class TripsController < ApplicationController
     @participants = Participant.where(trip_id: params[:id])
     @participants_list = @trip.participants_list
     @news = News.where(trip_id: @trip.id).order(created_at: :desc)
+    @rooms = Room.where(trip: @trip)
   end
 
   def destroy

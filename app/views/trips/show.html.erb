@@ -57,9 +57,9 @@
             <%= image_tag "undraw_house_searching.svg", class:"d-sm-block" %>
           <div class="home_card__info">
             <p class="home_card__category">logement</p>
-            <p class="home_card__status">Propositions</p>
+            <p class="home_card__status"><%= @trip.rooms.count < 2 ? @trip.rooms.count.to_s + ' proposition' : @trip.rooms.count.to_s + ' propositions' %></p>
           </div>
-          <button class="btn btn-secondary button-custom">Voir</button>
+          <%= link_to "Voir", trip_rooms_path(@trip), class: "btn btn-secondary button-custom" %>
       </div>
 
     </div>

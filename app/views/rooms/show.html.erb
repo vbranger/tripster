@@ -5,16 +5,16 @@
   <div class="my-3">
     
     <% if current_user.liked? @room %>
-        <%= link_to like_trip_room_path(@room, format: 'unlike'), class: "btn btn-danger", method: :put do %> 
+        <%= link_to like_trip_room_path(@room, trip_id: @room.trip.id, format: 'unlike'), class: "btn btn-danger", method: :put do %> 
         Unlike
         <% end %>
     <% else %>
-        <%= link_to like_trip_room_path(@room, format: 'like'), class: "btn btn-success", method: :put do %> 
+        <%= link_to like_trip_room_path(@room, trip_id: @room.trip.id, format: 'like'), class: "btn btn-success", method: :put do %> 
         Like
         <% end %>
     <% end %>
     
-    <%= link_to "Supprimer", trip_room_path(@room), method: :delete, data: { confirm: "Êtes-vous sûr ?"}, class: "btn btn-outline-danger" %>
+    <%= link_to "Supprimer", trip_room_path(@room, trip_id: @room.trip.id), method: :delete, data: { confirm: "Êtes-vous sûr ?"}, class: "btn btn-outline-danger" %>
     <p>Nombre de likes : <%= @room.get_likes.size %></p>
     <%= link_to "Voir sur le site", @room.url  %>
     <br>

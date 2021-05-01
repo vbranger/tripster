@@ -1,5 +1,5 @@
-<!-- OLD CARD LOGEMENT
-      <div class=" col-12 col-lg-5 card my-1 p-3">
+<!-- OLD CARD LOGEMENT -->
+      <div class="background-rounded-white p-3">
         <div class="d-flex align-items-center mb-3">
           <p class="text-center"><strong><%= @trip.rooms.count < 2 ? @trip.rooms.count.to_s + ' logement' : @trip.rooms.count.to_s + ' logements' %> </strong></p>
           <span class="badge badge-pill badge-warning ml-auto">En cours</span>
@@ -11,4 +11,3 @@
         </ul>
         <%= link_to "Ajouter un lieu", new_trip_room_path(@trip), class: "btn btn-outline-dark btn-sm text-center" %>
       </div>
-      --> 

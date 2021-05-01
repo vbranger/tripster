@@ -16,15 +16,23 @@
       <%= link_to trips_path do %>
         <i class="fas fa-chevron-left text-light"></i>
       <% end %>
-      <div class="col-10 text-center text-truncate text-light">
-      <p class="text-light font-weight-bold text-truncate"><%= @trip.name %></p>
-      <small class="text-light font-weight-light"><%= @participants_list %></small>
-      </div>
+    <% elsif params[:controller] == 'rooms' && params[:action] == 'index' %>
+      <%= link_to :back do %>
+        <i class="fas fa-chevron-left text-light"></i>
+      <% end %>
     <% else %>
       <%= link_to root_path, class: "navbar-brand" do %>
         <p style="font-family: Ranchers">tripster</p>
       <% end %>
     <% end %>
+
+    <% if params[:controller] == 'trips' && params[:action] == 'show' || params[:controller] == 'rooms' && params[:action] == 'index' %>
+      <div class="col-10 text-center text-truncate text-light">
+        <p class="text-light font-weight-bold text-truncate"><%= @trip.name %></p>
+        <small class="text-light font-weight-light"><%= @participants_list %></small>
+      </div>
+    <% end %>
+    
     <% if user_signed_in? %>
       <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
         <i class="fas fa-ellipsis-v"></i>

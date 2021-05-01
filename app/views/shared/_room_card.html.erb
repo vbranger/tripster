@@ -20,8 +20,8 @@
       <%= link_to trip_room_path(room, trip_id: room.trip.id) do %>
         <strong><%= room.name? ? room.name : "Non identifié" %></strong>
       <% end %>
-      <p><strong><%= room.price ? room.price.to_i.to_s + "€" : "-€" %></strong> / nuit</p>
       <!-- 
+      <p><strong><%= room.price ? room.price.to_i.to_s + "€" : "-€" %></strong> / nuit</p>
         <% if @participants.size == room.get_likes.size %>
           <p>Tout le monde est partant ! <%= link_to "Faire la réservation", "#" %></p>
         <% end %>

@@ -4,10 +4,10 @@
           <p class="text-center"><strong><%= @trip.rooms.count < 2 ? @trip.rooms.count.to_s + ' logement' : @trip.rooms.count.to_s + ' logements' %> </strong></p>
           <span class="badge badge-pill badge-warning ml-auto">En cours</span>
         </div>
+        <%= link_to "Ajouter un lieu", new_trip_room_path(@trip), class: "btn btn-outline-dark btn-sm text-center" %>
         <ul class="list-group list-group-flush border-0">
           <% @trip.rooms.each do |room| %>
             <%= render partial: 'shared/room_card', locals: {room: room} %>
           <% end %>
         </ul>
-        <%= link_to "Ajouter un lieu", new_trip_room_path(@trip), class: "btn btn-outline-dark btn-sm text-center" %>
       </div>

@@ -20,7 +20,7 @@ class RoomsController < ApplicationController
     end
     @room.save
     News.create!(user: current_user, trip_id: @trip.id, action_type: "#{params[:controller]}##{params[:action]}", imageable_type: "Room", imageable_id: @trip)
-    redirect_to trip_path(params[:trip_id])
+    redirect_to trip_rooms_path(@trip)
   end
 
   def show

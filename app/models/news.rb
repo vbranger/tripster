@@ -4,7 +4,7 @@ class News < ApplicationRecord
   
   def time_since_created
     # secondes since creation
-    time_ellapsed = (Time.now - self.created_at).to_i
+    time_ellapsed = (Time.now - created_at).to_i
     p time_ellapsed
 
     if time_ellapsed < 60 # Moins d'une minute
@@ -22,21 +22,22 @@ class News < ApplicationRecord
   end
 
   def write_content
-
-    user_link = "<a href='/user/#{self.user.id}'>#{self.user.first_name}</a>"
-    trip_link = "<a href='/trips/#{self.trip_id}'>#{Trip.find(self.trip_id).name}</a>"
-    case self.action_type 
+    user_link = "<a href='/user/#{user.id}'>#{user.first_name}</a>"
+    trip_link = "<a href='/trips/#{trip_id}'>#{Trip.find(trip_id).name}</a>"
+    case action_type 
     when "trips#update"
-      self.update(content: "#{user_link} a défini une nouvelle destination : #{Trip.find(self.trip_id).destination}")
+      update(content: "#{user_link} a défini une nouvelle destination : #{Trip.find(trip_id).destination}")
     when "trips#create"
-      self.update(content: "#{user_link} a créé #{trip_link}")
+      update(content: "#{user_link} a créé #{trip_link}")
     when "invites#create"
-      self.update(content: "#{user_link} a rejoint le trip")
+      update(content: "#{user_link} a rejoint le trip")
     when "participants#destroy"
-      self.update(content: "#{user_link} a quitté #{trip_link}")
+      update(content: "#{user_link} a quitté #{trip_link}")
+    when "rooms#create"
+      room_link = "<a href='/trips/#{trip_id}/rooms/#{imageable_id}'>#{Room.find(imageable_id).name}</a>"
+      update(content: "#{user_link} a ajouté #{room_link}")
     else
-      self.update(content: "Autre info")
+      update(content: "Autre info")
     end
   end
-
 end

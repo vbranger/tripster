@@ -12,6 +12,15 @@ h1, h2, h3, h4, p {
   margin: 0;
   padding: 0;
 }
+
+a {
+  color: #6C63FF;
+}
+
+a:hover {
+  text-decoration: none;
+  color: #6C63FF; 
+}
 // Your CSS partials
 @import "components/index";
 @import "pages/index";

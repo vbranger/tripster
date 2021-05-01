@@ -19,7 +19,7 @@ class RoomsController < ApplicationController
       p "ended scrap"
     end
     @room.save
-    News.create!(user: current_user, trip_id: @trip.id, action_type: "#{params[:controller]}##{params[:action]}", imageable_type: "Room", imageable_id: @trip)
+    News.create!(user: current_user, trip_id: @trip.id, action_type: "#{params[:controller]}##{params[:action]}", imageable_type: "Room", imageable_id: @room.id)
     redirect_to trip_rooms_path(@trip)
   end
 
@@ -56,6 +56,7 @@ class RoomsController < ApplicationController
     @trip = Trip.find(params[:trip_id])
     @rooms = Room.where(trip: @trip)
     @participants = @trip.participants
+    @participants_list = @trip.participants_list
   end
   
 

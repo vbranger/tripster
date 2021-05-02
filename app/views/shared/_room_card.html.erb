@@ -3,19 +3,19 @@
       <figure class="col-12 col-md-4 text-md-left ">
         <%= image_tag(room.photo, class: "img-fluid rounded", style: "max-height: 30vh; width: 100%; object-fit: cover;") if room.photo %>
         <% if current_user.liked? room %>
-          <%= link_to like_trip_room_path(room, {trip_id: room.trip.id, format: 'unlike', page: params[:controller]}), class: "text-danger", style: "position: absolute; right: 1.5rem; top: 0.5rem;", method: :put do %> 
-            <i class="fas fa-heart" style="font-size: 1.5rem"></i>
+          <%= link_to like_trip_room_path(room, {trip_id: room.trip.id, format: 'unlike', page: params[:controller]}), style: "position: absolute; right: 1.5rem; top: 0.5rem;", method: :put do %> 
+            <i class="fas fa-heart" style="font-size: 1.5rem; color: indianred"></i>
           <% end %>
         <% else %>
-          <%= link_to like_trip_room_path(room, {trip_id: room.trip.id, format: 'like', page: params[:controller]}), class: "text-danger", style: "position: absolute; right: 1.5rem; top: 0.5rem;", method: :put do %> 
-            <i class="far fa-heart" style="font-size: 1.5rem"></i>
+          <%= link_to like_trip_room_path(room, {trip_id: room.trip.id, format: 'like', page: params[:controller]}), style: "position: absolute; right: 1.5rem; top: 0.5rem;", method: :put do %> 
+            <i class="far fa-heart" style="font-size: 1.5rem; color: indianred"></i>
           <% end %>
         <% end %>
       </figure>    
     <% end %>
     <div class="col-12 col-md-8 text-truncate text-dark">
       <div class="d-flex align-items-center">
-        <i class="fas fa-heart mr-1 text-danger"></i><p><%= room.get_likes.size %></p>
+        <i class="fas fa-heart mr-1" style="color: indianred"></i><p><%= room.get_likes.size %></p>
       </div>
       <%= link_to trip_room_path(room, trip_id: room.trip.id) do %>
         <strong><%= room.name? ? room.name : "Non identifié" %></strong>

@@ -29,7 +29,7 @@
             <%= image_tag "undraw_adventure_4hum.svg", class:"d-sm-block" %>
           <div class="home_card__info">
             <p class="home_card__category">destination</p>
-            <p class="home_card__status">Propositions</p>
+            <p class="home_card__status"><%= !@trip.destination || @trip.destination == "" ? "A définir" : @trip.destination %></p>
           </div>
           <%= link_to "Voir", edit_destination_path(@trip), class: "btn btn-secondary button-custom" %>
       </div>

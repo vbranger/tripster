@@ -36,6 +36,12 @@ class News < ApplicationRecord
     when "rooms#create"
       room_link = "<a href='/trips/#{trip_id}/rooms/#{imageable_id}'>#{Room.find(imageable_id).name}</a>"
       update(content: "#{user_link} a ajouté #{room_link}")
+    when "rooms#like"
+      room_link = "<a href='/trips/#{trip_id}/rooms/#{imageable_id}'>#{Room.find(imageable_id).name}</a>"
+      update(content: "#{user_link} a aimé #{room_link}")
+    when "rooms#unlike"
+      room_link = "<a href='/trips/#{trip_id}/rooms/#{imageable_id}'>#{Room.find(imageable_id).name}</a>"
+      update(content: "#{user_link} n'aime plus #{room_link}")
     else
       update(content: "Autre info")
     end

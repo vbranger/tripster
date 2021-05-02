@@ -33,15 +33,12 @@ class RoomsController < ApplicationController
     @room = Room.find(params[:id])
     if params[:format] == 'like'
       @room.liked_by current_user
+      News.create!(user: current_user, trip_id: @trip.id, action_type: "#{params[:controller]}##{params[:action]}", imageable_type: "Room", imageable_id: @room.id)
     elsif params[:format] == 'unlike'
       @room.unliked_by current_user
+      News.create!(user: current_user, trip_id: @trip.id, action_type: "#{params[:controller]}#un#{params[:action]}", imageable_type: "Room", imageable_id: @room.id)
     end
     redirect_to request.referrer
-    # if params[:page] == 'trips'
-    #   redirect_to trip_path(@trip)
-    # else
-    #   redirect_to trip_room_path(@room)
-    # end
   end
 
   def destroy

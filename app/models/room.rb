@@ -19,6 +19,13 @@ class Room < ApplicationRecord
     return self.web_id = match_data[:id]
   end
 
+  def convert_airbnb_url
+    br = Ferrum::Browser.new({ timeout: 60, headless: true, process_timeout: 60 })
+    br.go_to(url)
+    p br.current_url
+    update(url: br.current_url)
+  end
+
   def get_img_url(value)
     match_data = value.match(/(https:.+")/)
     p self.photo = match_data[0][0..-2]

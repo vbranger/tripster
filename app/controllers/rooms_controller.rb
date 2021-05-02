@@ -17,6 +17,13 @@ class RoomsController < ApplicationController
       p "starting scrap"
       @room.scrap
       p "ended scrap"
+    elsif @room.url.include? "abnb"
+      @room.website = "airbnb"
+      @room.convert_airbnb_url
+      @room.get_id
+      p "starting scrap"
+      @room.scrap
+      p "ended scrap"
     end
     @room.save
     News.create!(user: current_user, trip_id: @trip.id, action_type: "#{params[:controller]}##{params[:action]}", imageable_type: "Room", imageable_id: @room.id)

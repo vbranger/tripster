@@ -2,7 +2,9 @@ class InvitesController < ApplicationController
   
   def new
     @invite = Invite.new
-    @trip = params[:trip]
+    @trip = Trip.find(params[:trip])
+    @participants = Participant.where(trip_id: params[:id])
+    @participants_list = @trip.participants_list
   end
 
   def create

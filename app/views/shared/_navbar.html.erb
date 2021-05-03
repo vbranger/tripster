@@ -20,11 +20,11 @@
       <%= link_to trips_path do %>
         <i class="fas fa-chevron-left text-light"></i>
       <% end %>
-    <% elsif params[:controller] == 'rooms' && params[:action] == 'index' %>
+    <% elsif params[:controller] == 'rooms' && params[:action] == 'index' || params[:controller] == 'trips' && params[:action] == 'edit_destination' || params[:action] == 'edit_dates' %>
       <%= link_to trip_path(@trip) do %>
         <i class="fas fa-chevron-left text-light"></i>
       <% end %>
-    <% elsif params[:controller] == 'rooms' && params[:action] == 'show' %>
+    <% elsif params[:controller] == 'rooms' && params[:action] == 'show' || params[:action] == 'new' %>
       <%= link_to trip_rooms_path(@trip) do %>
         <i class="fas fa-chevron-left text-light"></i>
       <% end %>

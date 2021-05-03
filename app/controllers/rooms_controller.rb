@@ -5,6 +5,8 @@ class RoomsController < ApplicationController
   def new
     @trip = Trip.find(params[:trip_id])
     @room = Room.new
+    @participants = @trip.participants
+    @participants_list = @trip.participants_list
   end
 
   def create
@@ -33,6 +35,8 @@ class RoomsController < ApplicationController
   def show
     @trip = Trip.find(params[:trip_id])
     @room = Room.find(params[:id])
+    @participants = @trip.participants
+    @participants_list = @trip.participants_list
   end
 
   def like

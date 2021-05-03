@@ -34,6 +34,8 @@ class TripsController < ApplicationController
 
   def edit_destination
     @trip = Trip.find(params[:id])
+    @participants = @trip.participants
+    @participants_list = @trip.participants_list
   end
 
   def reset_dates
@@ -45,6 +47,8 @@ class TripsController < ApplicationController
 
   def edit_dates
     @trip = Trip.find(params[:id])
+    @participants = @trip.participants
+    @participants_list = @trip.participants_list
   end
 
   def update

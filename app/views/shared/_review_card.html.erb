@@ -3,7 +3,15 @@
     <div class="news_card__info">
       <p class="news_card__content"><%= review.user.first_name %></p>
       <div class="d-flex">
-        <p class="news_card__time"><strong><%= review.score %> / 5</strong>  <small><%= review.time_since_created %></small></p>
+        <p class="news_card__time">
+        <% review.score.to_i.times do %>
+          <i class="fas fa-star"></i>
+        <% end %>
+        <% (5 - review.score.to_i).times do %>
+          <i class="far fa-star"></i>
+        <% end %>
+        
+        <small>Il y a <%= review.time_since_created %></small></p>
       </div>
       <p class="news_card__text-input"><%= review.content %></p>
     </div>

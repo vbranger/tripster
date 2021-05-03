@@ -7,16 +7,16 @@ class ApplicationRecord < ActiveRecord::Base
     p time_ellapsed
 
     if time_ellapsed < 60 # Moins d'une minute
-      "Il y a #{time_ellapsed} #{time_ellapsed  <= 1 ? "seconde" : "secondes"}"
+      "#{time_ellapsed} #{time_ellapsed  <= 1 ? "seconde" : "secondes"}"
     elsif time_ellapsed < 3600 # Mois d'une heure
       time = time_ellapsed / 60
-      "Il y a #{time} #{time <= 1 ? "minute" : "minutes"}"
+      "#{time} #{time <= 1 ? "minute" : "minutes"}"
     elsif time_ellapsed < 86_400 # Moins d'une journée
       time = time_ellapsed / 3_600
-      "Il y a #{time} #{time <= 1 ? "heure" : "heures"}"
+      "#{time} #{time <= 1 ? "heure" : "heures"}"
     else
       time = time_ellapsed / 86_400
-      "Il y a #{time} #{time <= 1 ? "jour" : "jours"}"
+      "#{time} #{time <= 1 ? "jour" : "jours"}"
     end
   end
 end

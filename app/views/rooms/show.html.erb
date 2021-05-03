@@ -1,6 +1,16 @@
 <div class="background-rounded-white p-3">
-  <div class="d-flex p-3 align-items-end" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('<%= @room.photo %>'); height: 60vh; background-size: cover; background-position: center;">
+  <div class="d-flex p-3 justify-content-end flex-column" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('<%= @room.photo %>'); height: 60vh; background-size: cover; background-position: center;">
     <h2 class="text-light"><%= @room.name %></h2>
+    <p class="text-light mt-1">
+      <% @room.avg_score.to_i.times do %>
+        <i class="fas fa-star"></i>
+      <% end %>
+      <% (5 - @room.avg_score.to_i).times do %>
+        <i class="far fa-star"></i>
+      <% end %>
+      <small><%= @room.reviews.count %> avis</small>
+    
+    </p>
   </div>
   <div class="my-3">
     <div class="d-flex justify-content-around mb-3 ">
@@ -13,9 +23,11 @@
       
       <%= link_to "Voir sur #{@room.website}", @room.url, target: :_blank, class: "btn btn-outline-secondary", style: "font-size: 0.8rem"  %>
     </div>
-    <% @reviews.each do |review| %>
-      <%= render partial: 'shared/review_card', locals: { review: review } %>
-    <% end %>
+    <div class="reviews">
+      <% @reviews.each do |review| %>
+        <%= render partial: 'shared/review_card', locals: { review: review } %>
+      <% end %>
+    </div>
     <br>
   <%= link_to "Supprimer le logement", trip_room_path(@room, trip_id: @room.trip.id), method: :delete, data: { confirm: "Êtes-vous sûr ?"}, class: "btn btn-outline-danger" %>
   </div>

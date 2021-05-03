@@ -16,8 +16,8 @@
     
     <%= link_to "Supprimer", trip_room_path(@room, trip_id: @room.trip.id), method: :delete, data: { confirm: "Êtes-vous sûr ?"}, class: "btn btn-outline-danger" %>
     <p>Nombre de likes : <%= @room.get_likes.size %></p>
-    <%= link_to "Voir sur le site", @room.url  %>
+    <%= link_to "Voir sur le site", @room.url, target: :_blank  %>
     <br>
-    <%= link_to "Retour au voyage", trip_path(@trip)  %>
+    <%= link_to "Retour à la liste", trip_rooms_path(@trip)  %>
   </div>
 </div>

@@ -40,6 +40,7 @@ class RoomsController < ApplicationController
     @room = Room.find(params[:id])
     @participants = @trip.participants
     @participants_list = @trip.participants_list
+    @review = Review.where(user_id: current_user.id, room_id: @room.id).first
     @reviews = @room.reviews.order(created_at: :desc)
   end
 

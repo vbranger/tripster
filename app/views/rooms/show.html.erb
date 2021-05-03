@@ -18,7 +18,7 @@
       <% if Review.where(user_id: current_user.id, room_id: @room.id).empty? %>
         <%= link_to 'Ecrire un avis', new_trip_room_review_path(@trip, @room), class: "btn btn-secondary", style: "font-size: 0.8rem" %>
       <% else %>
-        <%= link_to 'Modifier mon avis', edit_trip_room_review_path(@trip, @room), class: "btn btn-outline-secondary", style: "font-size: 0.8rem" %>
+        <%= link_to 'Modifier mon avis', edit_trip_room_review_path(@trip, @room, @review), class: "btn btn-outline-secondary", style: "font-size: 0.8rem" %>
       <% end %>
       
       <%= link_to "Voir sur #{@room.website}", @room.url, target: :_blank, class: "btn btn-outline-secondary", style: "font-size: 0.8rem"  %>

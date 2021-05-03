@@ -21,7 +21,7 @@ class ReviewsController < ApplicationController
   end
 
   def edit
-    @review = Review.where(user_id: current_user.id).first
+    @review = Review.where(user_id: current_user.id, room_id: params[:room_id]).first
     @room = Room.find(params[:room_id])
     @trip = @room.trip
     @participants = @trip.participants
@@ -36,6 +36,7 @@ class ReviewsController < ApplicationController
     @participants_list = @trip.participants_list
 
     @review.update(review_params)
+    @review.update_avg_score
     redirect_to trip_room_path(@trip, @room)
   end
 

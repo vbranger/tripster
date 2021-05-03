@@ -24,6 +24,7 @@ class Room < ApplicationRecord
     br.go_to(url)
     p br.current_url
     update(url: br.current_url)
+    br.quit
   end
 
   def get_img_url(value)

@@ -1,31 +1,22 @@
 <div class="background-rounded-white p-3">
   <div class="d-flex p-3 align-items-end" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('<%= @room.photo %>'); height: 60vh; background-size: cover; background-position: center;">
-    <h1 class="text-light"><%= @room.name %></h1>
+    <h2 class="text-light"><%= @room.name %></h2>
   </div>
   <div class="my-3">
-    
-    <% if current_user.liked? @room %>
-        <%= link_to like_trip_room_path(@room, trip_id: @room.trip.id, format: 'unlike'), class: "btn btn-danger", method: :put do %> 
-        Unlike
-        <% end %>
-    <% else %>
-        <%= link_to like_trip_room_path(@room, trip_id: @room.trip.id, format: 'like'), class: "btn btn-success", method: :put do %> 
-        Like
-        <% end %>
-    <% end %>
-    
-    <%= link_to "Supprimer", trip_room_path(@room, trip_id: @room.trip.id), method: :delete, data: { confirm: "Êtes-vous sûr ?"}, class: "btn btn-outline-danger" %>
-    <p>Nombre de likes : <%= @room.get_likes.size %></p>
-    <%= link_to "Voir sur le site", @room.url, target: :_blank  %>
-    <br>
-    <%= link_to "Retour à la liste", trip_rooms_path(@trip)  %>
-
-    <%= link_to 'Commenter', new_trip_room_review_path(@trip, @room) %>
-
-    <ul class="list-group">
-      <% @room.reviews.each do |review| %>
-        <li class="list-group-item"><%= review.content %> - <%= review.score %>/5</li>
+    <div class="d-flex justify-content-around mb-3 ">
+      
+      <% if Review.where(user_id: current_user.id, room_id: @room.id).empty? %>
+        <%= link_to 'Ecrire un avis', new_trip_room_review_path(@trip, @room), class: "btn btn-secondary" %>
+      <% else %>
+        <%= link_to 'Modifier mon avis', edit_trip_room_review_path(@trip, @room), class: "btn btn-outline-secondary" %>
       <% end %>
-    </ul>
+      
+      <%= link_to "Voir sur #{@room.website}", @room.url, target: :_blank, class: "btn btn-outline-secondary"  %>
+    </div>
+    <% @reviews.each do |review| %>
+      <%= render partial: 'shared/review_card', locals: { review: review } %>
+    <% end %>
+    <br>
+  <%= link_to "Supprimer le logement", trip_room_path(@room, trip_id: @room.trip.id), method: :delete, data: { confirm: "Êtes-vous sûr ?"}, class: "btn btn-outline-danger" %>
   </div>
 </div>

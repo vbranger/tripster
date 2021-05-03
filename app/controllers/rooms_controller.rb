@@ -66,7 +66,7 @@ class RoomsController < ApplicationController
 
   def index
     @trip = Trip.find(params[:trip_id])
-    @rooms = Room.where(trip: @trip).order(created_at: :desc)
+    @rooms = Room.where(trip: @trip).order(avg_score: :desc)
     @participants = @trip.participants
     @participants_list = @trip.participants_list
   end

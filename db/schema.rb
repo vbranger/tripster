@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_03_133901) do
+ActiveRecord::Schema.define(version: 2021_05_03_141902) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -81,7 +81,7 @@ ActiveRecord::Schema.define(version: 2021_05_03_133901) do
     t.string "website"
     t.string "web_id"
     t.string "url"
-    t.float "avg_score"
+    t.float "avg_score", default: 0.0
     t.index ["trip_id"], name: "index_rooms_on_trip_id"
   end
 

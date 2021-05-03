@@ -19,5 +19,13 @@
     <%= link_to "Voir sur le site", @room.url, target: :_blank  %>
     <br>
     <%= link_to "Retour à la liste", trip_rooms_path(@trip)  %>
+
+    <%= link_to 'Commenter', new_trip_room_review_path(@trip, @room) %>
+
+    <ul class="list-group">
+      <% @room.reviews.each do |review| %>
+        <li class="list-group-item"><%= review.content %> - <%= review.score %>/5</li>
+      <% end %>
+    </ul>
   </div>
 </div>

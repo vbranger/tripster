@@ -1,0 +1,11 @@
+<div class="news_card">
+    <%= image_tag "avatar-placeholder.png" %>
+    <div class="news_card__info">
+      <p class="news_card__content"><%= review.user.first_name %></p>
+      <div class="d-flex">
+        <p class="news_card__time"><strong><%= review.score %> / 5</strong>  <small><%= review.time_since_created %></small></p>
+      </div>
+      <p class="news_card__text-input"><%= review.content %></p>
+    </div>
+</div>
+

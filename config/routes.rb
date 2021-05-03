@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   resources :trips, only: [:new, :create, :index, :show, :destroy, :update] do
     resources :rooms, only: [:new, :create, :index, :show, :destroy] do
-      resources :reviews, only: [ :new, :create, :index ]
+      resources :reviews, only: [ :new, :create, :index, :edit, :update ]
       member do
         put "like" => "rooms#like"
       end

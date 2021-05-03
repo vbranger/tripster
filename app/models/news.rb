@@ -10,7 +10,7 @@ class News < ApplicationRecord
       update(content: "#{user_link} a défini une nouvelle destination : #{Trip.find(trip_id).destination}")
     when "trips#create"
       update(content: "#{user_link} a créé #{trip_link}")
-    when "invites#create"
+    when "invites#create", "users/registrations#create"
       update(content: "#{user_link} a rejoint le trip")
     when "participants#destroy"
       update(content: "#{user_link} a quitté #{trip_link}")
@@ -23,6 +23,11 @@ class News < ApplicationRecord
     when "rooms#unlike"
       room_link = "<a href='/trips/#{trip_id}/rooms/#{imageable_id}'>#{Room.find(imageable_id).name}</a>"
       update(content: "#{user_link} n'aime plus #{room_link}")
+    when "reviews#create", "reviews#update"
+      review = Review.find(imageable_id)
+      room = review.room
+      room_link = "<a href='/trips/#{trip_id}/rooms/#{room}'>#{room.name}</a>"
+      update(content: "#{user_link} a donné #{review.score} étoiles à #{room_link}")
     else
       update(content: "Autre info")
     end

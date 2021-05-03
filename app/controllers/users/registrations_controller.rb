@@ -12,10 +12,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
     resource.save
     @token = params[:invite_token]
     unless @token.nil?
-      p "org"
-      p trip =  Invite.find_by_token(@token).trip #find the user group attached to the invite
-      p "push"
-      p resource.trips.push(trip) #add this user to the new user group as a member
+      trip =  Invite.find_by_token(@token).trip #find the user group attached to the invite
+      resource.trips.push(trip) #add this user to the new user group as a member
       News.create!(
         user: resource,
         trip_id: trip.id,

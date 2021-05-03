@@ -27,9 +27,12 @@ class RoomsController < ApplicationController
       @room.scrap
       p "ended scrap"
     end
-    @room.save
-    News.create!(user: current_user, trip_id: @trip.id, action_type: "#{params[:controller]}##{params[:action]}", imageable_type: "Room", imageable_id: @room.id)
-    redirect_to trip_rooms_path(@trip)
+    if @room.save
+      News.create!(user: current_user, trip_id: @trip.id, action_type: "#{params[:controller]}##{params[:action]}", imageable_type: "Room", imageable_id: @room.id)
+      redirect_to trip_rooms_path(@trip)
+    else
+      render :new
+    end
   end
 
   def show

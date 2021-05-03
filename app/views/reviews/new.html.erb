@@ -1,0 +1,7 @@
+<div class="background-rounded-white p-3">
+<%= simple_form_for [ @trip, @room, @review ] do |f| %>
+  <%= f.input :score %>
+  <%= f.input :content %>
+  <%= f.submit "Submit review", class: "btn btn-primary" %>
+<% end %>
+</div>

@@ -15,16 +15,22 @@ class RoomsController < ApplicationController
     @room.trip = @trip
     if @room.url.include? "airbnb"
       @room.website = "airbnb"
-      @room.get_id
+      @room.get_airbnb_id
       p "starting scrap"
-      @room.scrap
+      @room.scrap_airbnb
       p "ended scrap"
     elsif @room.url.include? "abnb"
       @room.website = "airbnb"
-      @room.convert_airbnb_url
-      @room.get_id
+      @room.convert_url
+      @room.get_airbnb_id
       p "starting scrap"
-      @room.scrap
+      @room.scrap_airbnb
+      p "ended scrap"
+    elsif @room.url.include? "hmwy"
+      @room.website = "abritel"
+      @room.convert_url
+      p "starting scrap"
+      @room.scrap_abritel
       p "ended scrap"
     end
     if @room.save

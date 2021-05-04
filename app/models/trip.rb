@@ -9,7 +9,6 @@ class Trip < ApplicationRecord
   def participants_list
     string = ""
     participants = self.participants
-    p participants
     participants.each do |participant|
       if participant == participants.last
         string += participant.user.first_name

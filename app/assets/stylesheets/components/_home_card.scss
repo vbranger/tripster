@@ -52,7 +52,7 @@
 
   max-width: 500px;
   margin: 0 auto 0 auto;
-  padding: 0.5rem 0.5rem;
+  padding: 0.5rem 0;
 
   border-bottom: 0.25px solid #515151;
   
@@ -74,7 +74,7 @@
       font-size: 0.8rem;
     }
 
-    & .news_car__text {
+    & .news_card__text {
       background-color: #515151;
       color: white;
       border-radius: 8px;

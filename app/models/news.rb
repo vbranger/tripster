@@ -26,7 +26,7 @@ class News < ApplicationRecord
     when "reviews#create", "reviews#update"
       review = Review.find(imageable_id)
       room = review.room
-      room_link = "<a href='/trips/#{trip_id}/rooms/#{room}'>#{room.name}</a>"
+      room_link = "<a href='/trips/#{trip_id}/rooms/#{room.id}'>#{room.name}</a>"
       update(content: "#{user_link} a donné #{review.score} étoiles à #{room_link}")
     else
       update(content: "Autre info")

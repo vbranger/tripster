@@ -3,6 +3,6 @@
     <div class="news_card__info">
       <p class="news_card__time"><small>Il y a <%= new.time_since_created %></small></p>
       <p class="news_card__content"><%= yield %></p>
-      <p class="news_car__text"><%= new.imageable_type.constantize.find(new.imageable_id).content %></p>
+      <p class="news_card__text"><%= new.imageable_type.constantize.find(new.imageable_id).content %></p>
     </div>
 </div>

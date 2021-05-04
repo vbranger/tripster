@@ -23,5 +23,12 @@
       <small><%= room.reviews.count %> avis</small>
       </p>
       <small>Ajouté il y a <%= room.time_since_created %></small>
+      <div class="d-none d-sm-block">
+        <% if !Review.where(user: current_user, room: room).empty? %>
+          <%= render partial: 'shared/review_text', locals: {review: Review.where(user: current_user, room: room).first} %>
+        <% else %>
+          <p class="text-danger"><small>Vous n'avez pas encore donné votre avis pour ce logement</small></p>
+        <% end %>
+      </div>
     </div>
   </div>

@@ -78,9 +78,15 @@ class RoomsController < ApplicationController
 
   def index
     @trip = Trip.find(params[:trip_id])
-    @rooms = Room.where(trip: @trip).order(avg_score: :desc)
     @participants = @trip.participants
     @participants_list = @trip.participants_list
+    if params[:query] == ['top_rated']
+      @rooms = Room.where(trip: @trip).order(avg_score: :desc)
+    elsif params[:query] == ['newest']
+      @rooms = Room.where(trip: @trip).order(created_at: :desc)
+    else
+      @rooms = Room.where(trip: @trip).order(avg_score: :desc)
+    end
   end
   
 

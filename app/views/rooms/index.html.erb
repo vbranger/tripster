@@ -1,9 +1,14 @@
 <div class="background-rounded-white p-3">
   <div class="d-flex align-items-center mb-3">
     <p class="text-center"><strong><%= @trip.rooms.count < 2 ? @trip.rooms.count.to_s + ' logement' : @trip.rooms.count.to_s + ' logements' %> </strong></p>
-    <span class="badge badge-pill badge-warning ml-auto">En cours</span>
+    <%# <span class="badge badge-pill badge-warning ml-auto">En cours</span> %>
+    <%= link_to "Ajouter un lieu", new_trip_room_path(@trip), class: "btn btn-outline-dark btn-sm text-center ml-auto" %>
   </div>
-  <%= link_to "Ajouter un lieu", new_trip_room_path(@trip), class: "btn btn-outline-dark btn-sm text-center" %>
+  <div class="d-flex mt-3">
+    <p class="mr-2"><small>Trier : </small></p>
+    <%= link_to "Mieux notés", trip_rooms_path(query:['top_rated']), class: "btn #{params[:query] == ['newest'] ? 'btn-outline-secondary' : 'btn-secondary' } button-custom mr-3 px-1" %>
+    <%= link_to "Nouveautés", trip_rooms_path(query:['newest']), class: "btn #{params[:query] == ['newest'] ? 'btn-secondary' : 'btn-outline-secondary'}  button-custom mr-3 px-1" %>
+  </div>
   <ul class="list-group list-group-flush border-0">
     <% @rooms.each do |room| %>
       <%= render partial: 'shared/room_card', locals: {room: room} %>

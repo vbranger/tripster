@@ -45,6 +45,11 @@
   
 }
 
+.width-fit-content {
+  width: fit-content;
+  min-width: 10rem;
+}
+
 .news_card {
   display: flex;
   align-items: flex-start;

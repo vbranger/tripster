@@ -32,6 +32,11 @@ class RoomsController < ApplicationController
       p "starting scrap"
       @room.scrap_abritel
       p "ended scrap"
+    elsif @room.url.include? "abritel.fr"
+      @room.website = "abritel"
+      p "starting scrap"
+      @room.scrap_abritel
+      p "ended scrap"
     end
     if @room.save
       News.create!(user: current_user, trip_id: @trip.id, action_type: "#{params[:controller]}##{params[:action]}", imageable_type: "Room", imageable_id: @room.id)

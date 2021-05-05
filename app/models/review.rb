@@ -8,7 +8,7 @@ class Review < ApplicationRecord
   def update_avg_score
     scores = self.room.reviews.map {|review| review.score}
     avg = scores.inject(0){|sum,x| sum + x } / scores.length.to_f
-    self.room.update(avg_score: avg.round)
+    self.room.update(avg_score: avg)
   end
 
 end

@@ -1,5 +1,3 @@
-require_relative '../../infinite'
-
 class RoomsController < ApplicationController
 
   respond_to :js, :html, :json
@@ -42,7 +40,7 @@ class RoomsController < ApplicationController
       p "ended scrap"
     elsif @room.url.include? "github"
       GithubSpider.crawl!
-    else
+    elsif @room.url.include? "www.coinsecret.com"
       @room.universal_scrap
     end
     if @room.save

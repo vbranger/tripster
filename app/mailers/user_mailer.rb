@@ -23,4 +23,12 @@ class UserMailer < ApplicationMailer
 
     mail to: invite.email, subject: "You received an invitation for a Tripster"
   end
+
+  def new_room_added(maker, recipient, room)
+    @maker = maker
+    @recipient = recipient.user
+    @room = room
+
+    mail to: @recipient.email, subject: "#{maker.first_name} a ajouté #{room.name}"
+  end
 end

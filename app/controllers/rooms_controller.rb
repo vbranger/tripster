@@ -44,6 +44,9 @@ class RoomsController < ApplicationController
     if @room.save
       News.create!(user: current_user, trip_id: @trip.id, action_type: "#{params[:controller]}##{params[:action]}", imageable_type: "Room", imageable_id: @room.id)
       redirect_to trip_rooms_path(@trip)
+      @trip.participants.each do |participant|
+        UserMailer.new_room_added(current_user, participant, @room).deliver #send the invite data to our mailer to deliver the email
+      end
     else
       render :new
     end

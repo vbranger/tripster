@@ -23,4 +23,15 @@ class UserMailer < ApplicationMailer
 
     mail to: invite.email, subject: "You received an invitation for a Tripster"
   end
+
+  def new_room_added(maker, recipient, room)
+    @maker = maker
+    @recipient = recipient.user
+    @room = room
+    @trip = @room.trip
+    @unnoted_rooms = @trip.rooms.select do |room|
+      room.reviews.where(user_id: @recipient.id).empty?
+    end
+    mail to: @recipient.email, subject: "#{maker.first_name} a ajouté #{room.name}"
+  end
 end

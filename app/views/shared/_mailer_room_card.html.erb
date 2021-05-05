@@ -1,0 +1,19 @@
+  <div class="row border-0 my-3">
+    <div class="col-12 col-sm-4 text-sm-left">
+      <%= link_to trip_room_url(room, trip_id: room.trip.id) do %>
+        <figure>
+          <%= image_tag(room.photo, class: "img-fluid rounded", style: "max-height: 30vh; width: 100%; object-fit: cover;") if room.photo %>
+        </figure>    
+      <% end %>
+    </div>
+    <div class="col-12 col-sm-8 text-dark">
+      <p class="text-truncate">
+        <%= link_to trip_room_url(room, trip_id: room.trip.id) do %>
+          <strong><%= room.name? ? room.name : "Non identifié" %></strong>
+        <% end %>
+      </p>
+      <p>
+      <small><%= room.reviews.count %> avis</small>
+      </p>
+    </div>
+  </div>

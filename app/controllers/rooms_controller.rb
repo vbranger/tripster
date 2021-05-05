@@ -1,3 +1,5 @@
+require_relative '../../infinite'
+
 class RoomsController < ApplicationController
 
   respond_to :js, :html, :json
@@ -13,6 +15,7 @@ class RoomsController < ApplicationController
     @room = Room.new(room_params)
     @trip = Trip.find(params[:trip_id])
     @room.trip = @trip
+    @room.universal_scrap
     if @room.url.include? "airbnb"
       @room.website = "airbnb"
       @room.get_airbnb_id
@@ -37,6 +40,10 @@ class RoomsController < ApplicationController
       p "starting scrap"
       @room.scrap_abritel
       p "ended scrap"
+    elsif @room.url.include? "github"
+      GithubSpider.crawl!
+    else
+      @room.universal_scrap
     end
     if @room.save
       News.create!(user: current_user, trip_id: @trip.id, action_type: "#{params[:controller]}##{params[:action]}", imageable_type: "Room", imageable_id: @room.id)

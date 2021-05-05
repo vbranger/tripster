@@ -84,11 +84,11 @@ class RoomsController < ApplicationController
     @participants = @trip.participants
     @participants_list = @trip.participants_list
     if params[:query] == ['top_rated']
-      @rooms = Room.where(trip: Trip.find(10)).sort_by {|a| [a.avg_score, a.reviews.count]}.reverse
+      @rooms = Room.where(trip: @trip).sort_by {|a| [a.avg_score, a.reviews.count]}.reverse
     elsif params[:query] == ['newest']
       @rooms = Room.where(trip: @trip).order(created_at: :desc)
     else
-      @rooms = Room.where(trip: @trip).order(avg_score: :desc)
+      @rooms = Room.where(trip: @trip).sort_by {|a| [a.avg_score, a.reviews.count]}.reverse
     end
   end
   

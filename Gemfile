@@ -41,6 +41,7 @@ gem 'json'
 gem 'acts_as_votable'
 gem 'cliver'
 gem 'mailjet'
+gem 'metainspector'
 
 group :development, :test do  gem 'pry-byebug'
   gem 'pry-rails'

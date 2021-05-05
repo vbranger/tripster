@@ -1,7 +1,6 @@
 require 'open-uri'
 require 'nokogiri'
 require 'ferrum'
-# require 'webdrivers/chromedriver'
 
 class Room < ApplicationRecord
   belongs_to :trip
@@ -70,6 +69,13 @@ class Room < ApplicationRecord
     self.photo = photos.search("img").first.attributes["src"].value
     self.price = rand(80..300).to_f
     br.quit
+  end
+
+  def universal_scrap
+    page = MetaInspector.new(url)
+    p self.name = page.best_title          # best title of the page, from a selection of candidates
+    p page.best_description    # returns the first non-empty description between the following candidates: standard meta description, og:description, twitter:description, the first long paragraph
+    p self.photo = page.images.best
   end
   
 

@@ -28,7 +28,10 @@ class UserMailer < ApplicationMailer
     @maker = maker
     @recipient = recipient.user
     @room = room
-
+    @trip = @room.trip
+    @unnoted_rooms = @trip.rooms.select do |room|
+      room.reviews.where(user_id: @recipient.id).empty?
+    end
     mail to: @recipient.email, subject: "#{maker.first_name} a ajouté #{room.name}"
   end
 end

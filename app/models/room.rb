@@ -73,9 +73,7 @@ class Room < ApplicationRecord
 
   def universal_scrap
     page = MetaInspector.new(url)
-    p self.name = page.title               # title of the page from the head section, as string
-    p page.best_title          # best title of the page, from a selection of candidates
-    # p Review.new(content: page.description, score: 0, room_id: id, user_id: current_user.id)          # returns the meta description
+    p self.name = page.best_title          # best title of the page, from a selection of candidates
     p page.best_description    # returns the first non-empty description between the following candidates: standard meta description, og:description, twitter:description, the first long paragraph
     p self.photo = page.images.best
   end

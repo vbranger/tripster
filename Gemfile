@@ -42,7 +42,6 @@ gem 'acts_as_votable'
 gem 'cliver'
 gem 'mailjet'
 gem 'metainspector'
-gem 'kimurai'
 
 group :development, :test do  gem 'pry-byebug'
   gem 'pry-rails'

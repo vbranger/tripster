@@ -38,8 +38,6 @@ class RoomsController < ApplicationController
       p "starting scrap"
       @room.scrap_abritel
       p "ended scrap"
-    elsif @room.url.include? "github"
-      GithubSpider.crawl!
     elsif @room.url.include? "www.coinsecret.com"
       @room.universal_scrap
     end

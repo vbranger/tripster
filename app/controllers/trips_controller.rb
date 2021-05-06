@@ -21,7 +21,7 @@ class TripsController < ApplicationController
     @trip = Trip.find(params[:id])
     @participants = Participant.where(trip_id: params[:id])
     @participants_list = @trip.participants_list
-    @news = News.where(trip_id: @trip.id).order(created_at: :desc)
+    @news = News.where(trip_id: @trip.id).order(created_at: :desc).first(10)
     @rooms = Room.where(trip: @trip)
   end
 

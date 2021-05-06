@@ -100,9 +100,9 @@ class RoomsController < ApplicationController
     elsif params[:query] == ['user_order']
       @rooms = rooms.sort_by do |a|
         if !a.reviews.where(user_id: @user.id).empty?
-          a.reviews.where(user_id: @user.id).first.score
+          [a.reviews.where(user_id: @user.id).first.score, a.reviews.count]
         else
-          0
+          [0, a.reviews.count]
         end
       end
       @rooms.reverse!

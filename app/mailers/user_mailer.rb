@@ -28,10 +28,10 @@ class UserMailer < ApplicationMailer
     @maker = maker
     @recipient = recipient.user
     @room = room
-    @trip = @room.trip
-    @unnoted_rooms = @trip.rooms.select do |room|
-      room.reviews.where(user_id: @recipient.id).empty?
-    end
+    @trip = room.trip
+    @unnoted_rooms = @trip.rooms.select { |room| room.reviews.where(user_id: recipient.id).empty? }
+    @unnoted_rooms.reject{ |x| x == room }
+    @unnoted_rooms.sort_by { |a| [a.avg_score, a.reviews.count] }.reverse
     mail to: @recipient.email, subject: "#{maker.first_name} a ajouté #{room.name}"
   end
 end

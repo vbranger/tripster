@@ -93,6 +93,11 @@ class RoomsController < ApplicationController
     else
       @rooms = Room.where(trip: @trip).sort_by {|a| [a.avg_score, a.reviews.count]}.reverse
     end
+    if params[:user_id]
+      @user = User.find(params[:user_id]).first
+    else
+      @user = current_user
+    end
   end
   
 

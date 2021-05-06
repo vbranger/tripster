@@ -6,12 +6,18 @@
   </div>
   <div class="d-flex mt-3">
     <p class="mr-2"><small>Trier : </small></p>
-    <%= link_to "Mieux notés", trip_rooms_path(query:['top_rated']), class: "btn #{params[:query] == ['newest'] ? 'btn-outline-secondary' : 'btn-secondary' } button-custom mr-3 px-1" %>
-    <%= link_to "Nouveautés", trip_rooms_path(query:['newest']), class: "btn #{params[:query] == ['newest'] ? 'btn-secondary' : 'btn-outline-secondary'}  button-custom mr-3 px-1" %>
+    <%= link_to "Mieux notés", trip_rooms_path(query:['top_rated'],user_id:params[:user_id]), class: "btn #{params[:query] == ['newest'] ? 'btn-outline-secondary' : 'btn-secondary' } button-custom mr-3 px-1" %>
+    <%= link_to "Nouveautés", trip_rooms_path(query:['newest'],user_id:params[:user_id]), class: "btn #{params[:query] == ['newest'] ? 'btn-secondary' : 'btn-outline-secondary'}  button-custom mr-3 px-1" %>
+  </div>
+  <div class="d-none d-sm-flex mt-3">
+    <p class="mr-2"><small>Avis de : </small></p>
+    <% @participants.each do |participant| %>
+      <%= link_to participant.user.first_name, trip_rooms_path(user_id:[participant.user.id],query:params[:query]),class: "btn #{participant.active?(params, participant.user, current_user) ? 'btn-secondary' : 'btn-outline-secondary' } button-custom mr-3 px-1" %>
+    <% end %>
   </div>
   <ul class="list-group list-group-flush border-0">
     <% @rooms.each do |room| %>
-      <%= render partial: 'shared/room_card', locals: {room: room} %>
+      <%= render partial: 'shared/room_card', locals: {room: room, user: @user} %>
     <% end %>
   </ul>
 </div>

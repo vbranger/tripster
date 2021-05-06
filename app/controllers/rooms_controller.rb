@@ -87,17 +87,27 @@ class RoomsController < ApplicationController
     @trip = Trip.find(params[:trip_id])
     @participants = @trip.participants
     @participants_list = @trip.participants_list
-    if params[:query] == ['top_rated']
-      @rooms = Room.where(trip: @trip).sort_by {|a| [a.avg_score, a.reviews.count]}.reverse
-    elsif params[:query] == ['newest']
-      @rooms = Room.where(trip: @trip).order(created_at: :desc)
-    else
-      @rooms = Room.where(trip: @trip).sort_by {|a| [a.avg_score, a.reviews.count]}.reverse
-    end
     if params[:user_id]
       @user = User.find(params[:user_id]).first
     else
       @user = current_user
+    end
+    rooms = Room.where(trip: @trip)
+    if params[:query] == ['top_rated']
+      @rooms = rooms.sort_by {|a| [a.avg_score, a.reviews.count]}.reverse
+    elsif params[:query] == ['newest']
+      @rooms = rooms.order(created_at: :desc)
+    elsif params[:query] == ['user_order']
+      @rooms = rooms.sort_by do |a|
+        if !a.reviews.where(user_id: @user.id).empty?
+          a.reviews.where(user_id: @user.id).first.score
+        else
+          0
+        end
+      end
+      @rooms.reverse!
+    else
+      @rooms = rooms.sort_by {|a| [a.avg_score, a.reviews.count]}.reverse
     end
   end
   

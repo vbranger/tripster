@@ -39,6 +39,7 @@ class RoomsController < ApplicationController
       @room.scrap_abritel
       p "ended scrap"
     elsif @room.url.include? "www.coinsecret.com"
+      @room.website = "coinsecret"
       @room.universal_scrap
     end
     if @room.save

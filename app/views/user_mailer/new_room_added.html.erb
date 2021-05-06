@@ -386,7 +386,7 @@
                         <span style="font-size: 16px; margin: 0; line-height: 2; word-break: break-word; mso-line-height-alt: 32px;">
                           <strong>
                             <span data-mce-style="font-size: 24px;" style="font-size: 24px;">
-                              <p style="font-size: 14px;margin: 0 0 0 0.5rem"><small><%= room.reviews.count == 0 ? "Soyez le premier à noter cette maison" : "#{room.avg_score} / 5 (#{room.reviews.count} avis)" %> </small></p>
+                              <p style="font-size: 14px;margin: 0 0 0 0.5rem"><small><%= room.reviews.count == 0 ? "Soyez le premier à noter cette maison" : "#{room.avg_score.round(1)} / 5 (#{room.reviews.count} avis)" %> </small></p>
                             </span>
                           </strong>
                         </span>

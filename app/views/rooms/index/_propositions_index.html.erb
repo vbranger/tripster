@@ -1,0 +1,33 @@
+<div class="background-rounded-white p-3">
+  <div class="d-flex align-items-center mb-3">
+    <p class="text-center"><strong><%= @trip.rooms.count < 2 ? @trip.rooms.count.to_s + ' logement' : @trip.rooms.count.to_s + ' logements' %> </strong></p>
+    <%# <span class="badge badge-pill badge-warning ml-auto">En cours</span> %>
+    <div class="d-flex ml-auto">
+      <%= link_to new_trip_room_path(@trip), class: "btn btn-outline-primary btn-sm text-center mr-1" do %>
+        <i class="fas fa-plus-circle"></i> Ajouter
+      <% end %>
+      <% if @trip.user == current_user %>
+        <%= button_to trip_start_votes_path(@trip), method: :put, class: "btn btn-outline-primary btn-sm text-center" do %>
+          <i class="fas fa-person-booth"></i> Voter
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+  <div class="d-inline-flex mt-3">
+    <p class="d-none d-sm-block mr-2"><small>Trier : </small></p>
+    <%= link_to "Mieux notés", trip_rooms_path(query:['top_rated'],user_id:params[:user_id]), class: "btn #{params[:query] == ['top_rated'] || params[:query].nil? ? 'btn-primary' : 'btn-outline-primary' } button-custom mr-3 px-1" %>
+    <%= link_to "Nouveautés", trip_rooms_path(query:['newest'],user_id:params[:user_id]), class: "btn #{params[:query] == ['newest'] ? 'btn-primary' : 'btn-outline-primary'}  button-custom mr-3 px-1" %>
+    <%= link_to "Mon choix", trip_rooms_path(query:['user_order'],user_id:params[:user_id]), class: "btn #{params[:query] == ['user_order'] ? 'btn-primary' : 'btn-outline-primary'}  button-custom mr-3 px-1" %>
+  </div>
+  <div class="d-none d-sm-flex mt-3">
+    <p class="mr-2"><small>Avis de : </small></p>
+    <% @participants.each do |participant| %>
+      <%= link_to participant.user.first_name, trip_rooms_path(user_id:[participant.user.id],query:params[:query]),class: "btn #{participant.active?(params, participant.user, current_user) ? 'btn-primary' : 'btn-outline-primary' } button-custom mr-3 px-1" %>
+    <% end %>
+  </div>
+  <ul class="list-group list-group-flush border-0">
+    <% @rooms.each do |room| %>
+      <%= render partial: 'shared/room_card', locals: {room: room, user: @user} %>
+    <% end %>
+  </ul>
+</div>

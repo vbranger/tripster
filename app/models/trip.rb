@@ -1,4 +1,30 @@
 class Trip < ApplicationRecord
+  include AASM
+
+  aasm column: 'room_state' do
+    state :not_started, initial: true
+    state :propositions
+    state :votes
+    state :finished
+
+    event :start_propositions do
+      transitions from: [:not_started], to: :propositions
+    end
+
+    event :start_votes do
+      transitions from: [:propositions], to: :votes
+    end
+
+    event :choose_room do
+      transitions from: [:votes], to: :finished
+    end
+
+    event :back_propositions do
+      transitions from: [:votes], to: :propositions
+    end
+  end
+
+
   has_many :participants, dependent: :destroy
   has_many :users, through: :participants
   has_many :rooms, dependent: :destroy

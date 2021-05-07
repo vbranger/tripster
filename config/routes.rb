@@ -10,6 +10,9 @@ Rails.application.routes.draw do
   get 'trips/:id/edit_dates', to: 'trips#edit_dates'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   resources :trips, only: [:new, :create, :index, :show, :destroy, :update] do
+    put :start_propositions
+    put :start_votes
+    put :back_propositions
     resources :rooms, only: [:new, :create, :index, :show, :destroy] do
       resources :reviews, only: [ :new, :create, :index, :edit, :update ]
       member do

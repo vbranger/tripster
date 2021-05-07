@@ -1,0 +1,17 @@
+<div class="background-rounded-white p-3">
+  <div class="d-flex align-items-center mb-3">
+    <p class="text-center"><strong><%= @rooms.count < 2 ? @rooms.count.to_s + ' logement retenu' : @rooms.count.to_s + ' logements retenus' %> </strong></p>
+    <div class="d-flex ml-auto">
+      <% if @trip.user == current_user %>
+        <%= button_to trip_back_propositions_path(@trip), method: :put, class: "btn btn-outline-primary btn-sm text-center" do %>
+          <i class="fas fa-person-booth"></i> Retour aux propositions
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+  <ul class="list-group list-group-flush border-0">
+    <% @rooms.each do |room| %>
+      <%= render partial: 'shared/room_card', locals: {room: room, user: @user} %>
+    <% end %>
+  </ul>
+</div>

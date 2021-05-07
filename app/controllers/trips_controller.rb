@@ -58,6 +58,24 @@ class TripsController < ApplicationController
     redirect_to trip_path(@trip)
   end
 
+  def start_propositions
+    @trip = Trip.find(params[:trip_id])
+    @trip.start_propositions!
+    redirect_to trip_path(@trip)
+  end
+
+  def start_votes
+    @trip= Trip.find(params[:trip_id])
+    @trip.start_votes!
+    redirect_to trip_rooms_path(@trip)
+  end
+
+  def back_propositions
+    @trip = Trip.find(params[:trip_id])
+    @trip.back_propositions!
+    redirect_to trip_rooms_path(@trip)
+  end
+
   private
 
   def trip_params

@@ -57,9 +57,20 @@
             <%= image_tag "undraw_house_searching.svg", class:"d-sm-block" %>
           <div class="home_card__info">
             <p class="home_card__category">logement</p>
-            <p class="home_card__status"><%= @trip.rooms.count < 2 ? @trip.rooms.count.to_s + ' proposition' : @trip.rooms.count.to_s + ' propositions' %></p>
-          </div>
-          <%= link_to "Voir", trip_rooms_path(@trip), class: "btn btn-secondary button-custom" %>
+          <% if @trip.propositions? %>
+              <p class="home_card__status"><%= @trip.rooms.count < 2 ? @trip.rooms.count.to_s + ' proposition' : @trip.rooms.count.to_s + ' propositions' %></p>
+            </div>
+            <%= link_to "Voir", trip_rooms_path(@trip), class: "btn btn-secondary button-custom" %>
+          <% elsif @trip.not_started? %>
+              <p class="home_card__status">Non défini</p>
+            </div>
+            <%= button_to "Démarrer", trip_start_propositions_path(@trip), method: :put, class: "btn btn-secondary button-custom" %>
+          <% elsif @trip.votes? %>
+              <p class="home_card__status"><%= @trip.rooms.count < 2 ? @trip.rooms.count.to_s + ' proposition retenue' : @trip.rooms.count.to_s + ' propositions retenues' %></p>
+            </div>
+            <%= link_to "Voir", trip_rooms_path(@trip), class: "btn btn-secondary button-custom" %>
+          <% end %>
+          
       </div>
 
     </div>

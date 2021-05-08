@@ -1,17 +1,24 @@
-<div class="background-rounded-white p-3">
+<div class="background-rounded-white-no-tab p-3  justify-content-center">
   <div class="d-flex align-items-center mb-3">
-    <p class="text-center"><strong><%= @rooms.count < 2 ? @rooms.count.to_s + ' logement retenu' : @rooms.count.to_s + ' logements retenus' %> </strong></p>
+    <p><strong>Mon classement</strong></p>
     <div class="d-flex ml-auto">
       <% if @trip.user == current_user %>
         <%= button_to trip_back_propositions_path(@trip), method: :put, class: "btn btn-outline-primary btn-sm text-center" do %>
-          <i class="fas fa-person-booth"></i> Retour aux propositions
+          <i class="fas fa-undo-alt"></i> Propositions
         <% end %>
       <% end %>
     </div>
   </div>
-  <ul class="list-group list-group-flush border-0">
-    <% @rooms.each do |room| %>
-      <%= render partial: 'shared/room_card', locals: {room: room, user: @user} %>
+  <ol class="list-group list-group-flush border-0 " data-controller="drag">
+    <% @rooms.each_with_index do |room, index| %>
+    <li class="list-group-item p-0" style="border-width: 0" data-drag-target="row" data-id="<%= room.id %>">
+      <%= render partial: 'shared/room_votes_card', locals: {room: room, user: @user, index: index + 1} %>
+    </li>
     <% end %>
-  </ul>
+  </ol>
+  <div class="d-flex justify-content-center mt-3">
+    <%= link_to "#", class: "btn btn-primary btn-valid-vote" do %>
+      <i class="fas fa-vote-yea mr-1"></i> Voter
+    <% end %>
+  </div>
 </div>

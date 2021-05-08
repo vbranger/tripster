@@ -1,0 +1,34 @@
+  <div class="row border-0 justify-content-center mb-1">
+    <div class="col-1 col-sm-1 px-0 d-flex align-items-center justify-content-center">
+      <p data-drag-target="rank"><%= index %>.</p>
+    </div>
+    <div class="col-3 col-sm-3 text-sm-left px-0 d-flex align-items-center">
+      <%= link_to trip_room_path(room, trip_id: room.trip.id) do %>
+        <figure class="m-0">
+          <%= image_tag(room.photo, class: "img-fluid rounded", style: "max-height: 25vh; width: 100%; object-fit: cover;") if room.photo %>
+        </figure>    
+      <% end %>
+    </div>
+    <div class="col-7 col-sm-7 text-dark pr-0">
+      <p style="font-size: 0.8rem" class="text-truncate">
+        <%= link_to trip_room_path(room, trip_id: room.trip.id) do %>
+          <strong><%= room.name? ? room.name : "Non identifié" %></strong>
+        <% end %>
+      </p>
+      <div class="d-block">
+        <% if !Review.where(user: user, room: room).empty? %>
+          <%= render partial: 'shared/review_text', locals: {review: Review.where(user: user, room: room).first, user: user} %>
+        <% else %>
+          <p class="text-danger">
+            <small>
+              <% if user == current_user %>
+                Vous n'avez pas donné votre avis pour ce logement
+              <% else %>
+                <%= user.first_name %> n'a pas encore donné son avis pour ce logement
+              <% end %>
+            </small>
+          </p>
+        <% end %>
+      </div>
+    </div>
+  </div>

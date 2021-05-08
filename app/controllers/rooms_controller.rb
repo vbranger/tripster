@@ -17,27 +17,19 @@ class RoomsController < ApplicationController
     if @room.url.include? "airbnb"
       @room.website = "airbnb"
       @room.get_airbnb_id
-      p "starting scrap"
       @room.scrap_airbnb
-      p "ended scrap"
     elsif @room.url.include? "abnb"
       @room.website = "airbnb"
       @room.convert_url
       @room.get_airbnb_id
-      p "starting scrap"
       @room.scrap_airbnb
-      p "ended scrap"
     elsif @room.url.include? "hmwy"
       @room.website = "abritel"
       @room.convert_url
-      p "starting scrap"
       @room.scrap_abritel
-      p "ended scrap"
     elsif @room.url.include? "abritel.fr"
       @room.website = "abritel"
-      p "starting scrap"
       @room.scrap_abritel
-      p "ended scrap"
     elsif @room.url.include? "www.coinsecret.com"
       @room.website = "coinsecret"
       @room.universal_scrap

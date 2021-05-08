@@ -79,7 +79,7 @@ class RoomsController < ApplicationController
     @trip = Trip.find(params[:trip_id])
     @room = Room.find(params[:id])
     @room.destroy
-
+    
     redirect_to trip_rooms_path(@trip)
   end
 

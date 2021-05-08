@@ -1,5 +1,6 @@
 class News < ApplicationRecord
   belongs_to :user
+  belongs_to :imageable, :polymorphic => true
   after_create :write_content
 
   def write_content

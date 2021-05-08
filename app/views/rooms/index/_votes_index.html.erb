@@ -9,7 +9,9 @@
       <% end %>
     </div>
   </div>
-  <ol class="list-group list-group-flush border-0 " <%= 'data-controller=drag' if @participant.room_votes.empty? %>>
+
+  <p class="text-center mb-3 px-3" style="font-size: 0.8rem"><small>Organiser les logements dans votre ordre de préférence puis "voter"</small></p>
+  <ol class="list-group list-group-flush border-0 " style="<%= 'filter: grayscale(100%)' if !@participant.room_votes.empty?%>" <%= 'data-controller=drag' if @participant.room_votes.empty? %>>
     <% @rooms.each_with_index do |room, index| %>
     <li class="list-group-item p-0" style="border-width: 0" data-drag-target="row" data-id="<%= room.id %>">
       <%= render partial: 'shared/room_votes_card', locals: {room: room, user: @user, index: index + 1} %>

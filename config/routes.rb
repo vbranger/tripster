@@ -20,6 +20,8 @@ Rails.application.routes.draw do
       end
     end
   end
-  resources :participants, only: [:new, :create, :destroy]
+  resources :participants, only: [:new, :create, :destroy] do
+    patch :save_room_votes
+  end
   resources :invites
 end

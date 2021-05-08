@@ -9,16 +9,21 @@
       <% end %>
     </div>
   </div>
-  <ol class="list-group list-group-flush border-0 " data-controller="drag">
+  <ol class="list-group list-group-flush border-0 " <%= 'data-controller=drag' if @participant.room_votes.empty? %>>
     <% @rooms.each_with_index do |room, index| %>
     <li class="list-group-item p-0" style="border-width: 0" data-drag-target="row" data-id="<%= room.id %>">
       <%= render partial: 'shared/room_votes_card', locals: {room: room, user: @user, index: index + 1} %>
     </li>
     <% end %>
   </ol>
-  <div class="d-flex justify-content-center mt-3">
-    <%= link_to "#", class: "btn btn-primary btn-valid-vote" do %>
-      <i class="fas fa-vote-yea mr-1"></i> Voter
+  <% if @participant.room_votes.empty? %>
+    <%= form_for(@participant, html:{id: "vote_form"}, :url => participant_save_room_votes_path(@participant, trip_id: @trip.id)) do %>
+      <%= hidden_field_tag(:room_votes, "", id: "ranks", class: "hidden" ) %>
+      <%= button_tag(type: "submit", class: "btn btn-primary btn-valid-vote") do %>
+        <i class="fas fa-vote-yea mr-1"></i> Voter
+      <% end %>
     <% end %>
-  </div>
+  <% else %>
+    <p>Vous avez voté</p>
+  <% end %>
 </div>

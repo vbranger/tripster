@@ -116,7 +116,12 @@ class RoomsController < ApplicationController
       end
     elsif @trip.votes?
       @user = current_user
-      @rooms = Room.where(trip: @trip).sort_by {|a| [a.avg_score, a.reviews.count]}.reverse.first(4)
+      @participant = current_user.participant(@trip)
+      if @participant.room_votes.empty?
+        @rooms = Room.where(trip: @trip).sort_by {|a| [a.avg_score, a.reviews.count]}.reverse.first(4)
+      else
+        @rooms = @participant.room_votes.map{|id| Room.find(id)}
+      end
     end
   end
   

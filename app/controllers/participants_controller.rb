@@ -30,10 +30,28 @@ class ParticipantsController < ApplicationController
     redirect_to trip_path(@participant.trip)
   end
 
+  def save_room_votes
+    @trip = Trip.find(params[:trip_id])
+    @participant = Participant.where(user: current_user, trip: @trip)
+    @participants = @trip.participants
+    @participants_list = @trip.participants_list
+  end
+
+  def save_room_votes
+    @trip = Trip.find(params[:trip_id])
+    @participants = @trip.participants
+    @participants_list = @trip.participants_list
+    @participant = Participant.find(params[:participant_id])
+    room_votes = params[:room_votes].split(",")
+    @participant.update(room_votes: room_votes)
+    
+    redirect_to trip_rooms_path(@trip)
+  end
+
   private
 
   def participant_params
-    params.require(:participant).permit(:user_id, :trip_id)
+    params.require(:participant).permit(:user_id, :trip_id, :room_votes)
   end
 
 end

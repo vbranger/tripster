@@ -87,6 +87,7 @@ class RoomsController < ApplicationController
     @trip = Trip.find(params[:trip_id])
     @participants = @trip.participants
     @participants_list = @trip.participants_list
+    @participants = @participants.sort_by{|a| [a.room_votes]}.reverse
     
     if @trip.propositions?
       # get user in params (default: current user)

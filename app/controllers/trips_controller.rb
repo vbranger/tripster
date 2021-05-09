@@ -72,6 +72,7 @@ class TripsController < ApplicationController
 
   def back_propositions
     @trip = Trip.find(params[:trip_id])
+    @trip.participants.each {|participant| participant.update(room_votes: [])}
     @trip.back_propositions!
     redirect_to trip_rooms_path(@trip)
   end

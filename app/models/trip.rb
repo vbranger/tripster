@@ -2,10 +2,6 @@ class Trip < ApplicationRecord
   include AASM
 
   aasm do
-  end
-  include AASM
-
-  aasm do
     state :not_started, initial: true
     state :propositions
     state :votes

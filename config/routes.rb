@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     put :start_propositions
     put :start_votes
     put :back_propositions
+    put :back_votes
     resources :rooms, only: [:new, :create, :index, :show, :destroy] do
       resources :reviews, only: [ :new, :create, :index, :edit, :update ]
       member do

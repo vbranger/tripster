@@ -22,6 +22,10 @@ class Trip < ApplicationRecord
     event :back_propositions do
       transitions from: [:votes], to: :propositions
     end
+
+    event :back_votes do
+      transitions from: [:finished], to: :votes
+    end
   end
 
 

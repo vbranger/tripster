@@ -70,6 +70,10 @@
               <p class="home_card__status"><%= @trip.rooms.count < 2 ? @trip.rooms.count.to_s + ' proposition retenue' : @trip.rooms.count.to_s + ' propositions retenues' %></p>
             </div>
             <%= link_to "Voir", trip_rooms_path(@trip), class: "btn btn-secondary button-custom" %>
+          <% elsif @trip.finished? %>
+              <p class="home_card__status text-success">Terminé</p>
+            </div>
+            <%= link_to "Voir", trip_rooms_path(@trip), class: "btn btn-secondary button-custom" %>
           <% end %>
           
       </div>

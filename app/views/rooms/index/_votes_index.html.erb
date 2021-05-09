@@ -3,20 +3,19 @@
     <p><strong>Mon classement</strong></p>
     <div class="d-flex ml-auto">
       <% if @trip.user == current_user %>
-        <%= button_to trip_back_propositions_path(@trip), method: :put, class: "btn btn-outline-primary btn-sm text-center" do %>
+        <%= button_to trip_back_propositions_path(@trip), method: :put, class: "btn btn-outline-primary btn-sm text-center", data: { confirm: "Êtes-vous sûr ?"} do %>
           <i class="fas fa-undo-alt"></i> Propositions
         <% end %>
       <% end %>
     </div>
   </div>
-
   <% if !@participant.room_votes.empty? %>
     <p class="text-center m-3 px-3"><small>En attente des autres participants</small></p>
     <div class="row justify-content-center">
       <div class="col-12 col-sm-6 votes-avatar-grid">
         <% @participants.each do |participant| %>
           <%= link_to "#", data: {toggle:"tooltip", placement:"bottom"}, title:"#{participant.user.first_name}", style:"justify-self: center; align-self: center" do  %>
-            <div class="avatar-custom text-white" style="border: <%= participant.room_votes.empty? ? 'red' : 'green' %> 2px solid;">
+            <div class="avatar-custom text-white" style="border: <%= participant.room_votes.empty? ? '#FB9F89' : '#60AB9A' %> 2px solid;">
               <p><%= participant.user.first_name.first(1).upcase %></p>
             </div>
           <% end %>
@@ -42,12 +41,14 @@
   <% if @participant.room_votes.empty? %>
     <%= form_for(@participant, html:{id: "vote_form"}, :url => participant_save_room_votes_path(@participant, trip_id: @trip.id)) do %>
       <%= hidden_field_tag(:room_votes, "", id: "ranks", class: "hidden" ) %>
-      <%= button_tag(type: "submit", class: "btn btn-primary btn-valid-vote") do %>
+      <%= button_tag(type: "submit", class: "btn btn-primary btn-valid-vote", data: { confirm: "Êtes-vous sûr ?"}) do %>
         <i class="fas fa-vote-yea mr-1"></i> Voter
       <% end %>
     <% end %>
   <% else %>
-    <%= link_to "Modifier mon vote", "#", class: "btn btn-primary btn-sm disabled"  %>
+    <div class="d-flex justify-content-around my-3 ">
+      <%= link_to "Modifier mon vote", "#", class: "btn btn-primary btn-sm disabled"  %>
+    </div>
   <% end %>
 </div>
 

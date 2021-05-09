@@ -76,6 +76,13 @@ class TripsController < ApplicationController
     redirect_to trip_rooms_path(@trip)
   end
 
+  def back_votes
+    @trip = Trip.find(params[:trip_id])
+    @trip.participants.each {|participant| participant.update(room_votes: [])}
+    @trip.back_votes!
+    redirect_to trip_rooms_path(@trip)
+  end
+
   private
 
   def trip_params

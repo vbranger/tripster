@@ -7,7 +7,7 @@
         <i class="fas fa-plus-circle"></i> Ajouter
       <% end %>
       <% if @trip.user == current_user %>
-        <%= button_to trip_start_votes_path(@trip), method: :put, class: "btn btn-outline-primary btn-sm text-center" do %>
+        <%= button_to trip_start_votes_path(@trip), method: :put, class: "btn btn-outline-primary btn-sm text-center", data: { confirm: "Êtes-vous sûr ?"} do %>
           <i class="fas fa-person-booth"></i> Voter
         <% end %>
       <% end %>

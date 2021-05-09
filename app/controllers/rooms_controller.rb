@@ -123,6 +123,8 @@ class RoomsController < ApplicationController
       else
         @rooms = @participant.room_votes.map{|id| Room.find(id)}
       end
+    elsif @trip.finished?
+      @rooms = @trip.choosen_room_ids.map {|id| Room.find(id)}
     end
   end
   

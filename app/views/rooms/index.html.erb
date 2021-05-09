@@ -2,4 +2,6 @@
   <%= render partial: 'rooms/index/votes_index.html.erb' %>
 <% elsif @trip.propositions? %>
   <%= render partial: 'rooms/index/propositions_index.html.erb' %>
+<% elsif @trip.finished? %>
+  <%= render partial: 'rooms/index/finished_index.html.erb' %>
 <% end %>

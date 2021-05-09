@@ -1,7 +1,13 @@
 .background-rounded-white {
   border-radius: 16px 16px 0px 0px; 
   background-color: white; 
-  min-height: calc(100vh - 64px - 42.8px);
+  min-height: calc(100vh - 60px - 42.8px);
+}
+
+.background-rounded-white-no-tab {
+  border-radius: 16px 16px 0px 0px; 
+  background-color: white; 
+  min-height: calc(100vh - 60px);
 }
 
 .dot {

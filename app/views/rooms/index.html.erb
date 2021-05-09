@@ -1,24 +1,7 @@
-<div class="background-rounded-white p-3">
-  <div class="d-flex align-items-center mb-3">
-    <p class="text-center"><strong><%= @trip.rooms.count < 2 ? @trip.rooms.count.to_s + ' logement' : @trip.rooms.count.to_s + ' logements' %> </strong></p>
-    <%# <span class="badge badge-pill badge-warning ml-auto">En cours</span> %>
-    <%= link_to "Ajouter un lieu", new_trip_room_path(@trip), class: "btn btn-outline-primary btn-sm text-center ml-auto" %>
-  </div>
-  <div class="d-flex mt-3">
-    <p class="d-none d-sm-block mr-2"><small>Trier : </small></p>
-    <%= link_to "Mieux notés", trip_rooms_path(query:['top_rated'],user_id:params[:user_id]), class: "btn #{params[:query] == ['top_rated'] || params[:query].nil? ? 'btn-primary' : 'btn-outline-primary' } button-custom mr-3 px-1" %>
-    <%= link_to "Nouveautés", trip_rooms_path(query:['newest'],user_id:params[:user_id]), class: "btn #{params[:query] == ['newest'] ? 'btn-primary' : 'btn-outline-primary'}  button-custom mr-3 px-1" %>
-    <%= link_to "Mon choix", trip_rooms_path(query:['user_order'],user_id:params[:user_id]), class: "btn #{params[:query] == ['user_order'] ? 'btn-primary' : 'btn-outline-primary'}  button-custom mr-3 px-1" %>
-  </div>
-  <div class="d-none d-sm-flex mt-3">
-    <p class="mr-2"><small>Avis de : </small></p>
-    <% @participants.each do |participant| %>
-      <%= link_to participant.user.first_name, trip_rooms_path(user_id:[participant.user.id],query:params[:query]),class: "btn #{participant.active?(params, participant.user, current_user) ? 'btn-primary' : 'btn-outline-primary' } button-custom mr-3 px-1" %>
-    <% end %>
-  </div>
-  <ul class="list-group list-group-flush border-0">
-    <% @rooms.each do |room| %>
-      <%= render partial: 'shared/room_card', locals: {room: room, user: @user} %>
-    <% end %>
-  </ul>
-</div>
+<% if @trip.votes? %>
+  <%= render partial: 'rooms/index/votes_index.html.erb' %>
+<% elsif @trip.propositions? %>
+  <%= render partial: 'rooms/index/propositions_index.html.erb' %>
+<% elsif @trip.finished? %>
+  <%= render partial: 'rooms/index/finished_index.html.erb' %>
+<% end %>

@@ -42,6 +42,8 @@ gem 'acts_as_votable'
 gem 'cliver'
 gem 'mailjet'
 gem 'metainspector'
+# act_as_state_machine
+gem 'aasm', '~> 4.12'
 
 group :development, :test do  gem 'pry-byebug'
   gem 'pry-rails'

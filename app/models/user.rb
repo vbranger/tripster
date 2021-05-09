@@ -17,4 +17,7 @@ class User < ApplicationRecord
     UserMailer.welcome(self).deliver_now
   end
   
+  def participant(trip)
+    Participant.where(user_id: self.id, trip_id: trip.id).first
+  end
 end

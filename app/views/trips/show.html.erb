@@ -27,35 +27,40 @@
     <div class="tab-pane fade p-3 show active" id="home" role="tabpanel" aria-labelledby="home-tab">
       <!-- CARD DESTINATION -->
       <div class="home_card">
-            <%= image_tag "undraw_adventure_4hum.svg", class:"d-sm-block" %>
+        <div class="d-flex align-items-center justify-items-between">
+            <%= image_tag "undraw_adventure_4hum.svg", class:"d-none d-sm-block home_card_img" %>
           <div class="home_card__info">
             <p class="home_card__category">destination</p>
             <p class="home_card__status"><%= !@trip.destination || @trip.destination == "" ? "A définir" : @trip.destination %></p>
           </div>
           <%= link_to "Voir", edit_destination_path(@trip), class: "btn btn-secondary button-custom" %>
+        </div>
       </div>
 
       <!-- CARD DATES -->
       <div class="home_card">
-        <%= image_tag "undraw_date_picker_gorr.svg", class:"d-sm-block"  %>
-        <% if @trip.dates_chosen? %>
-          <div class="home_card__info">
-            <p class="home_card__category">dates</p>
-            <p class="home_card__status"><%= "#{@trip.start_date.strftime('%d/%m/%y')} - #{@trip.end_date.strftime('%d/%m/%y')}"%></p>
-          </div>
-          <%= link_to "Modifier", "#{@trip.id}/edit_dates", class: "btn btn-secondary button-custom"  %>
-        <% else %>
-          <div class="home_card__info">
-            <p class="home_card__category">dates</p>
-            <p class="home_card__status">A définir</p>
-          </div>
-          <%= link_to "Démarrer", "#{@trip.id}/edit_dates", class: "btn btn-secondary btn-sm text-center"  %>
-        <% end %>
+        <div class="d-flex align-items-center justify-items-between">
+          <%= image_tag "undraw_date_picker_gorr.svg", class:"d-none d-sm-block  home_card_img"  %>
+          <% if @trip.dates_chosen? %>
+            <div class="home_card__info">
+              <p class="home_card__category">dates</p>
+              <p class="home_card__status"><%= "#{@trip.start_date.strftime('%d/%m/%y')} - #{@trip.end_date.strftime('%d/%m/%y')}"%></p>
+            </div>
+            <%= link_to "Modifier", "#{@trip.id}/edit_dates", class: "btn btn-secondary button-custom"  %>
+          <% else %>
+            <div class="home_card__info">
+              <p class="home_card__category">dates</p>
+              <p class="home_card__status">A définir</p>
+            </div>
+            <%= link_to "Démarrer", "#{@trip.id}/edit_dates", class: "btn btn-secondary btn-sm text-center"  %>
+          <% end %>
+        </div>
       </div>
       
       <!-- CARD LOGEMENT -->
       <div class="home_card">
-            <%= image_tag "undraw_house_searching.svg", class:"d-sm-block" %>
+        <div class="d-flex align-items-center justify-items-between">
+          <%= image_tag "undraw_house_searching.svg", class:"d-none d-sm-block  home_card_img" %>
           <div class="home_card__info">
             <p class="home_card__category">logement</p>
           <% if @trip.propositions? %>
@@ -65,17 +70,23 @@
           <% elsif @trip.not_started? %>
               <p class="home_card__status">Non défini</p>
             </div>
-            <%= button_to "Démarrer", trip_start_propositions_path(@trip), method: :put, class: "btn btn-secondary button-custom" %>
+            <%= button_to "Démarrer", trip_start_propositions_path(@trip), method: :put, class: "btn btn-primary button-custom" %>
           <% elsif @trip.votes? %>
               <p class="home_card__status"><%= @trip.rooms.count < 2 ? @trip.rooms.count.to_s + ' proposition retenue' : @trip.rooms.count.to_s + ' propositions retenues' %></p>
             </div>
             <%= link_to "Voir", trip_rooms_path(@trip), class: "btn btn-secondary button-custom" %>
           <% elsif @trip.finished? %>
-              <p class="home_card__status text-success">Terminé</p>
             </div>
-            <%= link_to "Voir", trip_rooms_path(@trip), class: "btn btn-secondary button-custom" %>
+            <%= link_to "Modifier", trip_rooms_path(@trip), class: "btn btn-outline-secondary button-custom disabled" %>
           <% end %>
-          
+        </div>
+        <% if @trip.finished? %>
+          <div>
+            <% @choosen_rooms.each do |room| %>
+              <%= render partial: 'shared/choosen_room_card', locals: {room: room} %>
+            <% end %>  
+          </div>
+        <% end %>
       </div>
 
     </div>

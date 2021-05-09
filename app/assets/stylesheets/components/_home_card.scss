@@ -19,10 +19,6 @@
 }
 
 .home_card {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
   max-width: 500px;
   margin: 0 auto 0.5rem auto;
   padding: 0.5rem 1rem;
@@ -30,10 +26,9 @@
   border: 0.5px solid #515151;
   border-radius: 8px;
   
-  & img {
+  & .home_card_img {
     max-width: 3rem;
     margin: 0 1rem 0 0.5rem;
-    display: none;
   }
 
   & .home_card__info {

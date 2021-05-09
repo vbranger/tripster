@@ -23,6 +23,9 @@ class TripsController < ApplicationController
     @participants_list = @trip.participants_list
     @news = News.where(trip_id: @trip.id).order(created_at: :desc).first(10)
     @rooms = Room.where(trip: @trip)
+    if @trip.finished?
+      @choosen_rooms = @trip.choosen_room_ids.map { |id| Room.find(id) }
+    end
   end
 
   def destroy

@@ -1,0 +1,16 @@
+  <div class="row border-0 mt-3 align-items-center">
+    <div class="col-4 text-sm-left pr-0">
+      <%= link_to trip_room_path(room, trip_id: room.trip.id) do %>
+        <figure style="margin: 0">
+          <%= image_tag(room.photo, class: "rounded ", style: "width: 100%; object-fit: cover;") if room.photo %>
+        </figure>    
+      <% end %>
+    </div>
+    <div class="col-8 text-dark">
+      <p style="font-weight: bold; font-size: 0.9rem;">
+        <%= link_to trip_rooms_path(room.trip.id) do %>
+          <strong><%= room.name? ? room.name : "Non identifié" %></strong>
+        <% end %>
+      </p>
+    </div>
+  </div>

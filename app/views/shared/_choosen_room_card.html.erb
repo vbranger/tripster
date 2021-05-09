@@ -9,7 +9,7 @@
     <div class="col-8 text-dark">
       <p style="font-weight: bold; font-size: 0.9rem;">
         <%= link_to trip_rooms_path(room.trip.id) do %>
-          <strong><%= room.name? ? room.name : "Non identifié" %></strong>
+          <strong class="text-secondary"><%= room.name? ? room.name : "Non identifié" %></strong>
         <% end %>
       </p>
     </div>

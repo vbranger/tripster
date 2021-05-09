@@ -47,7 +47,7 @@
     <% end %>
   <% else %>
     <div class="d-flex justify-content-around my-3 ">
-      <%= link_to "Modifier mon vote", "#", class: "btn btn-primary btn-sm disabled"  %>
+      <%= link_to "Modifier mon vote", trip_reset_vote_path(@trip), class: "btn btn-outline-primary btn-sm"  %>
     </div>
   <% end %>
 </div>

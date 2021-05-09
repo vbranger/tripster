@@ -74,7 +74,7 @@
           <% elsif @trip.votes? %>
               <p class="home_card__status"><%= @trip.rooms.count < 2 ? @trip.rooms.count.to_s + ' proposition retenue' : @trip.rooms.count.to_s + ' propositions retenues' %></p>
             </div>
-            <%= link_to "Voir", trip_rooms_path(@trip), class: "btn btn-secondary button-custom" %>
+            <%= link_to "Voter", trip_rooms_path(@trip), class: "btn btn-primary button-custom" %>
           <% elsif @trip.finished? %>
             </div>
             <%= link_to "Modifier", trip_rooms_path(@trip), class: "btn btn-outline-secondary button-custom disabled" %>

@@ -75,15 +75,22 @@ class TripsController < ApplicationController
 
   def back_propositions
     @trip = Trip.find(params[:trip_id])
-    @trip.participants.each {|participant| participant.update(room_votes: [])}
+    @trip.participants.each { |participant| participant.update(room_votes: []) }
     @trip.back_propositions!
     redirect_to trip_rooms_path(@trip)
   end
 
   def back_votes
     @trip = Trip.find(params[:trip_id])
-    @trip.participants.each {|participant| participant.update(room_votes: [])}
+    @trip.participants.each { |participant| participant.update(room_votes: []) }
     @trip.back_votes!
+    redirect_to trip_rooms_path(@trip)
+  end
+
+  def reset_vote
+    @trip = Trip.find(params[:trip_id])
+    @participant = current_user.participant(@trip)
+    @participant.update(room_votes: [])
     redirect_to trip_rooms_path(@trip)
   end
 

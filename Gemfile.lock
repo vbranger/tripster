@@ -65,6 +65,8 @@ GEM
     acts_as_votable (0.13.1)
     addressable (2.7.0)
       public_suffix (>= 2.0.2, < 5.0)
+    after_commit_everywhere (1.0.0)
+      activerecord (>= 4.2)
     autoprefixer-rails (10.2.4.0)
       execjs
     bcrypt (3.1.16)
@@ -301,6 +303,7 @@ PLATFORMS
 DEPENDENCIES
   aasm (~> 4.12)
   acts_as_votable
+  after_commit_everywhere (~> 1.0)
   autoprefixer-rails
   bootsnap (>= 1.4.4)
   byebug

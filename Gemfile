@@ -44,6 +44,7 @@ gem 'mailjet'
 gem 'metainspector'
 # act_as_state_machine
 gem 'aasm', '~> 4.12'
+gem 'after_commit_everywhere', '~> 1.0'
 
 group :development, :test do  gem 'pry-byebug'
   gem 'pry-rails'

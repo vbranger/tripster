@@ -12,7 +12,7 @@
   </div>
       <% end %>
   <nav class="navbar navbar-dark pt-1">
-    <% if !user_signed_in? || params[:controller] == 'trips' && params[:action] == 'index' %>
+    <% if !user_signed_in? || params[:controller] == 'trips' && params[:action] == 'index' || params[:controller] == "pages" %>
       <%= link_to root_path, class: "navbar-brand" do %>
           <p style="font-family: Ranchers">tripster</p>
       <% end %>
@@ -30,7 +30,7 @@
       <% end %>
     <% end %>
 
-    <% unless params[:controller] == 'trips' && params[:action] == 'index' || !user_signed_in?%>
+    <% unless params[:controller] == 'trips' && params[:action] == 'index' || !user_signed_in? || params[:controller] == 'pages' %>
       <div class="col-10 text-center text-truncate text-light">
         <p class="text-light font-weight-bold text-truncate"><%= @trip.name %></p>
         <small class="text-light font-weight-light"><%= @participants_list %></small>

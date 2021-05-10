@@ -3,4 +3,7 @@ class PagesController < ApplicationController
 
   def waiting_confirmation
   end
+
+  def room_process
+  end
 end

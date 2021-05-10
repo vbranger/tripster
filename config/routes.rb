@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   root to: 'trips#index'
 
   get 'waiting_confirmation', to: 'pages#waiting_confirmation'
+  get 'room_process', to: 'pages#room_process'
 
   get 'trips/:id/reset_dates', to: 'trips#reset_dates', as: 'reset_dates'
   get 'trips/:id/edit_destination', to: 'trips#edit_destination', as: 'edit_destination'

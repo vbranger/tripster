@@ -13,34 +13,36 @@ class RoomsController < ApplicationController
     @room = Room.new(room_params)
     @trip = Trip.find(params[:trip_id])
     @room.trip = @trip
-    @room.universal_scrap
-    if @room.url.include? "airbnb"
-      @room.website = "airbnb"
-      @room.get_airbnb_id
-      p "starting scrap"
-      @room.scrap_airbnb
-      p "ended scrap"
-    elsif @room.url.include? "abnb"
-      @room.website = "airbnb"
-      @room.convert_url
-      @room.get_airbnb_id
-      p "starting scrap"
-      @room.scrap_airbnb
-      p "ended scrap"
-    elsif @room.url.include? "hmwy"
-      @room.website = "abritel"
-      @room.convert_url
-      p "starting scrap"
-      @room.scrap_abritel
-      p "ended scrap"
-    elsif @room.url.include? "abritel.fr"
-      @room.website = "abritel"
-      p "starting scrap"
-      @room.scrap_abritel
-      p "ended scrap"
-    elsif @room.url.include? "www.coinsecret.com"
-      @room.universal_scrap
-    end
+    @room.test_scrap
+    # @room.universal_scrap
+    # if @room.url.include? "airbnb"
+    #   @room.website = "airbnb"
+    #   @room.get_airbnb_id
+    #   p "starting scrap"
+    #   @room.scrap_airbnb
+    #   p "ended scrap"
+    # elsif @room.url.include? "abnb"
+    #   @room.website = "airbnb"
+    #   @room.convert_url
+    #   @room.get_airbnb_id
+    #   p "starting scrap"
+    #   @room.scrap_airbnb
+    #   p "ended scrap"
+    # elsif @room.url.include? "hmwy"
+    #   @room.website = "abritel"
+    #   @room.convert_url
+    #   p "starting scrap"
+    #   @room.scrap_abritel
+    #   p "ended scrap"
+    # elsif @room.url.include? "abritel.fr"
+    #   @room.website = "abritel"
+    #   p "starting scrap"
+    #   @room.scrap_abritel
+    #   p "ended scrap"
+    # elsif @room.url.include? "www.coinsecret.com"
+    #   @room.universal_scrap
+    # end
+
     if @room.save
       News.create!(user: current_user, trip_id: @trip.id, action_type: "#{params[:controller]}##{params[:action]}", imageable_type: "Room", imageable_id: @room.id)
       redirect_to trip_rooms_path(@trip)

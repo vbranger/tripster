@@ -78,6 +78,9 @@ class Room < ApplicationRecord
     p self.photo = page.images.best
   end
   
+  def test_scrap
+    
+  end
 
   private
 

@@ -68,7 +68,7 @@ class TripsController < ApplicationController
   end
 
   def start_votes
-    @trip= Trip.find(params[:trip_id])
+    @trip = Trip.find(params[:trip_id])
     @trip.start_votes!
     redirect_to trip_rooms_path(@trip)
   end

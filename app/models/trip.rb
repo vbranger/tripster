@@ -5,7 +5,9 @@ class Trip < ApplicationRecord
     state :not_started, initial: true
     state :propositions
     state :votes
-    state :finished
+    state :draw
+    state :choosen
+    state :booked
 
     event :start_propositions do
       transitions from: [:not_started], to: :propositions

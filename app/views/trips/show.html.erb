@@ -58,7 +58,7 @@
       </div>
       
       <!-- CARD LOGEMENT -->
-      <div class="home_card <%= 'border-success' if @trip.finished?%>">
+      <div class="home_card <%= 'border-success' if @trip.choosen?%>">
         <div class="d-flex align-items-center justify-items-between">
           <%= image_tag "undraw_house_searching.svg", class:"d-none d-sm-block  home_card_img" %>
           <div class="home_card__info">
@@ -75,12 +75,12 @@
               <p class="home_card__status"><%= @trip.rooms.count < 2 ? @trip.rooms.count.to_s + ' proposition retenue' : @trip.rooms.count.to_s + ' propositions retenues' %></p>
             </div>
             <%= link_to "Voter", trip_rooms_path(@trip), class: "btn btn-primary button-custom" %>
-          <% elsif @trip.finished? %>
+          <% elsif @trip.choosen? %>
             </div>
             <%= link_to "Modifier", trip_rooms_path(@trip), class: "btn btn-outline-secondary button-custom disabled" %>
           <% end %>
         </div>
-        <% if @trip.finished? %>
+        <% if @trip.choosen? %>
           <div>
             <% @choosen_rooms.each do |room| %>
               <%= render partial: 'shared/choosen_room_card', locals: {room: room} %>

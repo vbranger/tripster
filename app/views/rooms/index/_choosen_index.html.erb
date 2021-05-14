@@ -11,11 +11,11 @@
   </div>
   <% if @rooms.count == 1 %>
     <p><small>Voici le logement que vous avez sélectionné !</small></p>
-    <%= render partial: 'shared/room_finished_card', locals: {room: @rooms.first} %>
+    <%= render partial: 'shared/room_choosen_card', locals: {room: @rooms.first} %>
   <% else %>
     <p>Plusieurs logements sont à égalité</p>
     <% @rooms.each do |room| %>
-      <%= render partial: 'shared/room_finished_card', locals: {room: room} %>
+      <%= render partial: 'shared/room_choosen_card', locals: {room: room} %>
     <% end %>
   <% end %>
 </div>

@@ -1,6 +1,6 @@
 <div class="background-rounded-white-no-tab p-3  justify-content-center">
   <div class="d-flex align-items-center mb-3">
-    <p><strong>Résultat final</strong></p>
+    <p><strong>Résultat du vote</strong></p>
     <div class="d-flex ml-auto">
       <% if @trip.user == current_user %>
         <%= button_to trip_back_votes_path(@trip), method: :put, class: "btn btn-outline-primary btn-sm text-center", data: { confirm: "Êtes-vous sûr ?"} do %>
@@ -9,13 +9,6 @@
       <% end %>
     </div>
   </div>
-  <% if @rooms.count == 1 %>
-    <p><small>Voici le logement que vous avez sélectionné !</small></p>
-    <%= render partial: 'shared/room_finished_card', locals: {room: @rooms.first} %>
-  <% else %>
-    <p>Plusieurs logements sont à égalité</p>
-    <% @rooms.each do |room| %>
-      <%= render partial: 'shared/room_finished_card', locals: {room: room} %>
-    <% end %>
-  <% end %>
+  <p><small>Voici le logement que vous avez sélectionné !</small></p>
+  <%= render partial: 'shared/room_choosen_card', locals: {room: @room} %>
 </div>

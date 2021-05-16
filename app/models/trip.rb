@@ -5,7 +5,9 @@ class Trip < ApplicationRecord
     state :not_started, initial: true
     state :propositions
     state :votes
-    state :finished
+    state :draw
+    state :choosen
+    state :booked
 
     event :start_propositions do
       transitions from: [:not_started], to: :propositions
@@ -16,7 +18,15 @@ class Trip < ApplicationRecord
     end
 
     event :choose_room do
-      transitions from: [:votes], to: :finished
+      transitions from: [:votes, :draw], to: :choosen
+    end
+
+    event :set_as_draw do
+      transitions from: [:votes], to: :draw
+    end
+
+    event :set_as_booked do
+      transitions from: [:choosen], to: :booked
     end
 
     event :back_propositions do
@@ -24,7 +34,11 @@ class Trip < ApplicationRecord
     end
 
     event :back_votes do
-      transitions from: [:finished], to: :votes
+      transitions from: [:choosen, :draw], to: :votes
+    end
+
+    event :unbook do
+      transitions from: [:booked], to: :choosen
     end
   end
 

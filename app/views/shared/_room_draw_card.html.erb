@@ -13,10 +13,10 @@
         <% end %>
       </p>
       <div class="d-none d-sm-block">
-        <%= link_to 'Réserver', room.url, class: "btn btn-primary #{'disabled' if room.trip.user != current_user}", style: "font-size: 0.8rem; position: absolute; bottom: 0" %>
+        <%= link_to 'Choisir', trip_room_choose_room_path(room_id: room), method: :put, class: "btn btn-primary #{'disabled' if room.trip.user != current_user}", style: "font-size: 0.8rem; position: absolute; bottom: 0" %>
       </div>
     </div>
   </div>
   <div class="d-flex d-sm-none justify-content-around mb-3 ">
-    <%= link_to 'Réserver', room.url, class: "btn btn-primary #{'disabled' if room.trip.user != current_user}", style: "font-size: 0.8rem" %>
+    <%= link_to 'Choisir', trip_room_choose_room_path(room_id: room), method: :put, class: "btn btn-primary #{'disabled' if room.trip.user != current_user}", style: "font-size: 0.8rem" %>
   </div>

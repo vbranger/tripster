@@ -77,7 +77,10 @@
             <%= link_to "Voter", trip_rooms_path(@trip), class: "btn btn-primary button-custom" %>
           <% elsif @trip.choosen? %>
             </div>
-            <%= link_to "Modifier", trip_rooms_path(@trip), class: "btn btn-outline-secondary button-custom disabled" %>
+            <%= link_to "Voir", trip_rooms_path(@trip), class: "btn btn-primary button-custom" %>
+          <% elsif @trip.draw? %>
+            </div>
+            <%= link_to "Choisir", trip_rooms_path(@trip), class: "btn btn-primary button-custom" %>
           <% end %>
         </div>
         <% if @trip.choosen? %>

@@ -116,10 +116,21 @@ class RoomsController < ApplicationController
         @rooms = @participant.room_votes.map{|id| Room.find(id)}
       end
     elsif @trip.choosen?
+      @room = Room.find(@trip.choosen_room_ids.first)
+    elsif @trip.draw?
       @rooms = @trip.choosen_room_ids.map {|id| Room.find(id)}
     end
   end
-  
+
+  def choose_room
+    @trip = Trip.find(params[:trip_id])
+    @room = Room.find(params[:room_id])
+    @trip.choosen_room_ids.delete(params[:room_id].to_i)
+    @trip.choosen_room_ids.unshift(params[:room_id].to_i)
+    @trip.choose_room!
+    
+    redirect_to trip_rooms_path(@trip)
+  end
 
   private
 

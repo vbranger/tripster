@@ -35,10 +35,8 @@ class ParticipantsController < ApplicationController
     @participant = Participant.find(params[:participant_id])
     room_votes = params[:room_votes].split(",")
     @participant.update(room_votes: room_votes)
-
     @participants = @trip.participants
     @participants_list = @trip.participants_list
-    raise
     # test si tout le monde à voter
     if all_voted?(@participants)
       p "check votes"
@@ -48,7 +46,7 @@ class ParticipantsController < ApplicationController
       @trip.update(choosen_room_ids: ids)
       if @trip.choosen_room_ids.count == 1
         @trip.choose_room!
-      elsif @trip.choosen_room_ids > 1
+      elsif @trip.choosen_room_ids.count > 1
         @trip.set_as_draw!
       end
     end

@@ -72,7 +72,7 @@
             </div>
             <%= button_to "Démarrer", trip_start_propositions_path(@trip), method: :put, class: "btn btn-primary button-custom" %>
           <% elsif @trip.votes? %>
-              <p class="home_card__status"><%= @trip.rooms.count < 2 ? @trip.rooms.count.to_s + ' proposition retenue' : @trip.rooms.count.to_s + ' propositions retenues' %></p>
+              <p class="home_card__status"><%= @trip.rooms.count >= 4 ? '4 propositions retenues' : @trip.rooms.count.to_s + ' propositions retenues' %></p>
             </div>
             <%= link_to "Voter", trip_rooms_path(@trip), class: "btn btn-primary button-custom" %>
           <% elsif @trip.choosen? %>
@@ -82,10 +82,10 @@
         </div>
         <% if @trip.choosen? %>
           <div>
-            <% @choosen_rooms.each do |room| %>
-              <%= render partial: 'shared/choosen_room_card', locals: {room: room} %>
-            <% end %>  
+            <%= render partial: 'shared/choosen_room_card', locals: {room: @choosen_room} %>
           </div>
+        <% elsif @trip.draw? %>
+
         <% end %>
       </div>
 

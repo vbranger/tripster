@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     put :back_votes
     get :reset_vote
     resources :rooms, only: [:new, :create, :index, :show, :destroy] do
+      put :choose_room
       resources :reviews, only: [ :new, :create, :index, :edit, :update ]
       member do
         put "like" => "rooms#like"

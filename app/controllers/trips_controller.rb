@@ -24,6 +24,8 @@ class TripsController < ApplicationController
     @news = News.where(trip_id: @trip.id).order(created_at: :desc).first(10)
     @rooms = Room.where(trip: @trip)
     if @trip.choosen?
+      @choosen_room = Room.find(@trip.choosen_room_ids.first)
+    elsif @trip.draw?
       @choosen_rooms = @trip.choosen_room_ids.map { |id| Room.find(id) }
     end
   end

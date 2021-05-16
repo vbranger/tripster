@@ -1,22 +1,30 @@
   <div class="row border-0 my-3">
-    <div class="col-12 col-sm-4 text-sm-left">
+    <div class="col-12 col-sm-6 text-sm-left">
       <%= link_to trip_room_path(room, trip_id: room.trip.id) do %>
         <figure style="margin: 0">
-          <%= image_tag(room.photo, class: "rounded", style: "height: 20vh; width: 100%; object-fit: cover;") if room.photo %>
+          <%= image_tag(room.photo, class: "rounded", style: "height: 30vh; width: 100%; object-fit: cover;") if room.photo %>
         </figure>    
       <% end %>
     </div>
-    <div class="col-12 col-sm-8 text-dark">
-      <p class="text-truncate">
+    <div class="col-12 col-sm-6 text-dark">
+      <p class="text-truncate text-center text-sm-left">
         <%= link_to trip_room_path(room, trip_id: room.trip.id) do %>
           <strong><%= room.name? ? room.name : "Non identifié" %></strong>
         <% end %>
       </p>
       <div class="d-none d-sm-block">
-        <%= link_to 'Réserver', room.url, class: "btn btn-primary #{'disabled' if room.trip.user != current_user}", style: "font-size: 0.8rem; position: absolute; bottom: 0" %>
+        <p class="my-3"><%= link_to "Réserver sur #{room.website}", room.url, target: :_blank, class: "btn btn-primary #{'disabled' if room.trip.user != current_user}", style: "font-size: 0.8rem" %></p>
+        <p class="my-3"><small>Lorsque votre réservation est confirmée, faites le savoir aux autres participants</small></p>
+        <p class="my-3"><%= link_to "#", class:" btn btn-outline-primary #{'disabled' if room.trip.user != current_user}", style: "font-size: 0.8rem" do %>
+         <i class="fas fa-check"></i> Confirmer
+        <% end %></p>
       </div>
     </div>
   </div>
-  <div class="d-flex d-sm-none justify-content-around mb-3 ">
-    <%= link_to 'Réserver', room.url, class: "btn btn-primary #{'disabled' if room.trip.user != current_user}", style: "font-size: 0.8rem" %>
+  <div class="d-block d-sm-none text-center mb-3 ">
+    <%= link_to "Réserver sur #{room.website}", room.url, target: :_blank, class: "btn btn-primary #{'disabled' if room.trip.user != current_user}", style: "font-size: 0.8rem" %>
+    <p class="my-3"><small>Lorsque votre réservation est confirmée, faites le savoir aux autres participants</small></p>
+    <%= link_to "#", class:" btn btn-outline-primary #{'disabled' if room.trip.user != current_user}", style: "font-size: 0.8rem" do %>
+     <i class="fas fa-check"></i> Confirmer
+    <% end %>
   </div>

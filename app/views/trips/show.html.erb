@@ -85,7 +85,9 @@
             <%= render partial: 'shared/choosen_room_card', locals: {room: @choosen_room} %>
           </div>
         <% elsif @trip.draw? %>
-
+          <% @choosen_rooms.each do |room| %>
+              <%= render partial: 'shared/choosen_room_card', locals: {room: room} %>
+            <% end %>  
         <% end %>
       </div>
 

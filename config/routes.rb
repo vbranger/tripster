@@ -16,7 +16,7 @@ Rails.application.routes.draw do
     put :back_propositions
     put :back_votes
     get :reset_vote
-    resources :rooms, only: [:new, :create, :index, :show, :destroy] do
+    resources :rooms, only: [:new, :create, :index, :show, :destroy, :update] do
       put :choose_room
       resources :reviews, only: [ :new, :create, :index, :edit, :update ]
       member do
@@ -24,6 +24,7 @@ Rails.application.routes.draw do
       end
     end
   end
+  resources :rooms, only: [:edit, :update]
   resources :participants, only: [:new, :create, :destroy] do
     patch :save_room_votes
   end

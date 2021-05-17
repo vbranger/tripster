@@ -1,0 +1,15 @@
+<div class="background-rounded-white p-3">
+  <%= simple_form_for [@trip,@room], :html=> { class: 'room_url_form' } do |f| %>
+  <div class="form-inline">
+    <%= f.input :url, placeholder: "www.airbnb.fr/rooms/12345215", label: false %>
+    <%= f.submit "Importer", :class=>"btn btn-primary" %>
+  </div>
+  <% end %>
+  <%= simple_form_for [@trip,@room] do |f| %>
+    <%= f.input :name %>
+    <%= f.input :price %>
+    <%= f.input :photo %>
+    <%= f.input :website %>
+    <%= f.submit %>
+  <% end %>
+</div>

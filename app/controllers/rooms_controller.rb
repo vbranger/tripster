@@ -153,7 +153,7 @@ class RoomsController < ApplicationController
   private
 
   def room_params
-    params.require(:room).permit(:url)
+    params.require(:room).permit(:url,:name, :website, :price)
   end
 
 end

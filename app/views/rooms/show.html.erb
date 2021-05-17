@@ -1,34 +1,72 @@
 <div class="background-rounded-white p-3">
-  <div class="d-flex p-3 justify-content-end flex-column" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('<%= @room.photo %>'); height: 60vh; background-size: cover; background-position: center;">
-    <h2 class="text-light"><%= @room.name %></h2>
-    <p class="text-light mt-1">
-      <% @room.avg_score.to_i.times do %>
-        <i class="fas fa-star"></i>
-      <% end %>
-      <% (5 - @room.avg_score.to_i).times do %>
-        <i class="far fa-star"></i>
-      <% end %>
-      <small><%= @room.reviews.count %> avis</small>
-    
-    </p>
-  </div>
-  <div class="my-3">
-    <div class="d-flex justify-content-around mb-3 ">
-      
-      <% if Review.where(user_id: current_user.id, room_id: @room.id).empty? %>
-        <%= link_to 'Ecrire un avis', new_trip_room_review_path(@trip, @room), class: "btn btn-secondary", style: "font-size: 0.8rem" %>
-      <% else %>
-        <%= link_to 'Modifier mon avis', edit_trip_room_review_path(@trip, @room, @review), class: "btn btn-outline-secondary", style: "font-size: 0.8rem" %>
-      <% end %>
-      
-      <%= link_to "Voir sur #{@room.website}", @room.url, target: :_blank, class: "btn btn-outline-secondary", style: "font-size: 0.8rem"  %>
+    <div class="row">
+      <div class="d-sm-none col-12">
+        <%= image_tag @room.photo, class:"img-fluid", style:"height:20vh; width: 100%; object-fit: cover"%>
+      </div>
+      <div class="d-none d-sm-block col-12 col-sm-4">
+        <%= image_tag @room.photo, style:"max-width: 100%;min-height: calc(100vh - 60px - 32px);;object-fit: cover;" %>
+      </div>
+      <div class="col-12 col-sm-8">
+        <div class="d-flex d-sm-none justify-content-around justify-content-sm-start my-3 ">
+          <% if Review.where(user_id: current_user.id, room_id: @room.id).empty? %>
+            <%= link_to 'Ecrire un avis', new_trip_room_review_path(@trip, @room), class: "btn btn-secondary mr-3", style: "font-size: 0.8rem" %>
+          <% else %>
+            <%= link_to 'Modifier mon avis', edit_trip_room_review_path(@trip, @room, @review), class: "btn btn-outline-secondary mr-3", style: "font-size: 0.8rem" %>
+          <% end %>
+          
+          <%= link_to "Voir sur #{@room.website}", @room.url, target: :_blank, class: "btn btn-outline-secondary", style: "font-size: 0.8rem"  %>
+        </div>
+        <p class=text-truncate><strong><%= @room.name %></strong></p class=text-truncate>
+        <p class="mt-1">
+          <% @room.avg_score.to_i.times do %>
+            <i class="fas fa-star"></i>
+          <% end %>
+          <% (5 - @room.avg_score.to_i).times do %>
+            <i class="far fa-star"></i>
+          <% end %>
+          <small><%= @room.reviews.count %> avis</small>
+        </p>
+        
+        <div class="_room_infos mt-3">
+          <div class="row">
+            <div class="col-5 col-sm-4">
+              <small><i class="fas fa-money-bill mr-2"></i><%= @room.price %>0 €</small>
+            </div>
+            <div class="col-6 col-sm-6">
+              <small><i class="fas fa-info-circle mr-2"></i><%= @room.website %></small>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-5 col-sm-4">
+              <small><i class="fas fa-bed mr-2"></i>34 ch.</small>
+            </div>
+            <div class="col-7 col-sm-6">
+              <p class="text-truncate"><small><i class="fas fa-search mr-2"></i>Rennes, Bretagne</small></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="my-3">
+          <div class="reviews d-flex flex-column">
+            <% @reviews.each do |review| %>
+              <%= render partial: 'shared/review_text', locals: { review: review, user: review.user } %>
+            <% end %>
+          </div>
+          <div class="d-none d-sm-flex justify-content-around justify-content-sm-start my-3 ">
+            <% if Review.where(user_id: current_user.id, room_id: @room.id).empty? %>
+              <%= link_to 'Ecrire un avis', new_trip_room_review_path(@trip, @room), class: "btn btn-secondary mr-3", style: "font-size: 0.8rem" %>
+            <% else %>
+              <%= link_to 'Modifier mon avis', edit_trip_room_review_path(@trip, @room, @review), class: "btn btn-outline-secondary mr-3", style: "font-size: 0.8rem" %>
+            <% end %>
+            
+            <%= link_to "Voir sur #{@room.website}", @room.url, target: :_blank, class: "btn btn-outline-secondary mr-3", style: "font-size: 0.8rem"  %>
+            <%= link_to "Supprimer le logement", trip_room_path(@room, trip_id: @room.trip.id), method: :delete, data: { confirm: "Êtes-vous sûr ?"}, class: "btn btn-outline-danger mr-3", style: "font-size: 0.8rem" %>
+          </div>
+          <div class="d-flex d-sm-none justify-content-around justify-content-sm-start my-3 ">
+            <%= link_to "Supprimer le logement", trip_room_path(@room, trip_id: @room.trip.id), method: :delete, data: { confirm: "Êtes-vous sûr ?"}, class: "btn btn-outline-danger mr-3", style: "font-size: 0.8rem" %>
+          </div>
+        </div>
+        
+      </div>
     </div>
-    <div class="reviews">
-      <% @reviews.each do |review| %>
-        <%= render partial: 'shared/review_card', locals: { review: review } %>
-      <% end %>
-    </div>
-    <br>
-  <%= link_to "Supprimer le logement", trip_room_path(@room, trip_id: @room.trip.id), method: :delete, data: { confirm: "Êtes-vous sûr ?"}, class: "btn btn-outline-danger" %>
-  </div>
 </div>

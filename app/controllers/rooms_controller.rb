@@ -13,8 +13,9 @@ class RoomsController < ApplicationController
     @room = Room.new(room_params)
     @trip = Trip.find(params[:trip_id])
     @room.trip = @trip
-    @room.universal_scrap
+    # @room.universal_scrap
     if @room.url.include? "airbnb"
+      p "Scraping AirBNB"
       @room.website = "airbnb"
       @room.get_airbnb_id
       @room.scrap_airbnb
@@ -36,13 +37,30 @@ class RoomsController < ApplicationController
     end
     if @room.save
       News.create!(user: current_user, trip_id: @trip.id, action_type: "#{params[:controller]}##{params[:action]}", imageable_type: "Room", imageable_id: @room.id)
-      redirect_to trip_rooms_path(@trip)
+      # redirect_to trip_rooms_path(@trip)
       @trip.participants.each do |participant|
         UserMailer.new_room_added(current_user, participant, @room).deliver #send the invite data to our mailer to deliver the email
       end
+      
+      redirect_to edit_room_path(@room)
     else
       render :new
     end
+  end
+
+  def edit
+    @room = Room.find(params[:id])
+    @trip = @room.trip
+    @participants = @trip.participants
+    @participants_list = @trip.participants_list
+  end
+
+  def update
+    @room = Room.find(params[:id])
+    @room.update(room_params)
+    @trip = @room.trip
+    
+    redirect_to trip_room_path(@trip, @room)
   end
 
   def show

@@ -1,7 +1,7 @@
-<div class="background-rounded-white p-3">
+<div class="background-rounded-white-no-tab p-3">
     <div class="row">
       <div class="d-sm-none col-12">
-        <%= image_tag @room.photo, class:"img-fluid", style:"height:20vh; width: 100%; object-fit: cover"%>
+        <%= image_tag @room.photo, class:"img-fluid", style:"height:25vh; width: 100%; object-fit: cover"%>
       </div>
       <div class="d-none d-sm-block col-12 col-sm-4">
         <%= image_tag @room.photo, style:"max-width: 100%;min-height: calc(100vh - 60px - 32px);;object-fit: cover;" %>
@@ -16,7 +16,7 @@
           
           <%= link_to "Voir sur #{@room.website}", @room.url, target: :_blank, class: "btn btn-outline-secondary", style: "font-size: 0.8rem"  %>
         </div>
-        <p class=text-truncate><strong><%= @room.name %></strong></p class=text-truncate>
+        <p class="text-truncate text-primary"><strong><%= @room.name %></strong></p class=text-truncate>
         <p class="mt-1">
           <% @room.avg_score.to_i.times do %>
             <i class="fas fa-star"></i>

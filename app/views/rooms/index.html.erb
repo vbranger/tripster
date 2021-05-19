@@ -6,4 +6,6 @@
   <%= render partial: 'rooms/index/choosen_index.html.erb' %>
 <% elsif @trip.draw? %>
   <%= render partial: 'rooms/index/draw_index.html.erb' %>
+<% elsif @trip.booked? %>
+  <%= render partial: 'rooms/index/booked_index.html.erb' %>
 <% end %>

@@ -133,7 +133,7 @@ class RoomsController < ApplicationController
       else
         @rooms = @participant.room_votes.map{|id| Room.find(id)}
       end
-    elsif @trip.choosen?
+    elsif @trip.choosen? || @trip.booked?
       @room = Room.find(@trip.choosen_room_ids.first)
     elsif @trip.draw?
       @rooms = @trip.choosen_room_ids.map {|id| Room.find(id)}

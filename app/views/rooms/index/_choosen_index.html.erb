@@ -1,14 +1,31 @@
-<div class="background-rounded-white-no-tab p-3  justify-content-center">
-  <div class="d-flex align-items-center mb-3">
-    <p><strong>Résultat du vote</strong></p>
-    <div class="d-flex ml-auto">
-      <% if @trip.user == current_user %>
-        <%= button_to trip_back_votes_path(@trip), method: :put, class: "btn btn-outline-primary btn-sm text-center", data: { confirm: "Êtes-vous sûr ?"} do %>
-          <i class="fas fa-undo-alt"></i> Votes
+<div class="background-rounded-white-no-tab p-3">
+    <div class="row">
+      <div class="d-sm-none col-12 mb-3">
+        <%= image_tag @room.photo, class:"img-fluid", style:"height:25vh; width: 100%; object-fit: cover"%>
+      </div>
+      <div class="d-none d-sm-block col-12 col-sm-4">
+        <%= image_tag @room.photo, style:"max-width: 100%;min-height: calc(100vh - 60px - 32px);;object-fit: cover;" %>
+      </div>
+      <div class="col-12 col-sm-8 text-dark">
+      <p class="text-truncate text-center text-sm-left mb-3">
+        <%= link_to trip_room_path(@room, trip_id: @room.trip.id) do %>
+          <strong><%= @room.name? ? @room.name : "Non identifié" %></strong>
         <% end %>
+      </p>
+      <div class="d-none d-sm-block">
+        <p class="my-3"><%= link_to "Réserver sur #{@room.website}", @room.url, target: :_blank, class: "btn btn-primary #{'disabled' if @room.trip.user != current_user}", style: "font-size: 0.8rem" %></p>
+        <p class="my-3"><small>Lorsque votre réservation est confirmée, faites le savoir aux autres participants</small></p>
+        <p class="my-3"><%= link_to trip_set_as_booked_path(@room.trip), method: :put, class:" btn btn-outline-primary #{'disabled' if @room.trip.user != current_user}", style: "font-size: 0.8rem" do %>
+         <i class="fas fa-check"></i> Confirmer
+        <% end %></p>
+      </div>
+    </div>
+    <div class="d-block d-sm-none text-center mb-3 ">
+      <%= link_to "Réserver sur #{@room.website}", @room.url, target: :_blank, class: "btn btn-primary #{'disabled' if @room.trip.user != current_user}", style: "font-size: 0.8rem" %>
+      <p class="col-12 my-3"><small>Lorsque votre réservation est confirmée, faites le savoir aux autres participants</small></p>
+      <%= button_to trip_set_as_booked_path(@room.trip), method: :put, class:" btn btn-outline-primary #{'disabled' if @room.trip.user != current_user}", style: "font-size: 0.8rem" do %>
+      <i class="fas fa-check"></i> Confirmer
       <% end %>
     </div>
-  </div>
-  <p><small>Voici le logement que vous avez sélectionné !</small></p>
-  <%= render partial: 'shared/room_choosen_card', locals: {room: @room} %>
+    </div>
 </div>

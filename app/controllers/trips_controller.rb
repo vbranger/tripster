@@ -23,7 +23,7 @@ class TripsController < ApplicationController
     @participants_list = @trip.participants_list
     @news = News.where(trip_id: @trip.id).order(created_at: :desc).first(10)
     @rooms = Room.where(trip: @trip)
-    if @trip.choosen?
+    if @trip.choosen? ||@trip.booked?
       @choosen_room = Room.find(@trip.choosen_room_ids.first)
     elsif @trip.draw?
       @choosen_rooms = @trip.choosen_room_ids.map { |id| Room.find(id) }
@@ -72,6 +72,12 @@ class TripsController < ApplicationController
   def start_votes
     @trip = Trip.find(params[:trip_id])
     @trip.start_votes!
+    redirect_to trip_rooms_path(@trip)
+  end
+
+  def set_as_booked
+    @trip = Trip.find(params[:trip_id])
+    @trip.set_as_booked!
     redirect_to trip_rooms_path(@trip)
   end
 

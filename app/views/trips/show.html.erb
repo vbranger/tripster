@@ -75,7 +75,7 @@
               <p class="home_card__status"><%= @trip.rooms.count >= 4 ? '4 propositions retenues' : @trip.rooms.count.to_s + ' propositions retenues' %></p>
             </div>
             <%= link_to "Voter", trip_rooms_path(@trip), class: "btn btn-primary button-custom" %>
-          <% elsif @trip.choosen? %>
+          <% elsif @trip.choosen? || @trip.booked? %>
             </div>
             <%= link_to "Voir", trip_rooms_path(@trip), class: "btn btn-primary button-custom" %>
           <% elsif @trip.draw? %>
@@ -83,9 +83,9 @@
             <%= link_to "Choisir", trip_rooms_path(@trip), class: "btn btn-primary button-custom" %>
           <% end %>
         </div>
-        <% if @trip.choosen? %>
+        <% if @trip.choosen? ||@trip.booked? %>
           <div>
-            <%= render partial: 'shared/choosen_room_card', locals: {room: @choosen_room} %>
+            <%= render partial: 'shared/choosen_room_card', locals: {room: @choosen_room, trip: @choosen_room.trip} %>
           </div>
         <% elsif @trip.draw? %>
           <% @choosen_rooms.each do |room| %>

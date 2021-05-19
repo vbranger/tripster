@@ -15,7 +15,7 @@
       <div class="d-none d-sm-block">
         <p class="my-3"><%= link_to "Réserver sur #{@room.website}", @room.url, target: :_blank, class: "btn btn-primary #{'disabled' if @room.trip.user != current_user}", style: "font-size: 0.8rem" %></p>
         <p class="my-3"><small>Lorsque votre réservation est confirmée, faites le savoir aux autres participants</small></p>
-        <p class="my-3"><%= link_to "#", class:" btn btn-outline-primary #{'disabled' if @room.trip.user != current_user}", style: "font-size: 0.8rem" do %>
+        <p class="my-3"><%= link_to trip_set_as_booked_path(@room.trip), method: :put, class:" btn btn-outline-primary #{'disabled' if @room.trip.user != current_user}", style: "font-size: 0.8rem" do %>
          <i class="fas fa-check"></i> Confirmer
         <% end %></p>
       </div>
@@ -23,7 +23,7 @@
     <div class="d-block d-sm-none text-center mb-3 ">
       <%= link_to "Réserver sur #{@room.website}", @room.url, target: :_blank, class: "btn btn-primary #{'disabled' if @room.trip.user != current_user}", style: "font-size: 0.8rem" %>
       <p class="col-12 my-3"><small>Lorsque votre réservation est confirmée, faites le savoir aux autres participants</small></p>
-      <%= link_to "#", class:" btn btn-outline-primary #{'disabled' if @room.trip.user != current_user}", style: "font-size: 0.8rem" do %>
+      <%= button_to trip_set_as_booked_path(@room.trip), method: :put, class:" btn btn-outline-primary #{'disabled' if @room.trip.user != current_user}", style: "font-size: 0.8rem" do %>
       <i class="fas fa-check"></i> Confirmer
       <% end %>
     </div>

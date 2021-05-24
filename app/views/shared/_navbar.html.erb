@@ -18,28 +18,28 @@
       <% end %>
     <% elsif params[:controller] == 'trips' && params[:action] == 'show' %>
       <%= link_to trips_path do %>
-        <i class="fas fa-chevron-left text-light"></i>
+        <i class="fas fa-chevron-left text-light" style="width: 40px"></i>
       <% end %>
     <% elsif params[:controller] == 'rooms' && params[:action] == 'index' || params[:controller] == 'trips' && params[:action] == 'edit_destination' || params[:action] == 'edit_dates' %>
       <%= link_to trip_path(@trip) do %>
-        <i class="fas fa-chevron-left text-light"></i>
+        <i class="fas fa-chevron-left text-light" style="width: 40px"></i>
       <% end %>
     <% elsif params[:controller] == 'rooms' && params[:action] == 'show' || params[:controller] == 'rooms' && params[:action] == 'new' %>
       <%= link_to trip_rooms_path(@trip) do %>
-        <i class="fas fa-chevron-left text-light"></i>
+        <i class="fas fa-chevron-left text-light" style="width: 40px"></i>
       <% end %>
     <% end %>
 
     <% unless params[:controller] == 'trips' && params[:action] == 'index' || !user_signed_in? || params[:controller] == 'pages' %>
-      <div class="col-10 text-center text-truncate text-light">
+      <div class="text-center text-truncate text-light">
         <p class="text-light font-weight-bold text-truncate"><%= @trip.name %></p>
         <small class="text-light font-weight-light"><%= @participants_list %></small>
       </div>
     <% end %>
     
     <% if user_signed_in? %>
-      <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-        <i class="fas fa-ellipsis-v"></i>
+      <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation" style="padding: 0.25rem 0;">
+        <%= render partial: 'shared/avatar', locals: {user: current_user} %>
       </button>
     <% else %>
         <%= link_to "Se connecter", new_user_session_path, class: "nav-item text-light" %>

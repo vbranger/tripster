@@ -12,6 +12,8 @@ class User < ApplicationRecord
   validates :last_name, presence: true
   acts_as_voter
 
+  AVATAR_COLORS = ['#00AA55', '#009FD4', '#B381B3', '#939393', '#E3BC00', '#D47500', '#DC2A2A']
+
   # Override Devise::Confirmable#after_confirmation
   def after_confirmation
     UserMailer.welcome(self).deliver_now
@@ -19,5 +21,15 @@ class User < ApplicationRecord
   
   def participant(trip)
     Participant.where(user_id: self.id, trip_id: trip.id).first
+  end
+
+  def avatar_color
+    # convertion initial en chiffre
+    initials = []
+    initials << self.first_name.first.ord
+    p initials << self.last_name.first.ord
+    # initials = [44,55] par ex
+    number = initials.join.to_i
+    p AVATAR_COLORS[number % AVATAR_COLORS.count]
   end
 end

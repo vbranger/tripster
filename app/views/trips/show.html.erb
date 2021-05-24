@@ -124,8 +124,9 @@
             <div class="col-sm-12 col-md-8 text-center">
               <ul class="list-group list-group-flush">
                 <% @participants.each do |participant| %>
-                  <li class="list-group-item d-flex">
-                    <p>
+                  <li class="list-group-item d-flex align-items-center">
+                    <%= render partial: 'shared/avatar', locals: {user: participant.user} %>
+                    <p class="ml-3">
                       <%= participant.user.first_name %>
                     </p>
                     <% if @trip.user == current_user %>

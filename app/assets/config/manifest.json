@@ -1,8 +1,7 @@
 {
  "background_color": "white",
  "description": "Tripster. Find your next destination together",
- "display": "standalone",
- "start_url": "/?standalone=true",
+ "display": "fullscreen",
  "name": "Tripster",
  "icons": [
   {

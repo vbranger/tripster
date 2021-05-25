@@ -3,6 +3,8 @@
  "description": "Tripster. Find your next destination together",
  "display": "fullscreen",
  "name": "Tripster",
+ "scope": "/",
+ "start_url": "/",
  "icons": [
   {
    "src": "\/android-icon-36x36.png",

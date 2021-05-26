@@ -57,6 +57,8 @@ class Trip < ApplicationRecord
   has_many :notifications, as: :imageable
   belongs_to :user
 
+  validates :name, presence: true
+
   # VALIDATION MULTIPLE FORM STEPS
   def required_for_step?(step)
     # All fields are required if no form step is present

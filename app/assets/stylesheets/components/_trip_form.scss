@@ -1,0 +1,30 @@
+#trip_name_input {
+  font-size:1.2rem;
+  display: flex;
+  & input {
+    border:0;
+    border-bottom: 1px solid gray;
+  }
+}
+
+.trip_question {
+  font-size: 1.8rem;
+  padding-bottom: 3rem;
+}
+
+#trip_form_next {
+  position: absolute;
+  bottom: 2rem;
+}
+
+.text-between-selects {
+  margin: 0 0.5rem;
+  padding: 0;
+  position: relative;
+  top: 5px;
+}
+
+.input-border {
+  border: none;
+  border-bottom: 1px solid gray;
+}

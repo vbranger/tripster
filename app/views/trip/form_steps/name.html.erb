@@ -1,4 +1,4 @@
-<div class="background-rounded-white-no-tab p-3">
+<div class="background-rounded-white-no-tab-no-part px-4 py-5">
 <%= form_for @trip, method: :put, url: wizard_path do |f| %>
   <% if f.object.errors.any? %>
     <div class="error_messages">
@@ -7,17 +7,21 @@
       <% end %>
     </div>
   <% end %>
-
   <fieldset>
-    <legend>Trip name</legend>
+    <legend class="trip_question">
+      <p><strong>Hello <%= current_user.first_name %> !</strong></p>
+      <strong>Comment veux-tu appeler ton prochain trip ?</strong>
+    </legend>
 
-    <div>
-      <%= f.label :name %>
-      <%= f.text_field :name %>
+    <div id="trip_name_input">
+      <%= f.text_field :name, placeholder:'Week-end entre amis' %>
     </div>
 
-    <div>
-      <%= f.submit 'Next Step' %>
+    <div class="d-flex justify-content-center">
+      <%= button_tag type: 'submit', class: "btn btn-primary", id: "trip_form_next" do %>
+        <p>Suite
+        <i class="fas fa-long-arrow-alt-right ml-1"></i></p>
+      <% end %>
     </div>
   </fieldset>
 <% end %>

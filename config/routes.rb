@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  namespace :trip do
+    get 'form_steps/show'
+    get 'form_steps/update'
+  end
   devise_for :users, :controllers => { :registrations => "users/registrations",
                                        :confirmations => "users/confirmations" }
   root to: 'trips#index'
@@ -18,6 +22,7 @@ Rails.application.routes.draw do
     put :back_votes
     put :set_as_booked
     get :reset_vote
+    
     resources :rooms, only: [:new, :create, :index, :show, :destroy, :update] do
       put :choose_room
       resources :reviews, only: [ :new, :create, :index, :edit, :update ]
@@ -25,6 +30,9 @@ Rails.application.routes.draw do
         put "like" => "rooms#like"
       end
     end
+
+    resources :form_steps, only: [:show, :update], controller: 'trip/form_steps'
+
   end
   resources :rooms, only: [:edit, :update]
   resources :participants, only: [:new, :create, :destroy] do

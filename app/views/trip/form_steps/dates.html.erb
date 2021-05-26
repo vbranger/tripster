@@ -1,4 +1,4 @@
-<div class="background-rounded-white-no-tab p-3">
+<div class="background-rounded-white-no-tab-no-part px-4 py-5">
 <%= form_for @trip, method: :put, url: wizard_path do |f| %>
   <% if f.object.errors.any? %>
     <div class="error_messages">
@@ -9,20 +9,23 @@
   <% end %>
 
   <fieldset>
-    <legend>Trip name</legend>
+    <legend class="trip_question"><strong>Quand veux-tu partir ?</strong></legend>
 
     <div>
-      <%= f.label :start_date %>
-      <%= f.date_select(:start_date, :order => [:month, :day, :year])  %>
+      <p><%= f.label :start_date %></p>
+      <%= f.date_select(:start_date, :order => [:day, :month, :year])  %>
     </div>
 
     <div>
-      <%= f.label :end_date %>
-      <%= f.date_select(:end_date, :order => [:month, :day, :year]) %>
+      <p><%= f.label :end_date %></p>
+      <%= f.date_select(:end_date, :order => [:day, :month, :year]) %>
     </div>
 
-    <div>
-      <%= f.submit 'Next Step' %>
+    <div class="d-flex justify-content-center">
+      <%= button_tag type: 'submit', class: "btn btn-primary", id: "trip_form_next" do %>
+        <p>Suite
+        <i class="fas fa-long-arrow-alt-right ml-1"></i></p>
+      <% end %>
     </div>
   </fieldset>
 <% end %>

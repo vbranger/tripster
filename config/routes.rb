@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   get 'trips/:id/edit_destination', to: 'trips#edit_destination', as: 'edit_destination'
   get 'trips/:id/edit_dates', to: 'trips#edit_dates'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  resources :trips, only: [:new, :create, :index, :show, :destroy, :update] do
+  resources :trips, only: [:create, :index, :show, :destroy, :update] do
     # aasm routes
     put :start_propositions
     put :start_votes

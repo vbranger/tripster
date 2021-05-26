@@ -1,16 +1,12 @@
 class TripsController < ApplicationController
 
-  def new
-    @trip = Trip.new
-  end
-
   def create
-    @trip = Trip.new(trip_params)
+    @trip = Trip.new
     @trip.user_id = current_user.id
-    @trip.save
+    @trip.save(validate: false)
+    redirect_to trip_form_step_path(@trip, Trip.form_steps.first)
     Participant.create!(trip_id: @trip.id, user_id: current_user.id)
     News.create!(user: current_user, trip_id: @trip.id, action_type: "#{params[:controller]}##{params[:action]}", imageable_type: "Trip", imageable_id: @trip.id)
-    redirect_to trips_path
   end
 
   def index

@@ -39,18 +39,6 @@ ActiveRecord::Schema.define(version: 2021_05_09_095725) do
     t.index ["user_id"], name: "index_news_on_user_id"
   end
 
-  create_table "notifications", force: :cascade do |t|
-    t.string "recipient_type", null: false
-    t.bigint "recipient_id", null: false
-    t.string "type", null: false
-    t.jsonb "params"
-    t.datetime "read_at"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["read_at"], name: "index_notifications_on_read_at"
-    t.index ["recipient_type", "recipient_id"], name: "index_notifications_on_recipient"
-  end
-
   create_table "participants", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "trip_id", null: false
@@ -94,7 +82,6 @@ ActiveRecord::Schema.define(version: 2021_05_09_095725) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "user_id"
-    t.string "room_state"
     t.integer "choosen_room_ids", default: [], array: true
     t.string "aasm_state"
     t.index ["user_id"], name: "index_trips_on_user_id"

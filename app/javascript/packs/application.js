@@ -24,6 +24,7 @@ import "bootstrap";
 
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
+import { initFlatpickr } from "../plugins/flatpickr";
 
 // Activation tooltips bootstrap
 $(document).on('turbolinks:load', function() {
@@ -33,6 +34,7 @@ $(document).on('turbolinks:load', function() {
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
+  initFlatpickr();
   
 });
 

@@ -1,5 +1,5 @@
-<div class="background-rounded-white-no-tab-no-part px-4 py-5">
-<%= form_for @trip, method: :put, url: wizard_path do |f| %>
+<div class="background-rounded-white-no-tab-no-part px-4 py-3">
+<%= simple_form_for @trip, method: :put, url: wizard_path do |f| %>
   <% if f.object.errors.any? %>
     <div class="error_messages">
       <% f.object.errors.full_messages.each do |error| %>
@@ -9,16 +9,14 @@
   <% end %>
 
   <fieldset>
-    <legend class="trip_question"><strong>Quand veux-tu partir ?</strong></legend>
+    <legend class="trip_question"><strong>Quand pars-tu ?</strong></legend>
 
     <div>
-      <p><%= f.label :start_date %></p>
-      <%= f.date_select(:start_date, :order => [:day, :month, :year])  %>
+      <%= f.input :start_date, as: :hidden, required: false, input_html: {class: "datepicker", id: "range_start"} %>
     </div>
 
     <div>
-      <p><%= f.label :end_date %></p>
-      <%= f.date_select(:end_date, :order => [:day, :month, :year]) %>
+      <%= f.input :end_date, as: :hidden, required: false, input_html: {class: "datepicker", id: "range_end"} %>
     </div>
 
     <div class="d-flex justify-content-center">

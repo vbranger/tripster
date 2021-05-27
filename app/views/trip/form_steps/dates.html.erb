@@ -23,25 +23,32 @@
         Scope
       </label>
     </div>
-
     <div>
+    
       <%= f.input :start_date, as: :hidden, required: false, input_html: {class: "datepicker", id: "range_start", data: {calendar_target: 'range', action: 'input->calendar#refresh'}} %>
     </div>
 
     <div>
       <%= f.input :end_date, as: :hidden, required: false, input_html: {class: "datepicker", id: "range_end"} %>
     </div>
-
-    <div>
+    
+    <div class="text-center">
       <p data-calendar-target="display"></p>
+      <%= link_to "Annuler sélection", "#", class: "d-none", data: {calendar_target: "reset"}  %>
     </div>
+      
+    
 
-    <div class="d-flex justify-content-center">
-      <%= button_tag type: 'submit', class: "btn btn-primary", id: "trip_form_next" do %>
+    <div class="d-flex justify-content-around mt-3">
+      <form>
+        <input class="btn btn-outline-primary" type="button" value="Retour" onclick="history.back()">
+      </form>
+      <%= button_tag type: 'submit', class: "btn btn-primary" do %>
         <p>Suite
         <i class="fas fa-long-arrow-alt-right ml-1"></i></p>
       <% end %>
     </div>
   </fieldset>
 <% end %>
+
 </div>

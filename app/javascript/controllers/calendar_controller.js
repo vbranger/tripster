@@ -1,14 +1,11 @@
 import { Controller } from "stimulus";
-
+import flatpickr from "flatpickr";
 
 export default class extends Controller {
-  static targets = ['display', 'range']
+  static targets = ['display', 'range', 'reset']
 
   connect() {
     this.displayTarget.textContent = "Sélectionne des dates";
-    let range = document.getElementById('range_start').value
-    console.log(range)
-    console.log(this.rangeTarget.value)
   }
 
   refresh() {
@@ -23,15 +20,15 @@ export default class extends Controller {
       start_date = new Date(range)
       console.log(start_date.toLocaleDateString())
       this.displayTarget.textContent = start_date.toLocaleDateString();
+      this.resetTarget.classList.remove('d-none');
+      this.resetTarget.classList.add('d-block');
     } else {
       start_date = new Date(range.substring(0,10))
       end_date = new Date(range.substring(14))
-      let result = `${start_date.toLocaleDateString()} => ${end_date.toLocaleDateString()}`
-      this.displayTarget.textContent = result
+      let result = `${start_date.toLocaleDateString()} <i class="fas fa-arrow-right text-primary"></i> ${end_date.toLocaleDateString()}`
+      this.displayTarget.innerHTML = result
     }
-
   }
 
-  
 
 }

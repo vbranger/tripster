@@ -1,0 +1,38 @@
+.trip_form {
+  max-width: 290px;
+}
+
+#trip_name_input {
+  font-size:1.2rem;
+  & input {
+    border:0;
+    border-bottom: 1px solid gray;
+    width:100%;
+  }
+}
+
+.trip_question {
+  font-size: 1.8rem;
+  padding-bottom: 2rem;
+}
+
+#trip_form_next {
+  margin-top: 1rem;
+}
+
+.text-between-selects {
+  margin: 0 0.5rem;
+  padding: 0;
+  position: relative;
+  top: 5px;
+}
+
+.input-border {
+  border: none;
+  border-bottom: 1px solid gray;
+}
+
+.flatpickr-calendar {
+  transform: scale(0.9);
+  transform-origin: left;
+}

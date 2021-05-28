@@ -28,6 +28,10 @@
       <%= link_to trip_rooms_path(@trip) do %>
         <i class="fas fa-chevron-left text-light" style="width: 40px"></i>
       <% end %>
+    <% elsif params[:controller] == 'trip/form_steps' %>
+      <%= link_to trips_path do %>
+        <i class="fas fa-chevron-left text-light" style="width: 40px"></i>
+      <% end %>
     <% end %>
 
     <% unless params[:controller] == 'trips' && params[:action] == 'index' || !user_signed_in? || params[:controller] == 'pages' %>

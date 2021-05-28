@@ -1,0 +1,83 @@
+<div class="background-rounded-white-no-tab-no-part px-4 py-5">
+  <div class="row justify-content-center align-items-center">
+    <div class="col-12 col-sm-6 d-flex justify-content-center">
+      <%= form_for @trip, method: :put, url: wizard_path, html: {class:"trip_form"} do |f| %>
+        <% if f.object.errors.any? %>
+          <div class="error_messages">
+            <% f.object.errors.full_messages.each do |error| %>
+              <p><%= error %></p>
+            <% end %>
+          </div>
+        <% end %>
+
+        <fieldset >
+          <legend class="trip_question">
+            <strong>Quelle est ta destination ?</strong>
+          </legend>
+
+          <div id="trip_name_input">
+            <%= f.text_field :destination, placeholder: "Sud-Ouest" %>
+          </div>
+
+          <p class="text-center m-3">OU</p>
+          
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" name="exampleRadios" id="exampleRadios1" value="option1">
+            <label class="form-check-label" for="exampleRadios1">
+              Mer
+            </label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" name="exampleRadios" id="exampleRadios2" value="option2">
+            <label class="form-check-label" for="exampleRadios2">
+              Montagne
+            </label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" name="exampleRadios" id="exampleRadios2" value="option2">
+            <label class="form-check-label" for="exampleRadios2">
+              Campagne
+            </label>
+          </div>
+
+          <p class="text-center m-3">OU</p>
+
+          <div class="d-flex">
+            <select class="custom-select input-border mr-1" style="width: auto">
+              <option selected>1</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="3">4</option>
+              <option value="3">5</option>
+              <option value="3">6</option>
+              <option value="3">7</option>
+              <option value="3">8</option>
+              <option value="3">9</option>
+            </select>
+
+            <select class="custom-select input-border" style="width: auto">
+              <option value="1">h</option>
+              <option value="2">km</option>
+            </select>
+            <p class="text-between-selects">de</p>
+            <input type="text" placeholder="Paris" class="input-border" style="width: 100%">
+          </div>
+
+          <div class="d-flex justify-content-around mt-3">
+            <form>
+              <input class="btn btn-outline-primary" type="button" value="Retour" onclick="history.back()">
+            </form>
+            <%= button_tag type: 'submit', class: "btn btn-primary" do %>
+              <p>Suite
+              <i class="fas fa-long-arrow-alt-right ml-1"></i></p>
+            <% end %>
+          </div>
+        </fieldset>
+      <% end %>
+    </div>
+    <div class="col-sm-6 d-none d-sm-block">
+      <%= image_tag 'undraw_world.svg', class:"img-fluid" %>
+    </div>
+  </div>
+</div>

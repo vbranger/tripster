@@ -16,7 +16,7 @@
       <%= link_to root_path, class: "navbar-brand" do %>
           <p style="font-family: Ranchers">tripster</p>
       <% end %>
-    <% elsif params[:controller] == 'trips' && params[:action] == 'show' %>
+    <% elsif params[:controller] == 'trips' && params[:action] == 'show' || params[:action] == 'new' %>
       <%= link_to trips_path do %>
         <i class="fas fa-chevron-left text-light" style="width: 40px"></i>
       <% end %>
@@ -28,7 +28,7 @@
       <%= link_to trip_rooms_path(@trip) do %>
         <i class="fas fa-chevron-left text-light" style="width: 40px"></i>
       <% end %>
-    <% elsif params[:controller] == 'trip/form_steps' %>
+    <% elsif params[:controller] == 'trip/form_steps'%>
       <%= link_to trips_path do %>
         <i class="fas fa-chevron-left text-light" style="width: 40px"></i>
       <% end %>

@@ -1,7 +1,7 @@
 class Trip < ApplicationRecord
   # déclaration des steps sur formulaire de création d'un trip
   cattr_accessor :form_steps do
-  	%w(name destination dates)
+  	%w(destination dates)
   end
   # pour pouvoir savoir à quelle step on est
   attr_accessor :form_step

@@ -1,9 +1,13 @@
+.trip_form {
+  max-width: 290px;
+}
+
 #trip_name_input {
   font-size:1.2rem;
-  display: flex;
   & input {
     border:0;
     border-bottom: 1px solid gray;
+    width:100%;
   }
 }
 

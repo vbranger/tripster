@@ -6,6 +6,7 @@ class Invite < ApplicationRecord
 
   before_create :generate_token
   before_save :check_user_existence
+  validates :email, uniqueness: { scope: :trip_id, message: "already received an invitation"}
 
   def check_user_existence
     recipient = User.find_by_email(email)

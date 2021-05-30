@@ -1,5 +1,5 @@
 class InvitesController < ApplicationController
-  
+
   def new
     @invite = Invite.new
     @trip = Trip.find(params[:trip])
@@ -12,7 +12,7 @@ class InvitesController < ApplicationController
     @invite.sender_id = current_user.id # set the sender to the current user
     if @invite.save
       #if the user already exists
-      if @invite.recipient != nil 
+      if @invite.recipient != nil
         #send a notification email
         UserMailer.notify_invitation(@invite).deliver
         #Add the user to the user group

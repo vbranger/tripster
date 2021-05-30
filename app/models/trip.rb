@@ -49,6 +49,8 @@ class Trip < ApplicationRecord
   has_many :invites
   has_many :notifications, as: :imageable
   belongs_to :user
+  validates :name, presence: true
+  validate :dates_correct?
 
   def participants_list
     string = ""
@@ -70,5 +72,14 @@ class Trip < ApplicationRecord
   def dates_chosen?
     self.start_date != nil && self.end_date != nil
   end
+
+  def dates_correct?
+    return if end_date.nil? || start_date.nil?
+
+    if end_date < start_date
+      errors.add(:end_date, "can't be inferior to starting date")
+    end
+  end
+
 
 end

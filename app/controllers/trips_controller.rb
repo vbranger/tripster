@@ -58,9 +58,12 @@ class TripsController < ApplicationController
 
   def update
     @trip = Trip.find(params[:id])
-    @trip.update(trip_params)
-    News.create!(user: current_user, trip_id: @trip.id, action_type: "#{params[:controller]}##{params[:action]}", imageable_type: "Trip", imageable_id: @trip.id)
-    redirect_to trip_path(@trip)
+    if @trip.update(trip_params)
+      News.create!(user: current_user, trip_id: @trip.id, action_type: "#{params[:controller]}##{params[:action]}", imageable_type: "Trip", imageable_id: @trip.id)
+      redirect_to trip_path(@trip)
+    else
+      redirect_back fallback_location: @trip, alert: "#{@trip.errors.full_messages[0]}"
+    end
   end
 
   def start_propositions

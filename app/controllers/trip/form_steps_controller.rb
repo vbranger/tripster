@@ -11,7 +11,11 @@ class Trip::FormStepsController < ApplicationController
   def update
     @trip = Trip.find(params[:trip_id])
     @trip.update(trip_params(step))
-    render_wizard @trip
+    if next_step == "wicked_finish"
+      redirect_to @trip
+    else
+      render_wizard @trip
+    end
   end
 
   private

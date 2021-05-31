@@ -34,7 +34,7 @@
       <% end %>
     <% end %>
 
-    <% unless params[:controller] == 'trips' && params[:action] == 'index' || !user_signed_in? || params[:controller] == 'pages' %>
+    <% unless params[:controller] == 'trips' && params[:action] == 'index' || !user_signed_in? || params[:controller] == 'pages' || params[:controller] == 'trip/form_steps' %>
       <div class="text-center text-truncate text-light">
         <p class="text-light font-weight-bold text-truncate"><%= @trip.name %></p>
         <small class="text-light font-weight-light"><%= @participants_list %></small>

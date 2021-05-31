@@ -1,5 +1,9 @@
 <div class="background-rounded-white-no-tab-no-part px-4 py-3">
+   <legend class="trip_question"><strong>Quand pars-tu ?</strong></legend>
   <div class="row justify-content-center align-items-center">
+    <div class="col-sm-6 d-none d-sm-block">
+      <%= image_tag 'undraw_time.svg', class:"img-fluid", style:"max-height: 60vh;" %>
+    </div>
     <div class="col-12 col-sm-6 d-flex justify-content-center">
       <%= simple_form_for @trip, method: :put, url: wizard_path, html: {class:"trip_form"} do |f| %>
         <% if f.object.errors.any? %>
@@ -11,7 +15,7 @@
         <% end %>
 
         <fieldset data-controller="calendar">
-          <legend class="trip_question"><strong>Quand pars-tu ?</strong></legend>
+         
 
           <div class="form-check form-check-inline">
             <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
@@ -52,9 +56,6 @@
           </div>
         </fieldset>
       <% end %>
-    </div>
-    <div class="col-sm-6 d-none d-sm-block">
-      <%= image_tag 'undraw_calendar.svg', class:"img-fluid" %>
     </div>
   </div>
 </div>

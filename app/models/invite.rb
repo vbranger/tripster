@@ -3,9 +3,10 @@ class Invite < ApplicationRecord
   belongs_to :sender, :class_name => 'User'
   belongs_to :recipient, :class_name => 'User', optional: true
   has_many :notifications, as: :imageable
-  
+
   before_create :generate_token
   before_save :check_user_existence
+  validates :email, uniqueness: { scope: :trip_id, message: "already received an invitation"}
 
   def check_user_existence
     recipient = User.find_by_email(email)

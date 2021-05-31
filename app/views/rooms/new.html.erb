@@ -1,17 +1,41 @@
 <div class="background-rounded-white-no-tab d-flex p-3 justify-content-center align-items-center">
       <div class="text-center">
         <p class="my-3">Importer vos logements depuis les principaux sites de location</p>
-        <div class="row justify-content-center my-3">
-          <%= image_tag "logo-airbnb.png", class:"mb-3 col-8 col-sm-3 col-md-2" %>
-          <%= image_tag "logo abritel.svg", class:"mb-3 col-8 col-sm-3 col-md-2" %>
-          <%= image_tag "logo_coinsecret.png", class:"mb-3 col-8 col-sm-3 col-md-2" %>
-        </div>
+        <p class="my-3"><a href="https://www.abritel.fr" target="_blank">Abritel</a>, <a href="https://www.airbnb.fr" target="_blank">Airbnb</a>, <a href="https://www.coinsecret.com/" target="_blank">Coins Secrets</a></p>
         <div class="row justify-content-center">
           <div class="col-8">
-            <%= simple_form_for [@trip,@room], :html=> { class: 'room_url_form text-center' } do |f| %>
-                <%= f.input :url, placeholder: "Coller url ici", label: false, :class=>"text-center" %>
-                <%= f.submit "Importer", :class=>"btn btn-primary mt-3" %>
+            <%= simple_form_for [@trip,@room], :html=> { class: 'room_url_form my-3' } do |f| %>
+                <%= f.input :url, placeholder: "Coller URL", label: false %>
+                <%= button_tag type: 'submit', class: "btn btn-primary", style: "height: fit-content" do %>
+                    <i class="fas fa-plus"></i>
+                <% end %>
             <% end %>
+                <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                    <i class="fas fa-question-circle"></i> Aide
+                  </button>
+
+                  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLongTitle">Aide</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          <p><strong>URLs acceptés</strong></p>
+                          <p class="text-truncate">https://www.airbnb.fr/rooms/34108527</p>
+                          <p class="text-truncate">https://www.abritel.fr/location-vacances/p1590687</p>
+                          <p class="text-truncate">https://www.coinsecret.com/provence/location-vacances/mas-village-charme-piscine-96301</p>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+            
           </div>
         </div>
       </div>

@@ -1,13 +1,18 @@
 <div class="background-rounded-white-no-tab p-3">
   <%= simple_form_for [@trip,@room] do |f| %>
     <div class="row">
-      <div class="d-sm-none col-12">
-        <%= image_tag @room.photo, class:"img-fluid" %>
-      </div>
-      <div class="d-none d-sm-block col-12 col-sm-4">
-        <%= image_tag @room.photo, style:"max-width: 100%;min-height: calc(100vh - 60px - 32px);;object-fit: cover;" %>
-      </div>
+      <% if @room.photo %>
+        <div class="d-sm-none col-12">
+          <%= image_tag @room.photo, class:"img-fluid" %>
+        </div>
+        <div class="d-none d-sm-block col-12 col-sm-4">
+          <%= image_tag @room.photo, style:"max-width: 100%;min-height: calc(100vh - 60px - 32px);;object-fit: cover;" %>
+        </div>
+      <% end %>
       <div class="col-12 col-sm-8">
+      <% if !@room.photo %>
+        <%= f.input :photo, label: "url photo" %>
+      <% end %>
         <%= f.input :name, label: "Nom du logement" %>
         <div class="row">
           <div class="col-6">

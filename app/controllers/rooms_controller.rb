@@ -34,6 +34,8 @@ class RoomsController < ApplicationController
     elsif @room.url.include? "www.coinsecret.com"
       @room.website = "coinsecret"
       @room.universal_scrap
+    else
+      @room.universal_scrap
     end
     if @room.save
       News.create!(user: current_user, trip_id: @trip.id, action_type: "#{params[:controller]}##{params[:action]}", imageable_type: "Room", imageable_id: @room.id)

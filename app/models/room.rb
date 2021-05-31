@@ -8,6 +8,8 @@ class Room < ApplicationRecord
   has_many :reviews, dependent: :destroy
   acts_as_votable
 
+  validates :url, presence: true
+
   MONTHS = {
     'janvier'  => 1, 'février' => 2, 'mars'    => 3, 'avril'    => 4,
     'mai'      => 5, 'juin'     => 6, 'juillet'     => 7, 'août'   => 8,

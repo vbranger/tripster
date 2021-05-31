@@ -1,7 +1,8 @@
-.room_url_form div > div {
-  margin: 0;
+.room_url_form {
+  display: flex;
+  justify-content: center;
 }
 
-#room_url {
-  text-align: center;
+.room_url {
+  margin: 0;
 }

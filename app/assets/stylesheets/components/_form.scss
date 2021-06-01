@@ -1,0 +1,36 @@
+.form-inputs {
+  & label {
+    color: $purple;
+    font-size: small;
+    font-weight: bold;
+  }
+  .form-spaced {
+    & input {
+      margin: 1rem 0;
+    }
+  }
+}
+
+.form_group {
+  margin-bottom: 1.5rem;
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  & input {
+    outline:0;
+    border:0;
+    border-bottom: 1px solid #E2E4E5;
+  }
+  & input:focus {
+    border-bottom: 1px solid $purple;
+  }
+}
+
+// change background color of form autofilled
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active
+{
+ -webkit-box-shadow: 0 0 0 30px white inset !important;
+}

@@ -5,10 +5,11 @@ Rails.application.routes.draw do
   end
   devise_for :users, :controllers => { :registrations => "users/registrations",
                                        :confirmations => "users/confirmations" }
-  root to: 'trips#index'
+  root to: 'pages#home'
 
   get 'waiting_confirmation', to: 'pages#waiting_confirmation'
   get 'room_process', to: 'pages#room_process'
+  get 'home', to: 'pages#home'
 
   get 'trips/:id/reset_dates', to: 'trips#reset_dates', as: 'reset_dates'
   get 'trips/:id/edit_destination', to: 'trips#edit_destination', as: 'edit_destination'

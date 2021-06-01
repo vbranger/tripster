@@ -1,0 +1,23 @@
+<div class="d-block d-sm-none ">
+  <div class="m-3">
+    <%= image_tag 'undraw_traveling.svg', class:"img-fluid" %>
+    <h3 class="text-light text-center my-2">Organisez facilement vos vacances en groupe</h3>
+  </div>
+  <div class="background-rounded-white-log-options">
+    <%= link_to "Créer un compte", new_user_registration_path, class:"btn btn-primary mb-2 home-log-btn" %>
+    <%= link_to "Se connecter", new_user_session_path, class:"btn btn-outline-primary home-log-btn" %>
+  </div>
+</div>
+
+<div class="d-none d-sm-block ">
+  <div class="row align-items-center justify-content-center home-sm-full-height">
+    <div class="col-sm-6">
+      <h1 class="home-sm-title text-light my-4">Organisez facilement vos vacances en groupe</h1>
+      <p class="text-light my-4">Finis les inonbrales groupes de discussion pour organiser les vacances où rien n’avance comme il faut. Avec Tripster, choisissez votre destination, trouver les dates qui conviennent à tous et dénicher ensemble la maison de vacances de vos rêves !</p>
+      <%= link_to "Créer un compte", new_user_registration_path, class:"btn btn-primary my-4 home-log-btn" %>
+    </div>
+    <div class="col-sm-4">
+      <%= image_tag 'undraw_traveling.svg', class:"img-fluid" %>
+    </div>
+  </div>
+</div>

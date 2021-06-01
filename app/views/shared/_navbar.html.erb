@@ -11,10 +11,11 @@
     </div>
   </div>
       <% end %>
-  <nav class="navbar navbar-dark pt-1 flex-nowrap">
+  <nav class="navbar navbar-dark pt-1 flex-nowrap mx-sm-3">
     <% if !user_signed_in? || params[:controller] == 'trips' && params[:action] == 'index' || params[:controller] == "pages" %>
       <%= link_to root_path, class: "navbar-brand" do %>
-          <p style="font-family: Ranchers">tripster</p>
+          <p class="d-block d-sm-none" style="font-family: Ranchers">tripster</p>
+          <p class="d-none d-sm-block" style="font-family: Ranchers; font-size: 1.5rem">tripster</p>
       <% end %>
     <% elsif params[:controller] == 'trips' && params[:action] == 'show' || params[:action] == 'new' %>
       <%= link_to trips_path do %>
@@ -46,7 +47,9 @@
         <%= render partial: 'shared/avatar', locals: {user: current_user} %>
       </button>
     <% else %>
-        <%= link_to "Se connecter", new_user_session_path, class: "nav-item text-light" %>
+      <% unless params[:controller].include?('users') || params[:controller].include?('devise') || params[:controller] == 'pages' %>
+        <%= link_to "Se connecter", new_user_session_path, class: "nav-item btn btn-outline-primary bg-light d-none d-sm-block my-sm-3" %>
+      <% end %>
     <% end %>
   </nav>
 </div>

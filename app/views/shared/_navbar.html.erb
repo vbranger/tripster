@@ -47,7 +47,7 @@
         <%= render partial: 'shared/avatar', locals: {user: current_user} %>
       </button>
     <% else %>
-      <% unless params[:controller].include?('users') || params[:controller].include?('devise') || params[:controller] == 'pages' %>
+      <% unless params[:controller].include?('users') || params[:controller].include?('devise') || params[:controller] == 'pages' && params[:controller] == 'waiting_confirmation' %>
         <%= link_to "Se connecter", new_user_session_path, class: "nav-item btn btn-outline-primary bg-light d-none d-sm-block my-sm-3" %>
       <% end %>
     <% end %>

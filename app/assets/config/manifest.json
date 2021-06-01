@@ -1,5 +1,5 @@
 {
- "background_color": "white",
+ "background_color": "#515151",
  "description": "Tripster. Find your next destination together",
  "display": "fullscreen",
  "name": "Tripster",
@@ -41,6 +41,12 @@
    "sizes": "192x192",
    "type": "image\/png",
    "density": "4.0"
-  }
+  },
+  {
+    "src": "\/icon.png",
+    "sizes": "512x512",
+    "type": "image\/png",
+    "density": "4.0"
+   }
  ]
 }

@@ -27,9 +27,9 @@ class User < ApplicationRecord
     # convertion initial en chiffre
     initials = []
     initials << self.first_name.first.ord
-    p initials << self.last_name.first.ord
+    initials << self.last_name.first.ord
     # initials = [44,55] par ex
     number = initials.join.to_i
-    p AVATAR_COLORS[number % AVATAR_COLORS.count]
+    AVATAR_COLORS[number % AVATAR_COLORS.count]
   end
 end

@@ -1,7 +1,7 @@
 class Trip < ApplicationRecord
   # declaration des steps sur formulaire de création d'un trip
   cattr_accessor :form_steps do
-  	%w(destination dates)
+    %w[destination dates]
   end
   # pour pouvoir savoir à quelle step on est
   attr_accessor :form_step
@@ -49,12 +49,11 @@ class Trip < ApplicationRecord
     end
   end
 
-
   has_many :participants, dependent: :destroy
   has_many :users, through: :participants
   has_many :rooms, dependent: :destroy
   has_many :invites
-  has_many :notifications, as: :imageable
+  has_many :news, as: :imageable
   belongs_to :user
   validates :name, presence: true
   validate :dates_correct?
@@ -66,7 +65,7 @@ class Trip < ApplicationRecord
   
     # All fields from previous steps are required if the
     # step parameter appears before or we are on the current step
-    return true if self.form_steps.index(step.to_s) <= self.form_steps.index(form_step)
+    return true if form_steps.index(step.to_s) <= form_steps.index(form_step)
   end
 
   def participants_list
@@ -76,7 +75,7 @@ class Trip < ApplicationRecord
       if participant == participants.last
         string += participant.user.first_name
       else
-        string += participant.user.first_name + ', '
+        string += "#{participant.user.first_name}, "
       end
     end
     return string
@@ -94,9 +93,7 @@ class Trip < ApplicationRecord
   def dates_correct?
     return if end_date.nil? || start_date.nil?
 
-    if end_date < start_date
-      errors.add(:end_date, "can't be inferior to starting date")
-    end
+    errors.add(:end_date, "can't be inferior to starting date") if end_date < start_date
   end
 
 

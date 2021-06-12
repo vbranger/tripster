@@ -59,8 +59,6 @@ class Trip < ApplicationRecord
   validates :name, presence: true
   validate :dates_correct?
 
-  validates :name, presence: true
-
   # VALIDATION MULTIPLE FORM STEPS
   def required_for_step?(step)
     # All fields are required if no form step is present
@@ -84,6 +82,7 @@ class Trip < ApplicationRecord
     return string
   end
 
+  # les deux prochaines méthodes devront disparaitre lorsque nous auront codé les autres process
   def destination_chosen?
     self.destination && !self.destination.empty? ? true : false
   end

@@ -79,6 +79,10 @@ group :test do
   gem 'webdrivers'
   gem "database_cleaner"
   gem 'faker'
+  gem 'rails-controller-testing'
+  gem 'shoulda-matchers'
+  # pour ecrire des tests aasm plus courts
+  gem 'state_machine_rspec'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

@@ -13,7 +13,7 @@ class TripsController < ApplicationController
       News.create!(user: current_user, trip_id: @trip.id, action_type: "#{params[:controller]}##{params[:action]}", imageable_type: "Trip", imageable_id: @trip.id)
     else
       render :new
-    end    
+    end
   end
 
   def index

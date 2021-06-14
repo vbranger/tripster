@@ -41,7 +41,7 @@
   <% if @participant.room_votes.empty? %>
     <%= form_for(@participant, html:{id: "vote_form"}, :url => participant_save_room_votes_path(@participant, trip_id: @trip.id)) do %>
       <%= hidden_field_tag(:room_votes, "", id: "ranks", class: "hidden" ) %>
-      <%= button_tag(type: "submit", class: "btn btn-primary btn-valid-vote", data: { confirm: "Êtes-vous sûr ?"}) do %>
+      <%= button_tag(type: "submit", class: "btn btn-primary btn-valid-vote") do %>
         <i class="fas fa-vote-yea mr-1"></i> Voter
       <% end %>
     <% end %>

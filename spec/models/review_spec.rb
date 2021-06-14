@@ -17,6 +17,22 @@ RSpec.describe Review, type: :model do
   end
   it { should belong_to(:room) }
   it { should belong_to(:user) }
+  it "triggers #update_avg_score on save" do
+    expect(subject).to receive(:update_avg_score)
+    subject.save
+  end
+
+  it "should trigger #update_avg_score on update" do
+    review = create(:review)
+    expect(review).to receive(:update_avg_score)
+    review.update(score: 3)
+  end
+
+  it "should trigger #update_avg_score on delete" do
+    expect(subject).to receive(:update_avg_score)
+    subject.destroy
+  end
+
 
   describe "#update_avg_score" do
     it "updates its room avg_score when a new Review is created" do
@@ -37,6 +53,5 @@ RSpec.describe Review, type: :model do
 
       expect(room.avg_score).to eq(2.4)
     end
-
   end
 end

@@ -48,11 +48,11 @@ class Room < ApplicationRecord
     br.go_to(url)
     html_doc = Nokogiri::HTML(br.body)
     br.quit
-    p house_name = html_doc.search("#listing-#{self.web_id} > div._hgs47m > div > div > a > div._wlyu2v > span > span").children.text
+    house_name = html_doc.search("#listing-#{self.web_id} > div._hgs47m > div > div > a > div._wlyu2v > span > span").children.text
     self.name = house_name
-    p photo = html_doc.search("#listing-#{self.web_id} > div._1dp4576 > div._e296pg > div._gjw2an > div > div > div")
+    photo = html_doc.search("#listing-#{self.web_id} > div._1dp4576 > div._e296pg > div._gjw2an > div > div > div")
     unless photo.empty? # pour gérer les maisons non identifiées sur airbnb
-      p get_img_url(photo.last.attributes["style"].value)
+      get_img_url(photo.last.attributes["style"].value)
     end
     # FIN CODE VALIDE
 
@@ -73,9 +73,8 @@ class Room < ApplicationRecord
 
   def universal_scrap
     page = MetaInspector.new(url)
-    p self.name = page.best_title          # best title of the page, from a selection of candidates
-    p page.best_description    # returns the first non-empty description between the following candidates: standard meta description, og:description, twitter:description, the first long paragraph
-    p self.photo = page.images.best
+    self.name = page.best_title
+    self.photo = page.images.best
   end
   
 

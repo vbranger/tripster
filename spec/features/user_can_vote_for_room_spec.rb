@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature "User access vote page for room" do
+feature "User access vote page in room process" do
   context "when aasm(room_state) => votes" do
     scenario "successfully" do
       user = sign_in

@@ -66,9 +66,10 @@ class Room < ApplicationRecord
   end
 
   def universal_scrap
-    page = MetaInspector.new(url)
-    self.name = page.best_title
-    self.photo = page.images.best
+    scrap = UniversalScrapService.new(url)
+    result = scrap.call
+    self.name = result[:name]
+    self.photo = result[:photo]
   end
   
 

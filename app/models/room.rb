@@ -34,12 +34,6 @@ class Room < ApplicationRecord
     br.quit
   end
 
-  def get_img_url(value)
-    match_data = value.match(/(https:.+")/)
-    p self.photo = match_data[0][0..-2]
-    return self.photo
-  end
-
   def scrap_airbnb
     
     # CODE POUR LOCAL VB
@@ -84,6 +78,12 @@ class Room < ApplicationRecord
     match_data = string_date.match(/(?<day>\d{1,2})(?<space1>\s)(?<month>\w+)(?<space2>\s)(?<year>\d{4})/)
     month = MONTHS[match_data[:month]]
     return "#{match_data[:year]}-#{month}-#{match_data[:day]}"
+  end
+
+  def get_img_url(value)
+    match_data = value.match(/(https:.+")/)
+    self.photo = match_data[0][0..-2]
+    return self.photo
   end
 
 end

@@ -17,7 +17,7 @@ RSpec.describe Review, type: :model do
   end
   it { should belong_to(:room) }
   it { should belong_to(:user) }
-  it "triggers #update_avg_score on save" do
+  it "should triggers #update_avg_score on save" do
     expect(subject).to receive(:update_avg_score)
     subject.save
   end

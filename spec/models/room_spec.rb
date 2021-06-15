@@ -66,7 +66,7 @@ RSpec.describe Room, type: :model do
       subject.url = url
       subject.get_abritel_id
       subject.scrap_abritel
-      expect(subject.name).to include('A 150 m de la plage')
+      expect(subject.name).to include('Château dans magnifique parc arboré avec piscine')
     end
 
     it "should set an URL for photo" do

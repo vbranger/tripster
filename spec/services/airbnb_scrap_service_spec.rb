@@ -23,6 +23,6 @@ RSpec.describe AirbnbScrapService, type: :service do
 
         expect(scrap_result).to eq(result)
       end 
-    end 
+    end
   end
 end

@@ -48,6 +48,8 @@ gem 'after_commit_everywhere', '~> 1.0'
 # Wicked sert pour le multi steps form
 gem 'wicked'
 
+gem 'socksify'
+
 group :development, :test do  
   gem 'pry-byebug'
   gem 'pry-rails'

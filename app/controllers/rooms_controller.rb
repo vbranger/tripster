@@ -43,7 +43,7 @@ class RoomsController < ApplicationController
       @trip.participants.each do |participant|
         UserMailer.new_room_added(current_user, participant, @room).deliver #send the invite data to our mailer to deliver the email
       end
-      
+
       redirect_to edit_room_path(@room)
     else
       render :new
@@ -61,7 +61,7 @@ class RoomsController < ApplicationController
     @room = Room.find(params[:id])
     @room.update(room_params)
     @trip = @room.trip
-    
+
     redirect_to trip_room_path(@trip, @room)
   end
 
@@ -91,7 +91,7 @@ class RoomsController < ApplicationController
     @trip = Trip.find(params[:trip_id])
     @room = Room.find(params[:id])
     @room.destroy
-    
+
     redirect_to trip_rooms_path(@trip)
   end
 
@@ -100,7 +100,7 @@ class RoomsController < ApplicationController
     @participants = @trip.participants
     @participants_list = @trip.participants_list
     @participants = @participants.sort_by{|a| [a.room_votes]}.reverse
-    
+
     if @trip.propositions?
       # get user in params (default: current user)
       if params[:user_id]
@@ -148,7 +148,7 @@ class RoomsController < ApplicationController
     @trip.choosen_room_ids.delete(params[:room_id].to_i)
     @trip.choosen_room_ids.unshift(params[:room_id].to_i)
     @trip.choose_room!
-    
+
     redirect_to trip_rooms_path(@trip)
   end
 

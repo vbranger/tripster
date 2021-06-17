@@ -22,7 +22,7 @@ feature "User can invite other participant" do
       click_on "Ajouter un participant"
       fill_in "invite_email", with: "new_user@gmail.com"
       click_on "Inviter"
-      expect(trip.participants.count).to eq(0)
+      expect(trip.participants.count).to eq(1)
     end
   end
 end

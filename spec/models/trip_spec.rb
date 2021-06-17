@@ -33,10 +33,9 @@ RSpec.describe Trip, type: :model do
     end
     it "returns the list of all participants" do
       users = []
-      users << create(:user, first_name: "Victor")
       users << create(:user, first_name: "Camille")
       users << create(:user, first_name: "Louis")
-      trip = create(:trip)
+      trip = create(:trip, user: create(:user, first_name: "Victor"))
       users.each { |user| Participant.create!(user: user, trip: trip) }
       expect(trip.participants_list).to eq('Victor, Camille, Louis')
     end

@@ -15,6 +15,10 @@ FactoryBot.define do
   factory :trip do
     name { 'test' }
     user { create(:user) }
+
+    after(:create) do |trip|
+      create(:participant, trip: trip, user: trip.user)
+    end
   end
 
   factory :room do

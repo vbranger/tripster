@@ -45,14 +45,14 @@ RSpec.describe Room, type: :model do
 
   describe "#scrap_airbnb" do
     url = "https://www.airbnb.fr/rooms/34108527"
-    it "should return the good name" do
+    xit "should return the good name" do
       subject.url = url
       subject.get_airbnb_id
       subject.scrap_airbnb
       expect(subject.name).to include('A 150 m de la plage')
     end
 
-    it "should set an URL for photo" do
+    xit "should set an URL for photo" do
       subject.url = url
       subject.get_airbnb_id
       subject.scrap_airbnb
@@ -62,14 +62,14 @@ RSpec.describe Room, type: :model do
 
   describe "#scrap_abritel" do
     url = "https://www.abritel.fr/location-vacances/p1590687"
-    it "should return the good name" do
+    xit "should return the good name" do
       subject.url = url
       subject.get_abritel_id
       subject.scrap_abritel
       expect(subject.name).to include('Château dans magnifique parc arboré avec piscine')
     end
 
-    it "should set an URL for photo" do
+    xit "should set an URL for photo" do
       subject.url = url
       subject.scrap_abritel
       expect(subject.photo).to include('https://')

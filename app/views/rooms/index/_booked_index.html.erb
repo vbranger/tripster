@@ -16,11 +16,11 @@
       </p>
       <div class="d-none d-sm-block">
         <p class="my-3"><small>Votre réservation est confirmée !</small></p>
-        <p class="my-3"><%= link_to "Revoir #{"sur #{@room.website}" if !@room.website.empty? }", @room.url, target: :_blank, class: "btn btn-outline-primary", style: "font-size: 0.8rem" %></p>
+        <p class="my-3"><%= link_to "Revoir #{"sur #{@room.website}" if !@room.website.nil? }", @room.url, target: :_blank, class: "btn btn-outline-primary", style: "font-size: 0.8rem" %></p>
       </div>
       <div class="d-block d-sm-none text-center mb-3 ">
         <p class="col-12 my-3"><small>Votre réservation est confirmée !</small></p>
-        <p class="my-3"><%= link_to "Revoir #{"sur #{@room.website}" if !@room.website.empty? }", @room.url, target: :_blank, class: "btn btn-outline-primary", style: "font-size: 0.8rem" %></p>
+        <p class="my-3"><%= link_to "Revoir #{"sur #{@room.website}" if !@room.website.nil? }", @room.url, target: :_blank, class: "btn btn-outline-primary", style: "font-size: 0.8rem" %></p>
       </div>
     </div>
   </div>

@@ -48,7 +48,7 @@ gem 'after_commit_everywhere', '~> 1.0'
 # Wicked sert pour le multi steps form
 gem 'wicked'
 
-group :development, :test do  
+group :development, :test do
   gem 'pry-byebug'
   gem 'pry-rails'
   gem 'dotenv-rails'

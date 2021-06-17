@@ -16,24 +16,28 @@ class ProxiedAirbnbScrapService
 
     p exception_keys = [] << :price if (!@url.include?("check_in") || !@url.include?("check_out"))
 
-    browser = Ferrum::Browser.new({ 
-      timeout: 60, headless: true, 
+    browser = Ferrum::Browser.new({
+      timeout: 60, headless: true,
       process_timeout: 60,
-      browser_options: { "proxy-server" => "localhost:9050" }
+      :browser_options=> {"proxy-server"=> "#{http.get(URI(url))}"}
     })
 
     browser.go_to(@url)
+    sleep 7
+    browser.screenshot(path:"first-screenshot.jpeg")
 
-    attributes.except(*exception_keys).each_value {|attribute| wait_for(attribute[:css], browser)}
-    
+
+    # attributes.except(*exception_keys).each_value {|attribute| wait_for(attribute[:css], browser)}
+
+
     html_doc = Nokogiri::HTML(browser.body)
-    result = {} 
+    result = {}
     attributes.except(*exception_keys).each do |k,attribute|
       result[k] = attributes[k][:method].call(html_doc.search(attribute[:css]))
     end
     browser.quit
     result
-  end 
+  end
 
   def attributes
     {
@@ -53,7 +57,7 @@ class ProxiedAirbnbScrapService
   end
 
 
-  private 
+  private
 
   def wait_for(css, browser)
     node = nil

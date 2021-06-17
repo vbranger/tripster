@@ -8,17 +8,21 @@ class AirbnbScrapService
 
     browser = Ferrum::Browser.new({ timeout: 60, headless: true, process_timeout: 60 })
     browser.go_to(@url)
+    # sleep 5
+    browser.screenshot(path:"coucou-airbnb.jpeg")
 
     attributes.except(*exception_keys).each_value {|attribute| wait_for(attribute[:css], browser)}
-    
+
     html_doc = Nokogiri::HTML(browser.body)
-    result = {} 
+    result = {}
     attributes.except(*exception_keys).each do |k,attribute|
       result[k] = attributes[k][:method].call(html_doc.search(attribute[:css]))
     end
     browser.quit
     result
-  end 
+  end
+
+
 
   def attributes
     {
@@ -38,14 +42,14 @@ class AirbnbScrapService
   end
 
 
-  private 
+  private
 
   def wait_for(css, browser)
     node = nil
     while node.nil?
       p "waiting for #{css}"
       node = browser.at_css(css)
-      sleep 0.1
+      sleep 2
     end
     p "founded"
     node

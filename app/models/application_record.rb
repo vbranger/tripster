@@ -4,7 +4,6 @@ class ApplicationRecord < ActiveRecord::Base
   def time_since_created
     # secondes since creation
     time_ellapsed = (Time.now - created_at).to_i
-    p time_ellapsed
 
     if time_ellapsed < 60 # Moins d'une minute
       "#{time_ellapsed} #{time_ellapsed  <= 1 ? "seconde" : "secondes"}"

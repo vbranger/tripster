@@ -29,7 +29,6 @@ class Room < ApplicationRecord
   def convert_url
     br = Ferrum::Browser.new({ timeout: 60, headless: true, process_timeout: 60 })
     br.go_to(url)
-    p br.current_url
     update(url: br.current_url)
     br.quit
   end

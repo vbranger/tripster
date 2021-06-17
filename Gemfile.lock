@@ -139,6 +139,7 @@ GEM
       sassc (>= 1.11)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
+    headless (2.3.1)
     http-accept (1.7.0)
     http-cookie (1.0.4)
       domain_name (~> 0.5)
@@ -297,6 +298,7 @@ GEM
     simple_form (5.1.0)
       actionpack (>= 5.2)
       activemodel (>= 5.2)
+    socksify (1.7.1)
     spring (2.1.1)
     sprockets (4.0.2)
       concurrent-ruby (~> 1.0)
@@ -322,6 +324,9 @@ GEM
     unf_ext (0.0.7.7)
     warden (1.2.9)
       rack (>= 2.0.9)
+    watir (6.19.1)
+      regexp_parser (>= 1.2, < 3)
+      selenium-webdriver (>= 3.142.7)
     web-console (4.1.0)
       actionview (>= 6.0.0)
       activemodel (>= 6.0.0)
@@ -365,6 +370,7 @@ DEPENDENCIES
   faker
   ferrum
   font-awesome-sass
+  headless
   httparty
   jbuilder (~> 2.7)
   json
@@ -385,10 +391,12 @@ DEPENDENCIES
   selenium-webdriver
   shoulda-matchers
   simple_form
+  socksify
   spring
   state_machine_rspec
   turbolinks (~> 5)
   tzinfo-data
+  watir
   web-console (>= 4.1.0)
   webdrivers
   webpacker (~> 5.0)

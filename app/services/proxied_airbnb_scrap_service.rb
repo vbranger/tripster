@@ -1,17 +1,34 @@
-class AirbnbScrapService
+require 'socksify/http'
+
+class ProxiedAirbnbScrapService
   def initialize(url)
     @url = url
   end
 
   def call
+    require 'socket'
+
+    p addr_infos = Socket.ip_address_list
+
+    http = Net::HTTP::SOCKSProxy('127.0.0.1', 9050)
+    url = 'https://ident.me'
+    puts http.get(URI(url))
+
     p exception_keys = [] << :price if (!@url.include?("check_in") || !@url.include?("check_out"))
 
-    browser = Ferrum::Browser.new({ timeout: 60, headless: true, process_timeout: 60 })
-    browser.go_to(@url)
-    # sleep 5
-    browser.screenshot(path:"coucou-airbnb.jpeg")
+    browser = Ferrum::Browser.new({
+      timeout: 60, headless: true,
+      process_timeout: 60,
+      :browser_options=> {"proxy-server"=> "#{http.get(URI(url))}"}
+    })
 
-    attributes.except(*exception_keys).each_value {|attribute| wait_for(attribute[:css], browser)}
+    browser.go_to(@url)
+    sleep 7
+    browser.screenshot(path:"first-screenshot.jpeg")
+
+
+    # attributes.except(*exception_keys).each_value {|attribute| wait_for(attribute[:css], browser)}
+
 
     html_doc = Nokogiri::HTML(browser.body)
     result = {}
@@ -21,8 +38,6 @@ class AirbnbScrapService
     browser.quit
     result
   end
-
-
 
   def attributes
     {
@@ -49,7 +64,7 @@ class AirbnbScrapService
     while node.nil?
       p "waiting for #{css}"
       node = browser.at_css(css)
-      sleep 2
+      sleep 1
     end
     p "founded"
     node

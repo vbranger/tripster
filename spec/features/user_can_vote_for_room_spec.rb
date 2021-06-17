@@ -5,7 +5,6 @@ feature "User access vote page in room process" do
     scenario "successfully" do
       user = sign_in
       trip = create(:trip, user: user, name: "test", aasm_state: "votes")
-      create(:participant, user: user, trip: trip)
       4.times { create(:room, trip: trip) }
 
       visit trip_rooms_path(trip)

@@ -15,7 +15,7 @@
           <% else %>
             <%= link_to 'Modifier mon avis', edit_trip_room_review_path(@trip, @room, @review), class: "btn btn-outline-secondary mr-3", style: "font-size: 0.8rem" %>
           <% end %>
-          <%= link_to "Voir #{"sur #{@room.website}" if !@room.website.empty? }", @room.url, target: :_blank, class: "btn btn-outline-secondary", style: "font-size: 0.8rem" %>
+          <%= link_to "Voir #{"sur #{@room.website}" if !@room.website.nil? }", @room.url, target: :_blank, class: "btn btn-outline-secondary", style: "font-size: 0.8rem" %>
         </div>
         <p class="text-truncate text-primary"><strong><%= @room.name %></strong></p class=text-truncate>
         <p class="mt-1">

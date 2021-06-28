@@ -1,6 +1,6 @@
 <div class="container mb-5">
   <% @trips.each do |trip| %>
-      <%= render partial: 'shared/trip', locals: {trip: trip} %>
+      <%= render partial: 'shared/trip/trip_card', locals: {trip: trip} %>
   <% end %>
   <%#= link_to new_trip_path, class:"btn btn-light btn-circle shadow" do %>
   <%= link_to new_trip_path, class:"btn btn-light btn-circle shadow" do %>

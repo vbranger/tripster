@@ -9,6 +9,19 @@
       margin: 1rem 0;
     }
   }
+  & input {
+    outline:0;
+    border:0;
+    border-radius: 0;
+    border-bottom: 1px solid #E2E4E5;
+    // padding-top: 0;
+    // padding-bottom: 0;
+    height: auto;
+  }
+  & input:focus {
+    border-bottom: 1px solid $purple;
+  }
+  
 }
 
 .form_group {
@@ -16,15 +29,10 @@
   background: transparent;
   display: flex;
   flex-direction: column;
-  & input {
-    outline:0;
-    border:0;
-    border-radius: 0;
-    border-bottom: 1px solid #E2E4E5;
-  }
-  & input:focus {
-    border-bottom: 1px solid $purple;
-  }
+}
+
+.inline_input {
+  width: 48%;
 }
 
 // change background color of form autofilled

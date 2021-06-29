@@ -1,6 +1,6 @@
 <%= link_to trip_path(trip) do  %>
   <div class="trip_card">
-    <% if !trip.photo_url.nil? || trip.photo_url != "" %>
+    <% if !trip.photo_url.nil? && trip.photo_url != "" %>
       <%= image_tag trip.photo_url, class:"trip_card_photo" %>
     <% else %>
       <div class="card_svg_container">

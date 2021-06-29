@@ -13,7 +13,7 @@
   height: 100%;
   width: 80px;
   border-radius: 16px;
-  background: linear-gradient(0deg, rgba(81,81,81,0.1) 60%, #ffffff 40%);
+  background: linear-gradient(0deg, rgba(81,81,81,0.1) 30%, #ffffff 30%);
   padding: 0 0.5rem 0 0.5rem;
 }
 
@@ -29,7 +29,7 @@
   font-size: 1.2rem;
   font-weight: bold;
   color: $gray;
-  max-width: 250px;
+  max-width: 186px;
 }
 
 .trip_card_location {
@@ -51,4 +51,30 @@
     margin-right: 0.5rem;
   }
   
+}
+
+@media (min-width: 576px) {
+  .trip_card {
+    display: grid;
+    grid-template-rows: 2fr 1fr;
+    height: 400px;
+    margin: 0.5rem;
+    min-width: 280px;
+    max-width: 380px;
+  }
+
+  .trip_card img {
+    height: 100%;
+    width: 100%;
+    border-radius: 16px;
+    padding: 0 0.5rem 0 0.5rem;
+  }
+
+  .trip_card_info {
+    padding: 1rem;
+  }
+
+  .trip_card_title {
+    max-width: 350px;
+  }
 }

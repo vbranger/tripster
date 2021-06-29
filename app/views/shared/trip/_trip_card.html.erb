@@ -3,7 +3,9 @@
     <% if !trip.photo_url.nil? %>
       <%= image_tag trip.photo_url, class:"trip_card_photo" %>
     <% else %>
-      <%= image_tag "undraw_around.svg" %>
+      <div class="card_svg_container">
+        <%= image_tag "undraw_around.svg" %>
+      </div>
     <% end %>
     <div class="trip_card_info">
       <p class="trip_card_title text-truncate"><%= trip.name %></p>

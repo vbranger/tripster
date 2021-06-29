@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_29_155220) do
+ActiveRecord::Schema.define(version: 2021_06_29_170142) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -104,7 +104,7 @@ ActiveRecord::Schema.define(version: 2021_06_29_155220) do
     t.string "room_state"
     t.integer "choosen_room_ids", default: [], array: true
     t.string "aasm_state"
-    t.string "photo_url"
+    t.text "photo_url"
     t.index ["user_id"], name: "index_trips_on_user_id"
   end
 

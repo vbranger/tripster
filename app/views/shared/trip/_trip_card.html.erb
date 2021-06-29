@@ -1,0 +1,25 @@
+<%= link_to trip_path(trip) do  %>
+  <div class="trip_card">
+    <% if !trip.photo_url.nil? %>
+      <%= image_tag trip.photo_url, class:"trip_card_photo" %>
+    <% else %>
+      <%= image_tag "undraw_around.svg" %>
+    <% end %>
+    <div class="trip_card_info">
+      <p class="trip_card_title text-truncate"><%= trip.name %></p>
+      <p class="trip_card_location text-truncate"><i class="fas fa-map-marker-alt"></i> 
+        <% if trip.destination == "" %>
+          Non définie
+        <% else %>
+          <%= trip.destination %>
+        <% end %>
+      </p>
+      <div class="trip_card_details">
+        <% if trip.dates_chosen? %>
+        <p class="trip_card_dates"><i class="fas fa-chevron-right"></i><%= trip.start_date.strftime("%d/%m/%Y") %><br><i class="fas fa-chevron-left"></i><%= trip.end_date.strftime("%d/%m/%Y") %></p>
+        <% end %>
+        <p class="trip_card_participants"><i class="fas fa-users"></i><%= trip.participants.size %></p>
+      </div>
+    </div>
+  </div>
+<% end %>

@@ -15,9 +15,10 @@
             <strong>Quelle est ta destination ?</strong>
           </legend>
 
-          <div id="trip_name_input">
-            <%= f.text_field :destination, placeholder: "Sud-Ouest" %>
+          <div id="trip_name_input" data-controller="autocomplete">
+            <%= f.text_field :destination, placeholder: "Sud-Ouest", data: { action: "input->autocomplete#search"} %>
           </div>
+            <%= f.hidden_field :photo_url %>
 
           <p class="text-center m-3">OU</p>
           

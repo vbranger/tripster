@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-xfeature "User can add a room index" do
+feature "User can add a room index" do
   context "when aasm(room_state) => propositions" do
     scenario "successfully" do
       user = sign_in

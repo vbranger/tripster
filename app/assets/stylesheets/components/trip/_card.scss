@@ -17,6 +17,13 @@
   padding: 0 0.5rem 0 0.5rem;
 }
 
+.trip_card_photo {
+  padding: 0 !important;
+  object-fit: cover;
+  min-width: 80px;
+  max-height: 266.67px;
+}
+
 .trip_card_info {
   padding: 0.5rem 1rem 0.5rem 0.5rem;
   display: flex;
@@ -72,6 +79,11 @@
 
   .trip_card_info {
     padding: 1rem;
+  }
+
+  .trip_card_photo {
+    padding: 0 !important;
+    object-fit: cover;
   }
 
   .trip_card_title {

@@ -1,6 +1,9 @@
 <div class="background-rounded-white p-3">
   <%= simple_form_for(@trip) do |f| %>
-    <%= f.input :destination %>
+    <div id="trip_name_input" data-controller="autocomplete">
+      <%= f.input :destination, :input_html => {data: { action: "input->autocomplete#search"}} %>
+    </div>
+    <%= f.input :photo_url, :as => :hidden %>
     <%= f.submit %>
   <% end %>
 </div>

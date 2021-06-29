@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_09_095725) do
+ActiveRecord::Schema.define(version: 2021_06_29_155220) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,18 @@ ActiveRecord::Schema.define(version: 2021_05_09_095725) do
     t.index ["imageable_type", "imageable_id"], name: "index_news_on_imageable"
     t.index ["trip_id"], name: "index_news_on_trip_id"
     t.index ["user_id"], name: "index_news_on_user_id"
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.string "recipient_type", null: false
+    t.bigint "recipient_id", null: false
+    t.string "type", null: false
+    t.jsonb "params"
+    t.datetime "read_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["read_at"], name: "index_notifications_on_read_at"
+    t.index ["recipient_type", "recipient_id"], name: "index_notifications_on_recipient"
   end
 
   create_table "participants", force: :cascade do |t|
@@ -74,6 +86,13 @@ ActiveRecord::Schema.define(version: 2021_05_09_095725) do
     t.index ["trip_id"], name: "index_rooms_on_trip_id"
   end
 
+  create_table "roomspecs", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_roomspecs_on_user_id"
+  end
+
   create_table "trips", force: :cascade do |t|
     t.string "name"
     t.date "start_date"
@@ -82,8 +101,10 @@ ActiveRecord::Schema.define(version: 2021_05_09_095725) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "user_id"
+    t.string "room_state"
     t.integer "choosen_room_ids", default: [], array: true
     t.string "aasm_state"
+    t.string "photo_url"
     t.index ["user_id"], name: "index_trips_on_user_id"
   end
 
@@ -128,4 +149,5 @@ ActiveRecord::Schema.define(version: 2021_05_09_095725) do
   add_foreign_key "reviews", "rooms"
   add_foreign_key "reviews", "users"
   add_foreign_key "rooms", "trips"
+  add_foreign_key "roomspecs", "users"
 end

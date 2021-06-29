@@ -25,7 +25,7 @@ class Trip::FormStepsController < ApplicationController
   	  when "name"
   	    [:name]
   	  when "destination"
-  	    [:destination]
+  	    [:destination, :photo_url]
   	  when "dates"
   	    [:start_date, :end_date]
   	  end

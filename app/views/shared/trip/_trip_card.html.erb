@@ -18,7 +18,18 @@
       </p>
       <div class="trip_card_details">
         <% if trip.dates_chosen? %>
-        <p class="trip_card_dates"><i class="fas fa-chevron-right"></i><%= trip.start_date.strftime("%d/%m/%Y") %><br><i class="fas fa-chevron-left"></i><%= trip.end_date.strftime("%d/%m/%Y") %></p>
+          <p class="trip_card_dates">
+            <i class="fas fa-chevron-right"></i>
+            <%= trip.start_date.strftime("%d/%m/%Y") %>
+            <br>
+            <i class="fas fa-chevron-left"></i>
+            <%= trip.end_date.strftime("%d/%m/%Y") %>
+          </p>
+        <% else %>
+          <p class="trip_card_dates">
+            <i class="fas fa-chevron-right"></i>
+            Dates non définies
+          </p>
         <% end %>
         <p class="trip_card_participants"><i class="fas fa-users"></i><%= trip.participants.size %></p>
       </div>

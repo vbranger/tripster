@@ -1,4 +1,4 @@
-<div class="navbar-lewagon sticky-top">
+<div class="navbar-lewagon <%= params[:controller] == 'trips' && params[:action] == 'show' ? 'fixed-top' : 'sticky-top' %>">
       <% if user_signed_in? %>
   <div class="collapse" id="navbarToggleExternalContent">
     <div class="p-4">

@@ -54,6 +54,11 @@ class ParticipantsController < ApplicationController
     redirect_to trip_rooms_path(@trip)
   end
 
+  def index
+    @trip = Trip.find(params[:trip_id])
+    @participants = Participant.where(trip: @trip)
+  end
+
   private
 
   def participant_params

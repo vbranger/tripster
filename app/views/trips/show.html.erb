@@ -1,147 +1,55 @@
-<div class=" ">
-
-  <!-- MENU -->
-  <ul class="nav justify-content-around" id="myTab" role="tablist">
-    <li>
-      <button class="btn button-tab active" id="home-tab" data-toggle="tab" href="#home" type="button" role="tab" aria-controls="home" aria-selected="true">
-        HOME
-        <div class="dot"></div>
-      </button>
-    </li>
-    <li>
-      <button class="btn button-tab" id="news-tab" data-toggle="tab" href="#news" type="button" role="tab" aria-controls="news" aria-selected="false">
-        NEWS
-        <div class="dot"></div>
-      </button>
-    </li>
-    <li>
-      <button class="btn button-tab" id="people-tab" data-toggle="tab" href="#people" type="button" role="tab" aria-controls="people" aria-selected="false">
-        PEOPLE
-        <div class="dot"></div>
-      </button>
-    </li>
-  </ul>
-
-  <div class="tab-content background-rounded-white" id="myTabContent">
-    <!--  TAB HOME -->
-    <div class="tab-pane fade p-3 show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-      <!-- CARD DESTINATION -->
-      <div class="home_card">
-        <div class="d-flex align-items-center justify-items-between">
-            <%= image_tag "undraw_adventure_4hum.svg", class:"d-none d-sm-block home_card_img" %>
-          <div class="home_card__info">
-            <p class="home_card__category">destination</p>
-            <p class="home_card__status"><%= !@trip.destination || @trip.destination == "" ? "A définir" : @trip.destination %></p>
-          </div>
-          <%= link_to "Voir", edit_destination_path(@trip), class: "btn btn-secondary button-custom" %>
-        </div>
-      </div>
-
-      <!-- CARD DATES -->
-      <div class="home_card">
-        <div class="d-flex align-items-center justify-items-between">
-          <%= image_tag "undraw_date_picker_gorr.svg", class:"d-none d-sm-block  home_card_img"  %>
-          <% if @trip.dates_chosen? %>
-            <div class="home_card__info">
-              <p class="home_card__category">dates</p>
-              <p class="home_card__status"><%= "#{@trip.start_date.strftime('%d/%m/%y')} - #{@trip.end_date.strftime('%d/%m/%y')}"%></p>
-            </div>
-            <%= link_to "Modifier", "#{@trip.id}/edit_dates", class: "btn btn-secondary button-custom"  %>
-          <% else %>
-            <div class="home_card__info">
-              <p class="home_card__category">dates</p>
-              <p class="home_card__status">A définir</p>
-            </div>
-            <%= link_to "Démarrer", "#{@trip.id}/edit_dates", class: "btn btn-primary button-custom"  %>
-          <% end %>
-        </div>
-      </div>
-      
-      <!-- CARD LOGEMENT -->
-      <div id="hp_room_card" class="home_card <%= 'border-success' if @trip.choosen?%>">
-        <div class="d-flex align-items-center justify-items-between">
-          <%= image_tag "undraw_house_searching.svg", class:"d-none d-sm-block  home_card_img" %>
-          <div class="home_card__info">
-            <p class="home_card__category">logement</p>
-          <% if @trip.propositions? %>
-              <p class="home_card__status"><%= @trip.rooms.count < 2 ? @trip.rooms.count.to_s + ' proposition' : @trip.rooms.count.to_s + ' propositions' %></p>
-            </div>
-            <%= link_to "Voir", trip_rooms_path(@trip), class: "btn btn-secondary button-custom" %>
-          <% elsif @trip.not_started? %>
-              <p class="home_card__status">Non défini</p>
-            </div>
-            <%= button_to "Démarrer", trip_start_propositions_path(@trip), method: :put, class: "btn btn-primary button-custom" %>
-          <% elsif @trip.votes? %>
-              <p class="home_card__status"><%= @trip.rooms.count >= 4 ? '4 propositions retenues' : @trip.rooms.count.to_s + ' propositions retenues' %></p>
-            </div>
-            <%= link_to "Voter", trip_rooms_path(@trip), class: "btn btn-primary button-custom" %>
-          <% elsif @trip.choosen? || @trip.booked? %>
-            </div>
-            <%= link_to "Voir", trip_rooms_path(@trip), class: "btn btn-primary button-custom" %>
-          <% elsif @trip.draw? %>
-            </div>
-            <%= link_to "Choisir", trip_rooms_path(@trip), class: "btn btn-primary button-custom" %>
-          <% end %>
-        </div>
-        <% if @trip.choosen? ||@trip.booked? %>
-          <div>
-            <%= render partial: 'shared/choosen_room_card', locals: {room: @choosen_room, trip: @choosen_room.trip} %>
-          </div>
-        <% elsif @trip.draw? %>
-          <% @choosen_rooms.each do |room| %>
-              <%= render partial: 'shared/choosen_room_card', locals: {room: room} %>
-            <% end %>  
-        <% end %>
-      </div>
-
-    </div>
-    <!--  TAB NEWS -->
-    <div class="tab-pane fade p-3" id="news" role="tabpanel" aria-labelledby="news-tab">
-      <% @news.each do |new| %>
-        
-        <% if new.action_type == "reviews#create" || new.action_type == "reviews#update" %>
-          <%= render layout: 'shared/news_text_card', locals: { new: new } do %>
-            <%= render partial: 'shared/news_content', locals: { new: new } %>
-          <% end %>
-        <% else %>
-          <%= render layout: 'shared/news_card', locals: { new: new } do %>
-            <%= render partial: 'shared/news_content', locals: { new: new } %>
-          <% end %>
-        <% end %>
-      <% end %>
-    </div>
-    <!--  TAB PEOPLE -->
-    <div class="tab-pane fade" id="people" role="tabpanel" aria-labelledby="people-tab">
-      <!-- CARD PARTICIPANTS -->
-        <div class="col-12 p-3">
-          <div class="d-flex align-items-center mb-3">
-            <p class="text-center"><strong>participants</strong></p>
-          </div>
-          <div class="row p-3">
-            <figure class="col-sm-12 col-md-4 text-center">
-                <%= image_tag "undraw_group_selfie_ijc6.svg", class: "img-fluid", style: "max-height: 30vh" %>
-            </figure>
-            <div class="col-sm-12 col-md-8 text-center">
-              <ul class="list-group list-group-flush">
-                <% @participants.each do |participant| %>
-                  <li class="list-group-item d-flex align-items-center">
-                    <%= render partial: 'shared/avatar', locals: {user: participant.user} %>
-                    <p class="ml-3">
-                      <%= participant.user.first_name %>
-                    </p>
-                    <% if @trip.user == current_user %>
-                      <%= link_to participant_path(participant), method: :delete, data: { confirm: "Êtes-vous sûr ?"}, class: "ml-auto" do %>
-                        <i class="fas fa-times-circle text-dark"></i>
-                      <% end %>        
-                    <% end %>
-                  </li>
-                <% end %>
-              </ul>
-              <%= link_to "Ajouter un participant", new_invite_path(trip: @trip), class: "btn btn-outline-dark btn-sm" %>
-            </div>
-          </div>
-        </div>
-    </div>
+<%= render layout: '/layouts/trip' do %>
+  <div class="trip_show_card_bg">
+    <%= render partial: 'shared/trip/trip_card_info', locals: {trip: @trip} %>
   </div>
 
-</div>
+  <div class="trip_show_menu trip_show_card_bg">
+    <%= render partial: 'shared/trip/trip_menu_btn', 
+      locals: {
+        icon: "fas fa-map-marker-alt", 
+        text: "Destination", 
+        path: edit_destination_path(@trip),
+        method: :get
+      } 
+    %>
+    <%= render partial: 'shared/trip/trip_menu_btn', 
+      locals: {
+        icon: "fas fa-calendar-alt", 
+        text: "Dates",
+        path: edit_dates_path(@trip),
+        method: :get
+      } 
+    %>
+    <%= render partial: 'shared/trip/trip_menu_btn', 
+      locals: {
+        icon: "fas fa-home", 
+        text: "Logement",
+        path: @trip.not_started? ? trip_start_propositions_path(@trip) : trip_rooms_path(@trip),
+        method: @trip.not_started? ? :put : :get
+      } 
+    %>
+    <%= render partial: 'shared/trip/trip_menu_btn', 
+      locals: {
+        icon: "fas fa-users", 
+        text: "Participants",
+        path: trip_participants_path(@trip),
+        method: :get
+        }
+    %>
+  </div>
+
+  <div class="trip_show_card_bg">
+    <% @news.each do |new| %>
+      <% if new.action_type == "reviews#create" || new.action_type == "reviews#update" %>
+        <%= render layout: 'shared/news_text_card', locals: { new: new } do %>
+          <%= render partial: 'shared/news_content', locals: { new: new } %>
+        <% end %>
+      <% else %>
+        <%= render layout: 'shared/news_card', locals: { new: new } do %>
+          <%= render partial: 'shared/news_content', locals: { new: new } %>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+  
+<% end %>

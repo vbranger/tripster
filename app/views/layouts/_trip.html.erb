@@ -1,0 +1,5 @@
+<div class="trip_background" style="background-image: url('<%= image_path @trip.photo_url.nil? || @trip.photo_url == "" ? "undraw_around.svg" : @trip.photo_url %>')">
+</div>
+<div class="trip_show_container">
+  <%= yield %>
+</div>

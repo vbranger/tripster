@@ -95,6 +95,4 @@ class Trip < ApplicationRecord
 
     errors.add(:end_date, "can't be inferior to starting date") if end_date < start_date
   end
-
-
 end

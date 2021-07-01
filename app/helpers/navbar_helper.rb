@@ -1,0 +1,84 @@
+module NavbarHelper
+
+  def navbar_position
+    if (params[:controller] == 'trips' && params[:action] == 'show' || params[:controller] == 'participants')
+      'fixed-top'
+    else
+      'sticky-top'
+    end
+  end
+
+  def bg_color
+    if params[:controller] == 'pages' && params[:action] == 'home'
+      "bg-dark"
+    else
+      "bg-transparent"
+    end
+  end
+
+  def login_link
+    !(
+      params[:controller].include?('users') ||
+      params[:controller].include?('devise') ||
+      params[:controller] == 'pages' && params[:action] == 'waiting_confirmation'
+    )
+  end
+
+  def logo_tripster
+    !user_signed_in? || params[:controller] == 'trips' && params[:action] == 'index' || params[:controller] == "pages"
+  end
+
+  def text_color_bg
+    if bg_not_white && !@trip.photo_url.nil? && @trip.photo_url != ""
+      "text-light"
+    else
+      "text-dark"
+    end
+  end
+
+  def bg_not_white
+    params[:controller] == 'trips' && params[:action] == 'show' ||
+      params[:action] == 'home' || params[:controller] == 'participants'
+  end
+
+  def back_link(options = {})
+    if go_to_trips_path
+      trips_path
+    elsif go_to_trip_path
+      trip_path(options[:trip])
+    elsif go_to_trip_rooms_path
+      trip_rooms_path(options[:trip])
+    elsif cancel_room_create
+      trip_room_path(options[:trip], options[:room])
+    end
+  end
+
+  def back_link_method
+    if cancel_room_create
+      :delete
+    else
+      :get
+    end
+  end
+
+  def go_to_trips_path
+    params[:controller] == 'trips' && (params[:action] == 'show' || params[:action] == 'new') ||
+      params[:controller] == 'trip/form_steps'
+  end
+
+  def go_to_trip_path
+    params[:controller] == 'rooms' && params[:action] == 'index' ||
+      params[:controller] == 'trips' && params[:action] == 'edit_destination' ||
+      params[:action] == 'edit_dates' ||
+      params[:controller] == 'participants'
+  end
+
+  def go_to_trip_rooms_path
+    params[:controller] == 'rooms' && params[:action] == 'show' ||
+      params[:controller] == 'rooms' && params[:action] == 'new'
+  end
+
+  def cancel_room_create
+    params[:controller] == 'rooms' && params[:action] == 'edit'
+  end
+end

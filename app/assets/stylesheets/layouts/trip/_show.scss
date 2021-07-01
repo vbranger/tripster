@@ -34,7 +34,6 @@
 .trip_show_menu {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-gap: 0.5rem 0;
   padding: 1rem;
   place-items: center;
 }

@@ -1,0 +1,39 @@
+<div class="navbar-lewagon <%= navbar_position %>">
+      <% if user_signed_in? %>
+  <div class="collapse bg-white" id="navbarToggleExternalContent">
+    <div class="p-4">
+            <%= link_to "Mes voyages", trips_path, class: "dropdown-item font-weight-bold" %>
+            <%= link_to "Mon profil", trips_path, class: "dropdown-item font-weight-bold" %>
+            <%= link_to "Se déconnecter", destroy_user_session_path, method: :delete, class: "dropdown-item font-weight-bold" %>
+            <% if params[:controller] == 'trips' && params[:action] == 'show' && @trip.user == current_user %>
+              <%= link_to "Supprimer ce trip", trip_path(@trip), method: :delete, data: { confirm: "Êtes-vous sûr ?"}, class: "dropdown-item font-weight-bold" %>
+            <% end %>
+    </div>
+  </div>
+      <% end %>
+  <nav class="navbar <%= bg_color %> pt-1 flex-nowrap">
+    
+    <%# LOGIQUE LINK LEFT %>
+    <% if logo_tripster %>
+      <%= link_to root_path, class: "navbar-brand" do %>
+          <p class="d-block d-sm-none <%= text_color_bg %>" style="font-family: Ranchers">tripster</p>
+          <p class="d-none d-sm-block <%= text_color_bg %>" style="font-family: Ranchers; font-size: 1.5rem">tripster</p>
+      <% end %>
+    <% else %>
+      <%= link_to back_link({trip: @trip, room: @room, trip_id: @room&.trip&.id}), id:'back-btn', method: back_link_method do %>
+        <i class="fas fa-chevron-left <%= text_color_bg %> shadowed" style="width: 40px"></i>
+      <% end %>
+    <% end %>
+
+
+    
+    <%# LOGIQUE LINK RIGHT %>
+    <% if user_signed_in? %>
+      <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation" style="padding: 0.25rem 0;">
+        <%= render partial: 'shared/avatar', locals: {user: current_user} %>
+      </button>
+    <% elsif login_link %>
+        <%= link_to "Se connecter", new_user_session_path, class: "nav-item btn btn-outline-primary bg-light d-none d-sm-block my-sm-3" %>
+    <% end %>
+  </nav>
+</div>

@@ -8,7 +8,9 @@
       </div>
     <% end %>
     <div class="trip_card_right">
-      <%= render partial: 'shared/trip/trip_card_info', locals: {trip: trip} %>
+      <div class="trip_card_info">
+        <%= render partial: 'shared/trip/trip_card_info', locals: {trip: trip} %>
+      </div>
     </div>
   </div>
 <% end %>

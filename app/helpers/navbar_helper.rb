@@ -1,11 +1,17 @@
 module NavbarHelper
 
   def navbar_position
-    if (params[:controller] == 'trips' && params[:action] == 'show' || params[:controller] == 'participants')
+    if need_fixednav
       'fixed-top'
     else
       'sticky-top'
     end
+  end
+
+  def need_fixednav
+    params[:controller] == 'trips' && params[:action] == 'show' ||
+      params[:controller] == 'participants' ||
+      params[:controller] == 'rooms' && params[:action] == 'index'
   end
 
   def bg_color
@@ -68,14 +74,12 @@ module NavbarHelper
 
   def go_to_trip_path
     params[:controller] == 'rooms' && params[:action] == 'index' ||
-      params[:controller] == 'trips' && params[:action] == 'edit_destination' ||
-      params[:action] == 'edit_dates' ||
-      params[:controller] == 'participants'
+      params[:controller] == 'trips' && (params[:action] == 'edit_destination' || params[:action] == 'edit_dates') ||
+      params[:controller] == 'participants' && params[:action] == 'index'
   end
 
   def go_to_trip_rooms_path
-    params[:controller] == 'rooms' && params[:action] == 'show' ||
-      params[:controller] == 'rooms' && params[:action] == 'new'
+    params[:controller] == 'rooms' && (params[:action] == 'show' || params[:action] == 'new')
   end
 
   def cancel_room_create

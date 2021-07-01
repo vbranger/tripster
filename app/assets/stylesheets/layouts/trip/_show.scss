@@ -33,7 +33,13 @@
 
 .trip_show_menu {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   padding: 1rem;
   place-items: center;
+}
+
+@media (min-width: 576px) {
+  .trip_show_menu {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }

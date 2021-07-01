@@ -29,7 +29,7 @@ module NavbarHelper
   end
 
   def text_color_bg
-    if bg_not_white && !@trip.photo_url.nil? && @trip.photo_url != ""
+    if bg_not_white
       "text-light"
     else
       "text-dark"

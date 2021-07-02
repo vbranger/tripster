@@ -1,3 +1,5 @@
+require 'ferrum'
+
 class TripsController < ApplicationController
 
   def new
@@ -61,6 +63,15 @@ class TripsController < ApplicationController
 
   def update
     @trip = Trip.find(params[:id])
+
+    if params[:trip][:photo_url] != @trip.photo_url
+      url = params[:trip][:photo_url]
+      br = Ferrum::Browser.new({ timeout: 60, headless: true, process_timeout: 60 })
+      br.go_to(url)
+      params[:trip][:photo_url] = br.current_url
+      br.quit
+    end
+
     if @trip.update(trip_params)
       News.create!(user: current_user, trip_id: @trip.id, action_type: "#{params[:controller]}##{params[:action]}", imageable_type: "Trip", imageable_id: @trip.id)
       redirect_to trip_path(@trip)

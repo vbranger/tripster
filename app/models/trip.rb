@@ -81,6 +81,10 @@ class Trip < ApplicationRecord
     return string
   end
 
+  def photo_url?
+    return true unless photo_url.nil? || photo_url == ""
+  end
+
   # les deux prochaines méthodes devront disparaitre lorsque nous auront codé les autres process
   def destination_chosen?
     self.destination && !self.destination.empty? ? true : false

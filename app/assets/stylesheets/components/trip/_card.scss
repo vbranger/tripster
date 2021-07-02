@@ -9,11 +9,15 @@
   margin: 0.5rem 0;
 }
 
+.card_svg_container {
+  height: 100%;
+}
+
 .trip_card img {
   height: 100%;
   width: 80px;
   border-radius: 16px;
-  background: linear-gradient(0deg, rgba(81,81,81,0.1) 30%, #ffffff 30%);
+  background: linear-gradient(0deg, rgba(81,81,81,0.1) 40%, #ffffff 40%);
   padding: 0 0.5rem 0 0.5rem;
 }
 
@@ -67,6 +71,8 @@
   
 }
 
+
+
 @media (min-width: 576px) {
   .trip_card {
     display: grid;
@@ -80,12 +86,17 @@
     width: 100%;
     border-radius: 16px;
     padding: 0 0.5rem 0 0.5rem;
+    background: linear-gradient(0deg, rgba(81,81,81,0.1) 30%, #ffffff 30%);
   }
 
   .trip_card_right {
     width: 40vw;
     height: 100%;
     flex-grow: 1;
+  }
+
+  .card_svg_container {
+    height: 266.77px;
   }
 
   .trip_card_info {
@@ -97,10 +108,6 @@
   .trip_card_photo {
     padding: 0 !important;
     object-fit: cover;
-  }
-
-  .card_svg_container {
-    height: 266.77px;
   }
 
   .trip_card_title {

@@ -21,7 +21,7 @@
       <% end %>
     <% else %>
       <%= link_to back_link({trip: @trip, room: @room, trip_id: @room&.trip&.id}), id:'back-btn', method: back_link_method do %>
-        <i class="fas fa-chevron-left <%= text_color_bg %> shadowed" style="width: 40px"></i>
+        <i class="fas fa-chevron-left" style="width: 40px"></i>
       <% end %>
     <% end %>
 

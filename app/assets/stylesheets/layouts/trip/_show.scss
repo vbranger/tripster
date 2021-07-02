@@ -5,7 +5,20 @@
   position: fixed;
   width: 100%;
   border-radius: 0px 0px 32px 32px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
 }
+
+.trip_background_generic {
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 60vh;
+  position: fixed;
+  width: 100%;
+  border-radius: 0px 0px 32px 32px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+}
+
 
 .trip_show_container {
   position: relative;
@@ -47,5 +60,9 @@
 @media (min-width: 576px) {
   .trip_show_menu {
     grid-template-columns: repeat(3, 1fr);
+  }
+
+  .trip_background_generic {
+    height: 77vh;
   }
 }

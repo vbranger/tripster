@@ -1,9 +1,47 @@
-<div class="background-rounded-white p-3">
-  <%= simple_form_for(@trip) do |f| %>
-    <%= f.input :start_date %>
-    <%= f.input :end_date %>
-    <%= f.submit "Enregistrer", :class => "btn btn-dark" %>
-  <% end %>
-  <br>
-  <%= link_to "Annuler", reset_dates_path(@trip), class: "text-dark" %>
-</div>
+<%= render layout: '/layouts/trip' do %>
+    <div class="trip_show_card_bg d-flex justify-content-center">
+      <div style="max-width: 103%;">
+        <div class="d-flex justify-content-between mb-3">
+          <p class="trip_card_title text-truncate"><%= @trip.name %></p>
+        </div>
+        <%= simple_form_for @trip, html: {class:"trip_form"} do |f| %>
+          <% if f.object.errors.any? %>
+            <div class="error_messages">
+              <% f.object.errors.full_messages.each do |error| %>
+                <p><%= error %></p>
+              <% end %>
+            </div>
+          <% end %>
+          <fieldset data-controller="calendar">
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+              <label class="form-check-label" for="exampleRadios1">
+                Dates
+              </label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+              <label class="form-check-label" for="exampleRadios2">
+                Scope
+              </label>
+            </div>
+            <div>
+              <%= f.input :start_date, as: :hidden, required: false, input_html: {class: "datepicker", id: "range_start", data: {calendar_target: 'range', action: 'input->calendar#refresh'}} %>
+            </div>
+            <div>
+              <%= f.input :end_date, as: :hidden, required: false, input_html: {class: "datepicker", id: "range_end"} %>
+            </div>
+            <div class="text-center">
+              <p data-calendar-target="display"></p>
+              <%= link_to "Annuler sélection", "#", class: "d-none", data: {calendar_target: "reset"}  %>
+            </div>
+            <div class="d-flex flex-column mt-3">
+              <%= f.submit "Enregistrer", :class => "btn btn-primary mb-3" %>
+              <%= link_to "Dates non définies", reset_dates_path(@trip), class: "btn btn-outline-primary" %>
+            </div>
+          </fieldset>
+        <% end %>
+        <br>
+      </div>
+    </div>
+<% end %>

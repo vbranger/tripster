@@ -10,7 +10,7 @@ const initFlatpickr = () => {
     altInputClass: "invisible d-none",
     minDate: "today",
     plugins: [new rangePlugin({ input: "#range_end"})],
-    locale: French,
+    // locale: French,
   });
 }
 

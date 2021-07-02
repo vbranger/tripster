@@ -1,9 +1,19 @@
-<div class="background-rounded-white p-3">
-  <%= simple_form_for(@trip) do |f| %>
-    <div id="trip_name_input" data-controller="autocomplete">
-      <%= f.input :destination, :input_html => {data: { action: "input->autocomplete#search"}} %>
+<%= render layout: '/layouts/trip' do %>
+  <div class="down_40vh">
+    <div class="trip_show_card_bg">
+      <div class="d-flex justify-content-between mb-3">
+        <p class="trip_card_title text-truncate"><%= @trip.name %></p>
+      </div>
+      <%= simple_form_for(@trip) do |f| %>
+        <div id="trip_name_input" data-controller="autocomplete">
+          <%= f.input :destination,
+            label: "Définir votre destination (ville, région ou pays)",
+            :input_html => {data: { action: "input->autocomplete#search"}}
+          %>
+        </div>
+        <%= f.input :photo_url, :as => :hidden %>
+        <%= f.submit "Enregistrer", :class=>"btn btn-primary" %>
+      <% end %>
     </div>
-    <%= f.input :photo_url, :as => :hidden %>
-    <%= f.submit %>
-  <% end %>
-</div>
+  </div>
+<% end %>

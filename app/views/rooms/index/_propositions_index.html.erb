@@ -1,37 +1,37 @@
 <%= render layout: '/layouts/trip' do %>
-<div class="trip_show_card_bg">
-  <div class="d-flex justify-content-betweeb">
-    <p class="trip_card_title text-truncate"><%= @trip.name %></p>
-    <% if @trip.user == current_user %>
-      <%= button_to trip_start_votes_path(@trip), method: :put, class: "btn btn-outline-primary btn-sm", style:'width: max-content', data: { confirm: "Êtes-vous sûr ?"} do %>
-        <i class="fas fa-person-booth"></i> Voter
+  <div class="trip_show_card_bg">
+    <div class="d-flex justify-content-between">
+      <p class="trip_card_title text-truncate"><%= @trip.name %></p>
+      <% if @trip.user == current_user %>
+        <%= button_to trip_start_votes_path(@trip), method: :put, class: "btn btn-outline-primary btn-sm", style:'width: max-content', data: { confirm: "Êtes-vous sûr ?"} do %>
+          <i class="fas fa-person-booth"></i> Voter
+        <% end %>
       <% end %>
-    <% end %>
-  </div>
-  <p><%= @trip.rooms.count < 2 ? @trip.rooms.count.to_s + ' logement' : @trip.rooms.count.to_s + ' logements' %></p>
-  <div class="d-block justify-content-between mt-3">
-    <p class="d-none d-sm-block mr-2"><small>Trier : </small></p>
-    <%= link_to "Mieux notés", trip_rooms_path(query:['top_rated'],user_id:params[:user_id]), class: "btn #{params[:query] == ['top_rated'] || params[:query].nil? ? 'btn-primary' : 'btn-outline-primary' } button-custom px-1" %>
-    <%= link_to "Nouveautés", trip_rooms_path(query:['newest'],user_id:params[:user_id]), class: "btn #{params[:query] == ['newest'] ? 'btn-primary' : 'btn-outline-primary'}  button-custom px-1" %>
-    <%= link_to "Mon choix", trip_rooms_path(query:['user_order'],user_id:params[:user_id]), class: "btn #{params[:query] == ['user_order'] ? 'btn-primary' : 'btn-outline-primary'}  button-custom px-1" %>
+    </div>
+    <p><%= @trip.rooms.count < 2 ? @trip.rooms.count.to_s + ' logement' : @trip.rooms.count.to_s + ' logements' %></p>
+    <div class="d-block justify-content-between mt-3">
+      <p class="d-none d-sm-block mr-2"><small>Trier : </small></p>
+      <%= link_to "Mieux notés", trip_rooms_path(query:['top_rated'],user_id:params[:user_id]), class: "btn #{params[:query] == ['top_rated'] || params[:query].nil? ? 'btn-primary' : 'btn-outline-primary' } button-custom px-1" %>
+      <%= link_to "Nouveautés", trip_rooms_path(query:['newest'],user_id:params[:user_id]), class: "btn #{params[:query] == ['newest'] ? 'btn-primary' : 'btn-outline-primary'}  button-custom px-1" %>
+      <%= link_to "Mon choix", trip_rooms_path(query:['user_order'],user_id:params[:user_id]), class: "btn #{params[:query] == ['user_order'] ? 'btn-primary' : 'btn-outline-primary'}  button-custom px-1" %>
+    </div>
+
+    <div class="d-none d-sm-block justify-content-between mt-3">
+      <p class="mr-2"><small>Avis de : </small></p>
+      <% @participants.each do |participant| %>
+        <%= link_to participant.user.first_name, trip_rooms_path(user_id:[participant.user.id],query:params[:query]),class: "btn #{participant.active?(params, participant.user, current_user) ? 'btn-primary' : 'btn-outline-primary' } button-custom px-1" %>
+      <% end %>
+    </div>
   </div>
 
-  <div class="d-none d-sm-block justify-content-between mt-3">
-    <p class="mr-2"><small>Avis de : </small></p>
-    <% @participants.each do |participant| %>
-      <%= link_to participant.user.first_name, trip_rooms_path(user_id:[participant.user.id],query:params[:query]),class: "btn #{participant.active?(params, participant.user, current_user) ? 'btn-primary' : 'btn-outline-primary' } button-custom px-1" %>
+  <div class="trip_show_card_bg">
+    <%= link_to new_trip_room_path(@trip), class: "btn btn-primary btn-sm" do %>
+      <i class="fas fa-plus-circle"></i> Ajouter
     <% end %>
+    <ul class="list-group list-group-flush border-0">
+      <% @rooms.each do |room| %>
+        <%= render partial: 'shared/room_card', locals: {room: room, user: @user} %>
+      <% end %>
+    </ul>
   </div>
-</div>
-
-<div class="trip_show_card_bg">
-  <%= link_to new_trip_room_path(@trip), class: "btn btn-primary btn-sm" do %>
-    <i class="fas fa-plus-circle"></i> Ajouter
-  <% end %>
-  <ul class="list-group list-group-flush border-0">
-    <% @rooms.each do |room| %>
-      <%= render partial: 'shared/room_card', locals: {room: room, user: @user} %>
-    <% end %>
-  </ul>
-</div>
 <% end %>

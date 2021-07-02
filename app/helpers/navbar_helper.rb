@@ -9,7 +9,11 @@ module NavbarHelper
   end
 
   def need_fixednav
-    params[:controller] == 'trips' && params[:action] == 'show' ||
+    params[:controller] == 'trips' && (
+      params[:action] == 'show' || 
+      params[:action] == 'edit_destination' ||
+      params[:action] == 'edit_dates'
+      ) ||
       params[:controller] == 'participants' ||
       params[:controller] == 'rooms' && params[:action] == 'index'
   end

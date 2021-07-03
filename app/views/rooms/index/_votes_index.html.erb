@@ -1,56 +1,55 @@
-<div class="background-rounded-white-no-tab p-3  justify-content-center">
-  <div class="d-flex align-items-center mb-3">
-    <p><strong>Mon classement</strong></p>
-    <div class="d-flex ml-auto">
-      <% if @trip.user == current_user %>
-        <%= button_to trip_back_propositions_path(@trip), method: :put, class: "btn btn-outline-primary btn-sm text-center", data: { confirm: "Êtes-vous sûr ?"} do %>
-          <i class="fas fa-undo-alt"></i> Propositions
-        <% end %>
-      <% end %>
-    </div>
-  </div>
-  <% if !@participant.room_votes.empty? %>
-    <p class="text-center m-3 px-3"><small>En attente des autres participants</small></p>
-    <div class="row justify-content-center">
-      <div class="col-12 col-sm-6 votes-avatar-grid">
-        <% @participants.each do |participant| %>
-          <%= link_to "#", data: {toggle:"tooltip", placement:"bottom"}, title:"#{participant.user.first_name}", style:"justify-self: center; align-self: center" do  %>
-            <div class="avatar-custom text-white" style="border: <%= participant.room_votes.empty? ? '#FB9F89' : '#60AB9A' %> 2px solid;">
-              <p><%= participant.user.first_name.first(1).upcase %></p>
-            </div>
+<%= render layout: '/layouts/trip' do %>
+  <%= render layout: '/layouts/transparent_card' do %>
+    <div class="d-flex align-items-center mb-3">
+      <p><strong>Mon classement</strong></p>
+      <div class="d-flex ml-auto">
+        <% if @trip.user == current_user %>
+          <%= button_to trip_back_propositions_path(@trip), method: :put, class: "btn btn-outline-primary btn-sm text-center", data: { confirm: "Êtes-vous sûr ?"} do %>
+            <i class="fas fa-undo-alt"></i> Propositions
           <% end %>
         <% end %>
       </div>
     </div>
-  <% end %>
-
-  
-  <% if @participant.room_votes.empty? %>
-    <p class="text-center m-3" style="font-size: 0.8rem"><small>Classez dans votre ordre de préférence</small></p>
-  <% else %>
-    <p class="text-center m-3"><small>Votre classement a bien été enregistré</small></p>
-  <% end %>
-
-  <ol class="list-group list-group-flush border-0 " style="<%= 'filter: grayscale(100%)' if !@participant.room_votes.empty?%>" <%= 'data-controller=drag' if @participant.room_votes.empty? %>>
-    <% @rooms.each_with_index do |room, index| %>
-    <li class="list-group-item p-0" style="border-width: 0" data-drag-target="row" data-id="<%= room.id %>">
-      <%= render partial: 'shared/room_votes_card', locals: {room: room, user: @user, index: index + 1} %>
-    </li>
+    <% if !@participant.room_votes.empty? %>
+      <p class="text-center m-3 px-3"><small>En attente des autres participants</small></p>
+      <div class="row justify-content-center">
+        <div class="col-12 col-sm-6 votes-avatar-grid">
+          <% @participants.each do |participant| %>
+            <%= link_to "#", data: {toggle:"tooltip", placement:"bottom"}, title:"#{participant.user.first_name}", style:"justify-self: center; align-self: center" do  %>
+              <div class="avatar-custom text-white" style="border: <%= participant.room_votes.empty? ? '#FB9F89' : '#60AB9A' %> 2px solid;">
+                <p><%= participant.user.first_name.first(1).upcase %></p>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
     <% end %>
-  </ol>
-  <% if @participant.room_votes.empty? %>
-    <%= form_for(@participant, html:{id: "vote_form"}, :url => participant_save_room_votes_path(@participant, trip_id: @trip.id)) do %>
-      <%= hidden_field_tag(:room_votes, "", id: "ranks", class: "hidden" ) %>
-      <%= button_tag(type: "submit", class: "btn btn-primary btn-valid-vote") do %>
-        <i class="fas fa-vote-yea mr-1"></i> Voter
+
+    
+    <% if @participant.room_votes.empty? %>
+      <p class="text-center m-3" style="font-size: 0.8rem"><small>Classez dans votre ordre de préférence</small></p>
+    <% else %>
+      <p class="text-center m-3"><small>Votre classement a bien été enregistré</small></p>
+    <% end %>
+
+    <ol class="list-group list-group-flush border-0 " style="<%= 'filter: grayscale(100%)' if !@participant.room_votes.empty?%>" <%= 'data-controller=drag' if @participant.room_votes.empty? %>>
+      <% @rooms.each_with_index do |room, index| %>
+      <li class="list-group-item p-0 bg-transparent" style="border-width: 0" data-drag-target="row" data-id="<%= room.id %>">
+        <%= render partial: 'shared/room_votes_card', locals: {room: room, user: @user, index: index + 1} %>
+      </li>
       <% end %>
+    </ol>
+    <% if @participant.room_votes.empty? %>
+      <%= form_for(@participant, html:{id: "vote_form"}, :url => participant_save_room_votes_path(@participant, trip_id: @trip.id)) do %>
+        <%= hidden_field_tag(:room_votes, "", id: "ranks", class: "hidden" ) %>
+        <%= button_tag(type: "submit", class: "btn btn-primary btn-valid-vote") do %>
+          <i class="fas fa-vote-yea mr-1"></i> Voter
+        <% end %>
+      <% end %>
+    <% else %>
+      <div class="d-flex justify-content-around my-3 ">
+        <%= link_to "Modifier mon vote", trip_reset_vote_path(@trip), class: "btn btn-outline-primary btn-sm"  %>
+      </div>
     <% end %>
-  <% else %>
-    <div class="d-flex justify-content-around my-3 ">
-      <%= link_to "Modifier mon vote", trip_reset_vote_path(@trip), class: "btn btn-outline-primary btn-sm"  %>
-    </div>
   <% end %>
-</div>
-
-<%# <div class="d-sm-none" style="background-color: white; height: 4rem;">
-</div> %>
+<% end %>

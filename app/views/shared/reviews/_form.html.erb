@@ -1,0 +1,11 @@
+<%= render layout: '/layouts/trip' do %>
+  <div class="down_40vh">
+    <%= render layout: '/layouts/transparent_card' do %>
+        <%= simple_form_for [ trip, room, review ] do |f| %>
+          <%= f.input :score, collection: (0..5).to_a, label: "Note" %>
+          <%= f.input :content, label: "Commentaire" %>
+          <%= f.submit "Enregistrer", class: "btn btn-primary" %>
+        <% end %>
+    <% end %>
+  </div>
+<% end %>

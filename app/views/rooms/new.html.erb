@@ -1,4 +1,6 @@
-<div class="background-rounded-white-no-tab d-flex p-3 justify-content-center align-items-center">
+<%= render layout: '/layouts/trip' do %>
+  <div style="top: 30vh; position: relative">
+    <%= render layout: '/layouts/transparent_card' do %>
       <div class="text-center">
         <p class="my-3">Importer vos logements depuis les principaux sites de location</p>
         <p class="my-3"><a href="https://www.abritel.fr" target="_blank">Abritel</a>, <a href="https://www.airbnb.fr" target="_blank">Airbnb</a>, <a href="https://www.booking.com">Booking</a>, <a href="https://www.coinsecret.com/" target="_blank">Coins Secrets</a></p>
@@ -40,4 +42,6 @@
           </div>
         </div>
       </div>
-</div>
+    <% end %>
+  </div>
+<% end %>

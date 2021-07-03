@@ -15,7 +15,8 @@ module NavbarHelper
       params[:action] == 'edit_dates'
       ) ||
       params[:controller] == 'participants' ||
-      params[:controller] == 'rooms' && params[:action] == 'index'
+      params[:controller] == 'rooms' ||
+      params[:controller] == 'reviews'
   end
 
   def bg_color
@@ -60,6 +61,8 @@ module NavbarHelper
       trip_rooms_path(options[:trip])
     elsif cancel_room_create
       trip_room_path(options[:trip], options[:room])
+    elsif go_to_room_path
+      trip_room_path(options[:trip], options[:room])
     end
   end
 
@@ -84,6 +87,10 @@ module NavbarHelper
 
   def go_to_trip_rooms_path
     params[:controller] == 'rooms' && (params[:action] == 'show' || params[:action] == 'new')
+  end
+
+  def go_to_room_path
+    params[:controller] == 'reviews'
   end
 
   def cancel_room_create

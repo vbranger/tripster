@@ -1,18 +1,13 @@
-<div class="background-rounded-white-no-tab p-3">
+<%= render layout: '/layouts/trip' do %>
   <%= simple_form_for [@trip,@room] do |f| %>
-    <div class="row">
+    <%= render layout: '/layouts/transparent_card' do %>
       <% if @room.photo %>
-        <div class="d-sm-none col-12">
-          <%= image_tag @room.photo, class:"img-fluid" %>
-        </div>
-        <div class="d-none d-sm-block col-12 col-sm-4">
-          <%= image_tag @room.photo, style:"max-width: 100%;min-height: calc(100vh - 60px - 32px);;object-fit: cover;" %>
-        </div>
+        <%= image_tag @room.photo, class:"img-fluid room_img" %>
       <% end %>
-      <div class="col-12 col-sm-8">
-      <% if !@room.photo %>
-        <%= f.input :photo, label: "url photo" %>
-      <% end %>
+      <div class="form-inputs">
+        <% if !@room.photo %>
+          <%= f.input :photo, label: "url photo" %>
+        <% end %>
         <%= f.input :name, label: "Nom du logement" %>
         <div class="row">
           <div class="col-6">
@@ -24,6 +19,6 @@
         </div>
         <%= f.submit "Enregistrer", :class=>"btn btn-primary mt-3" %>
       </div>
-    </div>
+    <% end %>
   <% end %>
-</div>
+<% end %>

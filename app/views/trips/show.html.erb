@@ -1,45 +1,47 @@
 <%= render layout: '/layouts/trip' do %>
 <div class="down_40vh">
-  <div class="trip_show_card_bg">
+  <%= render layout: 'layouts/transparent_card' do %>
     <%= render partial: 'shared/trip/trip_card_info', locals: {trip: @trip} %>
-  </div>
+  <% end %>
 
-  <div class="trip_show_menu trip_show_card_bg">
-    <%= render partial: 'shared/trip/trip_menu_btn', 
-      locals: {
-        icon: "fas fa-map-marker-alt", 
-        text: "Destination", 
-        path: edit_destination_path(@trip),
-        method: :get
-      } 
-    %>
-    <%= render partial: 'shared/trip/trip_menu_btn', 
-      locals: {
-        icon: "fas fa-calendar-alt", 
-        text: "Dates",
-        path: edit_dates_path(@trip),
-        method: :get
-      } 
-    %>
-    <%= render partial: 'shared/trip/trip_menu_btn', 
-      locals: {
-        icon: "fas fa-home", 
-        text: "Logement",
-        path: @trip.not_started? ? trip_start_propositions_path(@trip) : trip_rooms_path(@trip),
-        method: @trip.not_started? ? :put : :get
-      } 
-    %>
-    <%= render partial: 'shared/trip/trip_menu_btn', 
-      locals: {
-        icon: "fas fa-users", 
-        text: "Participants",
-        path: trip_participants_path(@trip),
-        method: :get
-        }
-    %>
-  </div>
+  <%= render layout: 'layouts/transparent_card' do %>
+    <div class="trip_show_menu">
+      <%= render partial: 'shared/trip/trip_menu_btn', 
+        locals: {
+          icon: "fas fa-map-marker-alt", 
+          text: "Destination", 
+          path: edit_destination_path(@trip),
+          method: :get
+        } 
+      %>
+      <%= render partial: 'shared/trip/trip_menu_btn', 
+        locals: {
+          icon: "fas fa-calendar-alt", 
+          text: "Dates",
+          path: edit_dates_path(@trip),
+          method: :get
+        } 
+      %>
+      <%= render partial: 'shared/trip/trip_menu_btn', 
+        locals: {
+          icon: "fas fa-home", 
+          text: "Logement",
+          path: @trip.not_started? ? trip_start_propositions_path(@trip) : trip_rooms_path(@trip),
+          method: @trip.not_started? ? :put : :get
+        } 
+      %>
+      <%= render partial: 'shared/trip/trip_menu_btn', 
+        locals: {
+          icon: "fas fa-users", 
+          text: "Participants",
+          path: trip_participants_path(@trip),
+          method: :get
+          }
+      %>
+    </div>
+  <% end %>
 
-  <div class="trip_show_card_bg">
+  <%= render layout: 'layouts/transparent_card' do %>
     <% @news.each do |new| %>
       <% if new.action_type == "reviews#create" || new.action_type == "reviews#update" %>
         <%= render layout: 'shared/news_text_card', locals: { new: new } do %>
@@ -51,7 +53,7 @@
         <% end %>
       <% end %>
     <% end %>
-  </div>
+  <% end %>
 </div>
   
 <% end %>

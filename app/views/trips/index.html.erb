@@ -1,5 +1,4 @@
-<div class="trip_show_container">
-  <div class="trip_list">
+  <div class="trip_list" data-midnight="white">
     <% @trips.each do |trip| %>
       <%= render partial: 'shared/trip/trip_card', locals: {trip: trip} %>
     <% end %>

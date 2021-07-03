@@ -1,7 +1,1 @@
-<div class="background-rounded-white p-3">
-<%= simple_form_for [ @trip, @room, @review ] do |f| %>
-  <%= f.input :score, collection: (0..5).to_a, label: "Note" %>
-  <%= f.input :content, label: "Commentaire" %>
-  <%= f.submit "Modifier", class: "btn btn-primary" %>
-<% end %>
-</div>
+<%= render partial: 'shared/reviews/form', locals: {trip: @trip, room: @room, review: @review} %>

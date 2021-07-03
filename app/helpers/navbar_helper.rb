@@ -15,7 +15,9 @@ module NavbarHelper
       params[:action] == 'edit_dates'
       ) ||
       params[:controller] == 'participants' ||
-      params[:controller] == 'rooms' && params[:action] == 'index'
+      params[:controller] == 'rooms' && (
+        params[:action] == 'index' ||
+        params[:action] == 'show')
   end
 
   def bg_color

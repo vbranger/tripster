@@ -40,7 +40,8 @@
 }
 
 .trip_show_card_bg {
-  background-color: rgba(255,255,255,0.86);
+  background-color: rgba(255,255,255,0.6);
+  backdrop-filter: blur(8px);
   padding: 0.5rem 1rem;
   border-radius: 1.5rem;
   min-height: 80px;

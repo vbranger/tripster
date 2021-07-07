@@ -25,7 +25,73 @@
   min-height: calc(100vh - 46px - 132px);
 }
 
-.home-sm-title {
-  font-size: 3.5rem;
-  font-weight: bold;
+.home_container {
+  position: relative;
+  top: 60px;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.home_card_bg {
+  background-color: rgba(246, 246, 246, 0.9);
+  backdrop-filter: blur(8px);
+  padding: 2rem 0rem 2rem 2rem;
+  border-radius: 1.5rem;
+  min-height: 80px;
+  margin: 0.5rem 0;
+  width: 94vw;
+  display: grid;
+  gap: 2rem;
+}
+
+.home_card_left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.home_card_links {
+  display: flex;
+  gap: 1rem;
+}
+
+
+// Pour les mobiles
+@media (max-width: 576px) {
+  .home_bg {
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 60vh;
+    position: fixed;
+    width: 100%;
+  }
+  .home_card_right {
+    display: none;
+  }
+}
+
+// Pour les tablettes et desktop
+@media (min-width: 576px) {
+  .home_card_bg {
+    grid-template-columns: 55% 45%;
+  }
+  .home_card_left {
+    .home_title {
+      font-size: 2.5rem;
+    }
+  }
+
+  .home_card_right {
+    img {
+      width: 100%;
+    }
+  }
 }

@@ -41,13 +41,11 @@
 .home_card_bg {
   background-color: rgba(246, 246, 246, 0.9);
   backdrop-filter: blur(8px);
-  padding: 2rem 0rem 2rem 2rem;
   border-radius: 1.5rem;
-  min-height: 80px;
-  margin: 0.5rem 0;
-  width: 94vw;
+  height: calc(100vh - 58px - 58px);
   display: grid;
   gap: 2rem;
+  width: 100%;
 }
 
 .home_card_left {
@@ -55,6 +53,7 @@
   flex-direction: column;
   justify-content: center;
   gap: 1rem;
+  padding: 2rem 0rem 2rem 2rem;
 }
 
 .home_card_links {
@@ -69,7 +68,6 @@
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-    height: 60vh;
     position: fixed;
     width: 100%;
   }
@@ -91,7 +89,10 @@
 
   .home_card_right {
     img {
-      width: 100%;
+      position: absolute;
+      bottom: 0;
+      height: 100%;
+      width: auto;
     }
   }
 }

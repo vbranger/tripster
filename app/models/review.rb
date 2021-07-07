@@ -12,7 +12,9 @@ class Review < ApplicationRecord
   def update_avg_score
     reviews = Review.where(room: room)
     scores = reviews.map(&:score)
-    avg = scores.inject { |sum, x| sum + x } / scores.length.to_f
+    unless scores.empty?
+      avg = scores.inject { |sum, x| sum + x } / scores.length.to_f
+    end
     room.update(avg_score: avg)
   end
 

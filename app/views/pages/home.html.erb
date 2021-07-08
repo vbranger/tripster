@@ -27,20 +27,22 @@
 <div class="home_bg" style="background-image: url('<%= image_path "demo_product.png" %>')">
 </div>
 <div class="home_container">
-  <div class="home_card_bg">
-  </div>
-  <div class="home_card_content">
-    <div class="home_card_left">
-      <h1 class="home_title">Organisez vos vacances à plusieurs avec <strong>Tripster</strong></h1>
-      <p>Finis les innombrables groupes de discussion pour organiser les vacances où rien n’avance comme il faut !</p>
-      <div class="home_card_links">
-        <%= link_to "Créer un compte", new_user_registration_path, class:"btn btn-primary" %>
-        <%= link_to "Se connecter", new_user_session_path, class: "btn btn-outline-primary" %>
+  <div>
+    <div class="home_card_bg">
+    </div>
+    <div class="home_card_content">
+      <div class="home_card_left">
+        <h1 class="home_title">Organisez vos vacances à plusieurs avec <strong>Tripster</strong></h1>
+        <p>Finis les innombrables groupes de discussion pour organiser les vacances où rien n’avance comme il faut&nbsp!</p>
+        <div class="home_card_links">
+          <%= link_to "Créer un compte", new_user_registration_path, class:"btn btn-primary" %>
+          <%= link_to "Se connecter", new_user_session_path, class: "btn btn-outline-primary" %>
+        </div>
+      </div>
+      <div class="home_card_right">
+        <%= image_tag "demo_product.png", class:"img-fluid" %>
       </div>
     </div>
-    <div class="home_card_right">
-      <%= image_tag "demo_product.png", class:"img-fluid" %>
-    </div>
   </div>
-
+  <h1 class="home_title">Pourquoi <strong>Tripster</strong>&nbsp?</h1>
 </div>

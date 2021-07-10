@@ -1,32 +1,5 @@
 module NavbarHelper
 
-  def navbar_position
-    if need_fixednav
-      'fixed-top'
-    else
-      'sticky-top'
-    end
-  end
-
-  def need_fixednav
-    params[:controller] == 'trips' && (
-      params[:action] == 'show' || 
-      params[:action] == 'edit_destination' ||
-      params[:action] == 'edit_dates'
-      ) ||
-      params[:controller] == 'participants' ||
-      params[:controller] == 'rooms' ||
-      params[:controller] == 'reviews'
-  end
-
-  def bg_color
-    if params[:controller] == 'pages' && params[:action] == 'home'
-      "bg-dark"
-    else
-      "bg-transparent"
-    end
-  end
-
   def login_link
     !(
       params[:controller].include?('users') ||
@@ -37,19 +10,6 @@ module NavbarHelper
 
   def logo_tripster
     !user_signed_in? || params[:controller] == 'trips' && params[:action] == 'index' || params[:controller] == "pages"
-  end
-
-  def text_color_bg
-    if bg_not_white
-      "text-light"
-    else
-      "text-dark"
-    end
-  end
-
-  def bg_not_white
-    params[:controller] == 'trips' && params[:action] == 'show' ||
-      params[:action] == 'home' || params[:controller] == 'participants'
   end
 
   def back_link(options = {})

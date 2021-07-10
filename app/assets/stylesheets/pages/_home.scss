@@ -1,31 +1,170 @@
-// Specific CSS for your home-page
-.background-rounded-white-log-options {
-  border-radius: 16px 16px 0px 0px; 
-  background-color: white;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 1rem;
-  width: 100%;
-  margin-top: 1rem;
-}
-
 .home-log-btn {
   max-width: 300px;
   min-width: 270px;
   border-radius: 4px;
 }
 
-.home-sm-full-height {
-  min-height: calc(100vh - 82px);
-  max-width: 100%;
+.home_container {
+  position: relative;
+  top: 60px;
+  width: 100%;
 }
 
-.home-full-height {
-  min-height: calc(100vh - 46px - 132px);
+.home_card_bg {
+  background-color: rgba(246, 246, 246, 0.9);
+  backdrop-filter: blur(8px);
+  border-radius: 1.5rem;
 }
 
-.home-sm-title {
-  font-size: 3.5rem;
-  font-weight: bold;
+.home_card_standalone {
+  position: absolute;
+  height: calc(100vh - 58px - 58px);
+  left: 15px;
+  right: 15px;
+}
+
+.home_card_content {
+  height: calc(100vh - 58px - 58px);
+  display: flex;
+  z-index: 1;
+  position: relative;
+  place-items: center;
+  justify-content: space-evenly;
+}
+
+.home_card_left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: -0.5rem;
+  margin-bottom: -0.5rem;
+  
+}
+
+.home_card_left > * {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.home_card_links {
+  display: flex;
+  margin-left: -0.5rem;
+  margin-right: -0.5rem;
+}
+
+.home_card_links > * {
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+  display: inline-block;
+}
+
+.home_data_blocs {
+  margin-top: -1rem;
+  margin-bottom: -1rem;
+}
+
+.home_data_blocs > * {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.home_footer {
+  display:flex;
+  flex-direction: column;
+  justify-content: space-around;
+  color: white;
+  background-color: $gray;
+  padding: 1rem;
+  min-height: 30vh;
+}
+
+
+// Pour les mobiles
+@media (max-width: 576px) {
+  .home_bg {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: fixed;
+    width: 100vh;
+    height: 100%;
+    transform: rotate(45deg);
+    top: -22px;
+    left: -48px;
+  }
+  .home_title {
+    font-size: 2rem;
+    grid-area: title;
+  }
+
+  .home_text {
+    grid_area: text;
+  }
+
+  .home_card_standalone {
+    display: none;
+  }
+
+  .home_card_links {
+    flex-direction: column;
+  }
+  
+  .home_card_links > * {
+    margin-bottom: 0.5rem;
+  }
+
+  .home_card_content {
+    padding: 1rem;
+    background-color: rgba(246, 246, 246, 0.9);
+    backdrop-filter: blur(8px);
+    border-radius: 1.5rem;
+    height: auto;
+  }
+  .home_card_right {
+    display: none;
+  }
+  .home_data_blocs {
+    padding: 1rem;
+  }
+}
+
+// Pour les tablettes et desktop
+@media (min-width: 576px) {
+  .home_card_content {
+    width: 100%;
+  }
+  .home_card_left {
+    min-width: 425px;
+    max-width: 500px;
+    padding: 2rem 0rem 2rem 2rem;
+  }
+
+  .home_data_blocs {
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: 1fr 2fr;
+    grid-template-areas:
+      "data title"
+      "data text";
+    padding: 2rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+  
+  .home_data_blocs > * {
+    margin-left: 1rem;
+  }
+
+  .home_title {
+    font-size: 3.5rem;
+  }
+
+  .home_card_right {
+    align-self: flex-end;
+    img {
+      height: 91vh;
+      object-fit: cover;
+      object-position: left bottom;
+    }
+  }
 }

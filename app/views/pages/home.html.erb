@@ -1,3 +1,4 @@
+<!--
 <div class="d-block d-sm-none" style="background-color: #515151">
   <div class="home-full-height mx-3">
     <%= image_tag 'undraw_traveling.svg', class:"img-fluid" %>
@@ -18,6 +19,40 @@
     </div>
     <div class="col-sm-4">
       <%= image_tag 'undraw_traveling.svg', class:"img-fluid" %>
+    </div>
+  </div>
+</div>
+-->
+
+<div class="home_bg" style="background-image: url('<%= image_path "demo_product.png" %>')">
+</div>
+<div class="home_container">
+  <div style="margin-bottom: 4rem;">
+    <div class="home_card_bg home_card_standalone">
+    </div>
+    <div class="home_card_content">
+      <div class="home_card_left">
+        <h1 class="home_title">Organisez vos vacances à plusieurs avec <strong>Tripster</strong></h1>
+        <p>Finis les innombrables groupes de discussion pour organiser les vacances où rien n’avance comme il faut&nbsp!</p>
+        <div class="home_card_links">
+          <%= link_to "Créer un compte", new_user_registration_path, class:"btn btn-primary" %>
+          <%= link_to "Se connecter", new_user_session_path, class: "btn btn-outline-primary" %>
+        </div>
+      </div>
+      <div class="home_card_right">
+        <%= image_tag "demo_product.png", class:"img-fluid" %>
+      </div>
+    </div>
+  </div>
+  <div class="home_data_blocs home_card_bg">
+    <h2 class="home_title">Pourquoi <strong>Tripster</strong>&nbsp?</h2>
+    <%= render partial: 'shared/data_blocs', locals: {user_count: @user_count, trip_count: @trip_count, review_count: @review_count} %>
+    <p class="home_text">Avec Tripster, choisissez votre <strong>destination</strong>, trouvez les <strong>dates</strong> qui conviennent à tous et dénichez ensemble la <strong>maison</strong> de vacances de vos rêves !</p>
+  </div>
+  <div class="home_footer mt-5">
+    <h2 class="home_title mb-3">Installez <strong>Tripster</strong> dès maintenant&nbsp!</h2>
+    <div class="home_card_links">
+      <%= link_to "Installer Tripster", "#", class:"btn btn-primary" %>
     </div>
   </div>
 </div>

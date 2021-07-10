@@ -1,0 +1,58 @@
+.data_blocs {
+  position: relative;
+  min-width: 280px;
+  max-width: 320px;
+  min-height: 300px;
+  grid-area: data;
+}
+
+.data_bloc {
+  background-color: $light-gray;
+  border-radius: 24px;
+  display:flex;
+  flex-direction: column;
+  color: $gray;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: absolute;
+  p:first-child {
+    font-weight: bold;
+  }
+}
+// Pour les tablettes et desktop
+@media (min-width: 576px) {
+  .data_bloc {
+    background-color: $gray;
+    color: $light-gray;
+  }
+}
+
+#bloc_1 {
+  height: 100px;
+  width: 100px;
+  right: 10%;
+  p:first-child {
+    font-size: 2rem;
+  }
+}
+
+#bloc_2 {
+  height: 120px;
+  width: 120px;
+  left: 0;
+  top: 35%;
+  p:first-child {
+    font-size: 2.4rem;
+  }
+}
+
+#bloc_3 {
+  height: 140px;
+  width: 140px;
+  right: 0;
+  bottom: 0;
+  p:first-child {
+    font-size: 2.8rem;
+  }
+}

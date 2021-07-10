@@ -1,7 +1,9 @@
 .data_blocs {
   position: relative;
   min-width: 280px;
+  max-width: 320px;
   min-height: 300px;
+  grid-area: data;
 }
 
 .data_bloc {
@@ -16,6 +18,13 @@
   position: absolute;
   p:first-child {
     font-weight: bold;
+  }
+}
+// Pour les tablettes et desktop
+@media (min-width: 576px) {
+  .data_bloc {
+    background-color: $gray;
+    color: $light-gray;
   }
 }
 

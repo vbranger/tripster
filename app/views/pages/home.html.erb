@@ -27,7 +27,7 @@
 <div class="home_bg" style="background-image: url('<%= image_path "demo_product.png" %>')">
 </div>
 <div class="home_container">
-  <div style="margin-bottom: 5rem;">
+  <div style="margin-bottom: 4rem;">
     <div class="home_card_bg home_card_standalone">
     </div>
     <div class="home_card_content">
@@ -44,13 +44,13 @@
       </div>
     </div>
   </div>
-  <div class="home_card_content home_card_left">
+  <div class="home_data_blocs home_card_bg">
     <h2 class="home_title">Pourquoi <strong>Tripster</strong>&nbsp?</h2>
     <%= render partial: 'shared/data_blocs', locals: {user_count: @user_count, trip_count: @trip_count, review_count: @review_count} %>
-    <p>Avec Tripster, choisissez votre <strong>destination</strong>, trouvez les <strong>dates</strong> qui conviennent à tous et dénichez ensemble la <strong>maison</strong> de vacances de vos rêves !</p>
+    <p class="home_text">Avec Tripster, choisissez votre <strong>destination</strong>, trouvez les <strong>dates</strong> qui conviennent à tous et dénichez ensemble la <strong>maison</strong> de vacances de vos rêves !</p>
   </div>
   <div class="home_footer mt-5">
-    <h2 class="home_title mb-3">Installez l’application <strong>Tripster</strong> dès maintenant !</h2>
+    <h2 class="home_title mb-3">Installez <strong>Tripster</strong> dès maintenant&nbsp!</h2>
     <div class="home_card_links">
       <%= link_to "Installer Tripster", "#", class:"btn btn-primary" %>
     </div>

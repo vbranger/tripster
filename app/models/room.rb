@@ -71,7 +71,6 @@ class Room < ApplicationRecord
     self.photo = result[:photo]
   end
   
-
   private
 
   def date_conversion(string_date)

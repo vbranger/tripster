@@ -34,7 +34,7 @@ class RoomsController < ApplicationController
     elsif @room.url.include? "www.coinsecret.com"
       @room.website = "coinsecret"
       @room.universal_scrap
-    else
+    elsif @room.url != ""
       @room.universal_scrap
     end
     if @room.save

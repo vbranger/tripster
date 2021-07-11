@@ -23,6 +23,8 @@ module NavbarHelper
       trip_room_path(options[:trip], options[:room])
     elsif go_to_room_path
       trip_room_path(options[:trip], options[:room])
+    elsif go_to_trip_participants_path
+      trip_participants_path(options[:trip])
     end
   end
 
@@ -51,6 +53,10 @@ module NavbarHelper
 
   def go_to_room_path
     params[:controller] == 'reviews'
+  end
+
+  def go_to_trip_participants_path
+    params[:controller] == 'invites' && params[:action] == 'new'
   end
 
   def cancel_room_create

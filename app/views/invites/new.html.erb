@@ -1,8 +1,14 @@
-<div class="container py-3">
+<%= render layout: '/layouts/trip' do %>
+<div class="trip_show_card_bg home_container container py-3">
     <%= form_for @invite , :url => invites_path do |f| %>
-        <%= f.hidden_field :trip_id, :value => @trip.id %>
-        <%= f.label :email %>
-        <%= f.email_field :email %>
-        <%= f.submit 'Inviter' %>
+        <div class="form-inputs">
+            <%= f.hidden_field :trip_id, :value => @trip.id %>
+            <%= f.label :email %>
+            <%= f.email_field :email %>
+            <div class="form-actions my-3">
+                <%= f.submit 'Inviter', class: "btn btn-block btn-primary" %>
+            </div>
+        </div>
     <% end %>
 </div>
+<% end %>

@@ -7,6 +7,7 @@ feature "User can invite other participant" do
       other_user = create(:user, first_name: "Florian", email: "other_user@gmail.com")
       trip = create(:trip, user: user, name: "test")
       visit trip_path(trip)
+      click_on 'Participants'
       click_on "Ajouter un participant"
       fill_in "invite_email", with: other_user.email
       click_on "Inviter"
@@ -19,6 +20,7 @@ feature "User can invite other participant" do
       user = sign_in
       trip = create(:trip, user: user, name: "test")
       visit trip_path(trip)
+      click_on 'Participants'
       click_on "Ajouter un participant"
       fill_in "invite_email", with: "new_user@gmail.com"
       click_on "Inviter"

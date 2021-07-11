@@ -2,7 +2,7 @@ require 'rails_helper'
 
 feature "User change room states" do
   context "from not_started to propositions" do
-    scenario "successfully" do
+    xscenario "successfully" do
       user = sign_in
       trip = create(:trip, user: user, aasm_state: "not_started")
       visit trip_path(trip)

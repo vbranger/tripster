@@ -14,7 +14,7 @@ feature "User can log in" do
     scenario "successfully" do
       visit root_path
 
-      expect(page).to have_css 'h1', text: 'Organisez facilement vos vacances en groupe'
+      expect(page).to have_content('Organisez vos vacances à plusieurs')
     end
   end
 end
